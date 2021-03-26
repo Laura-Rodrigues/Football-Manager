@@ -1,4 +1,8 @@
 public class Jogadores {
+    enum Class_jog{
+        GRD,LAT,AVA,DEF,MED;
+    }
+    
     private String nome;
     private int velocidade;
     private int resistencia;
@@ -8,6 +12,7 @@ public class Jogadores {
     private int remate;
     private int capacidade_passe;
     private int elasticidade;
+    private Class_jog tipo_jogador;
 
     public Jogadores(){
         this.nome = "";
