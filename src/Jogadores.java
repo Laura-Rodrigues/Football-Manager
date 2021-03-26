@@ -1,8 +1,13 @@
+import java.lang.Enum;
+
+
 public class Jogadores {
     enum Class_jog{
         GRD,LAT,AVA,DEF,MED;
     }
-    
+    /**
+    if GK then tipo_jogador = GRD;
+    */
     private String nome;
     private int velocidade;
     private int resistencia;
@@ -28,7 +33,8 @@ public class Jogadores {
     }
 
     public Jogadores(String nome, int velocidade, int resistencia, int destreza,
-                        int impulsao, int jogo_cabeca, int remate, int capacidade_passe, int elasticidade,Class_jog tipo_jog)
+                        int impulsao, int jogo_cabeca, int remate, int capacidade_passe,
+                         int elasticidade,Class_jog tipo_jog)
     {
         this.nome = nome;
         this.velocidade = velocidade;
@@ -54,6 +60,22 @@ public class Jogadores {
         this.capacidade_passe = jog.getCapacidade_passe();
         this.elasticidade = jog.getElasticidade();
         this.tipo_jogador = jog.getTipo_jogador();
+    }
+
+    
+    public String toString() {
+        return "Jogador " +
+                "\nNome='" + nome + '\'' +
+                "\nVelocidade=" + velocidade +
+                "\nResistencia=" + resistencia +
+                "\nDestreza=" + destreza +
+                "\nImpulsao=" + impulsao +
+                "\nJogo de cabeça=" + jogo_cabeca +
+                "\nRemate=" + remate +
+                "\nCapacidade de passe=" + capacidade_passe +
+                "\nElasticidade=" + elasticidade +
+                "\nTipo jogador=" + tipo_jogador
+                ;
     }
 
     /**

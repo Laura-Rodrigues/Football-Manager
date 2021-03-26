@@ -1,0 +1,149 @@
+GK;Brasil;Matheus
+DF;Portugal;Zé Carlos
+DF;Brasil;Vítor Tormena
+DF;Portugal;Nuno Sequeira
+DF;Portugal;Rolando
+MF;Portugal;João Novais
+MF;Líbia;Ali Elmusrati
+FW;Espanha;Abel Ruiz
+MF;Argentina;Nico Gaitán
+FW;Brasil;Lucas Piazon
+GK;Portugal;Tiago Sá
+MF;Portugal;André Horta
+DF;Portugal;David Carmo
+GK;Bélgica;Mile Svilar
+DF;Brasil;Gilberto
+DF;Espanha;Álex Grimaldo
+DF;Brasil;Lucas Veríssimo
+DF;Bélgica;Jan Vertonghen
+MF;Brasil;Everton
+MF;Brasil;Gabriel
+FW;Uruguai;Darwin Núñez
+FW;Alemanha;Luca Waldschmidt
+MF;Argentina;Franco Cervi
+FW;Suíça;Haris Seferović
+MF;Portugal;Diogo Gonçalves
+MF;Portugal;Chiquinho
+MF;Portugal;Pizzi
+GK;Argentina;Agustín Marchesín
+DF;Portugal;Pepe
+DF;Portugal;Diogo Leite
+DF;Espanha;Iván Marcano
+MF;Senegal;Mamadou Loum
+FW;Colômbia;Luis Díaz
+MF;Colômbia;Mateus Uribe
+FW;Irão;Mehdi Taremi
+FW;Mali;Moussa Marega
+DF;Nigéria;Zaidu Sanusi
+GK;Portugal;Cláudio Ramos
+MF;Portugal;Carraça
+MF;Sérvia;Marko Grujić
+MF;México;Jesús Corona
+DF;Portugal;Wilson Manafá
+GK;Espanha;Antonio Adán
+DF;Brasil;Matheus Reis
+DF;Marrocos;Zouhair Feddal
+DF;Uruguai;Sebastián Coates
+DF;Portugal;Nuno Mendes
+MF;Portugal;João Palhinha
+FW;Brasil;Bruno Tabata
+MF;Brasil;Matheus Nunes
+FW;Portugal;Nuno Santos
+DF;Portugal;Luís Neto
+MF;Portugal;João Mário
+FW;Portugal;Tiago Tomás
+GK;Espanha;Kepa Arrizabalaga
+DF;Alemanha;Antonio Rüdiger
+DF;Espanha;Marcos Alonso
+DF;Dinamarca;Andreas Christensen
+MF;Itália;Jorginho
+DF;Brasil;Thiago Silva
+MF;França;N'Golo Kanté
+FW;Inglaterra;Tammy Abraham
+MF;Estados;Unidos Christian Pulisic
+FW;Alemanha;Timo Werner
+GK;Argentina;Willy Caballero
+DF;França;Kurt Zouma
+GK;Bélgica;Thibaut Courtois
+DF;Espanha;Dani Carvajal
+DF;Brasil;Éder Militão
+DF;Espanha;Sergio Ramos
+DF;França;Raphaël Varane
+DF;Espanha;Nacho
+FW;Bélgica;Eden Hazard
+MF;Alemanha;Toni Kroos
+FW;França;Karim Benzema
+MF;Croácia;Luka Modrić
+FW;Espanha;Marco Asensio
+GK;Alemanha;Marc-André ter Stegen
+DF;EstadosUnidos;Sergiño Dest
+DF;Espanha;Gerard Piqué
+DF;Uruguai;Ronald Araújo
+MF;Espanha;Sergio Busquets
+FW;França;Antoine Griezmann
+MF;BósniaeHirgovzonzia;Miralem Pjanić
+FW;Dinamarca;Martin Braithwaite
+FW;Argentina;Lionel Messi
+FW;França;Ousmane Dembélé
+MF;Espanha;Riqui Puig
+GK;Brasil;Neto
+DF;Inglaterra;Kyle Walker
+DF;Portugal;Rúben Dias
+DF;Inglaterra;John Stones
+DF;paísesBaixos;Nathan Aké
+FW;Inglaterra;Raheem Sterling
+MF;Alemanha;İlkay Gündoğan
+FW;Brasil;Gabriel Jesus
+FW;Argentina;Sergio Agüero
+DF;Ucrânia;Oleksandr Zinchenko
+GK;EstadosUnidos;Zack Steffen
+DF;França;Aymeric Laporte
+MF;Espanha;Rodri
+GK;Costa;Rica Keylor Navas
+DF;França;Presnel Kimpembe
+DF;Alemanha;Thilo Kehrer
+DF;Brasil;Marquinhos
+MF;Itália;Marco Verratti
+FW;França;Kylian Mbappé
+MF;Argentina;Leandro Paredes
+FW;Argentina;Mauro Icardi
+FW;Brasil;Neymar
+MF;Argentina;Ángel Di María
+MF;Brasil;Rafinha
+DF;Espanha;Juan Bernat
+MF;Portugal;Danilo Pereira
+GK;Alemanha;Bernd Leno
+DF;Espanha;Héctor Bellerín
+DF;Escócia;Kieran Tierney
+DF;Brasil;Gabriel
+MF;Inglaterra;Bukayo Saka
+MF;Espanha;Dani Ceballos
+FW;França;Alexandre Lacazette
+MF;Noruega;Martin Ødegaard
+FW;Brasil;Willian
+GK;Islândia;Rúnar Alex Rúnarsson
+FW;Gabão;Pierre-E. Aubameyang
+DF;Inglaterra;Rob Holding
+DF;Portugal;Cédric Soares
+GK;Polônia;Wojciech Szczęsny
+DF;Itália;Giorgio Chiellini
+DF;PaísesBaixos;Matthijs de Ligt
+MF;Brasil;Arthur
+FW;Portugal;Cristiano Ronaldo
+MF;PaísdeGales;Aaron Ramsey
+FW;Espanha;Álvaro Morata
+FW;Argentina;Paulo Dybala
+DF;Brasil;Alex Sandro
+DF;Brasil;Danilo
+MF;Estados;Unidos Weston McKennie
+GK;Croácia;Ivo Grbić
+DF;Uruguai;José Giménez
+MF;África;Central Geoffrey Kondogbia
+MF;Uruguai;Lucas Torreira
+MF;Espanha;Koke
+FW;Portugal;João Félix
+MF;Espanha;Saúl
+FW;Uruguai;Luis Suárez
+FW;Argentina;Ángel Correa
+MF;França;Thomas Lemar
+DF;Brasil;Renan Lodi
