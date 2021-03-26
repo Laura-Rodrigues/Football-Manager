@@ -1,5 +1,4 @@
-import java.lang.Enum;
-
+import java.util.Objects;
 
 public class Jogadores {
     enum Class_jog{
@@ -63,20 +62,7 @@ public class Jogadores {
     }
 
     
-    public String toString() {
-        return "Jogador " +
-                "\nNome='" + nome + '\'' +
-                "\nVelocidade=" + velocidade +
-                "\nResistencia=" + resistencia +
-                "\nDestreza=" + destreza +
-                "\nImpulsao=" + impulsao +
-                "\nJogo de cabeça=" + jogo_cabeca +
-                "\nRemate=" + remate +
-                "\nCapacidade de passe=" + capacidade_passe +
-                "\nElasticidade=" + elasticidade +
-                "\nTipo jogador=" + tipo_jogador
-                ;
-    }
+
 
     /**
      *
@@ -155,4 +141,32 @@ public class Jogadores {
     public void setTipo_jogador(Class_jog tipo_jogador){
         this.tipo_jogador = tipo_jogador;
     }
+
+
+    public String toString() {
+        return "Jogador " +
+                "\nNome='" + nome + '\'' +
+                "\nVelocidade=" + velocidade +
+                "\nResistencia=" + resistencia +
+                "\nDestreza=" + destreza +
+                "\nImpulsao=" + impulsao +
+                "\nJogo de cabeça=" + jogo_cabeca +
+                "\nRemate=" + remate +
+                "\nCapacidade de passe=" + capacidade_passe +
+                "\nElasticidade=" + elasticidade +
+                "\nTipo jogador=" + tipo_jogador
+                ;
+    }
+
+    public Jogadores clone(){ return new Jogadores(this);}
+
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Jogadores jogadores = (Jogadores) o;
+        return Objects.equals(nome, jogadores.nome) &&
+                tipo_jogador == jogadores.tipo_jogador;
+    }
+
 }
