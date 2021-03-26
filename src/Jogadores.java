@@ -43,16 +43,17 @@ public class Jogadores {
         
     }
 
-    public Jogadores(Jogadores gr){
-        this.nome = gr.getNome();
-        this.velocidade = gr.getVelocidade();
-        this.resistencia = gr.getResistencia();
-        this.destreza = gr.getDestreza();
-        this.impulsao = gr.getImpulsao();
-        this.jogo_cabeca = gr.getJogo_cabeca();
-        this.remate = gr.getRemate();
-        this.capacidade_passe = gr.getCapacidade_passe();
-        this.elasticidade = gr.getElasticidade();
+    public Jogadores(Jogadores jog){
+        this.nome = jog.getNome();
+        this.velocidade = jog.getVelocidade();
+        this.resistencia = jog.getResistencia();
+        this.destreza = jog.getDestreza();
+        this.impulsao = jog.getImpulsao();
+        this.jogo_cabeca = jog.getJogo_cabeca();
+        this.remate = jog.getRemate();
+        this.capacidade_passe = jog.getCapacidade_passe();
+        this.elasticidade = jog.getElasticidade();
+        this.tipo_jogador = jog.getTipo_jogador();
     }
 
     /**
