@@ -24,10 +24,11 @@ public class Jogadores {
         this.remate = 0;
         this.capacidade_passe = 0;
         this.elasticidade = 0;
+        this.tipo_jogador = Class_jog.GRD;
     }
 
     public Jogadores(String nome, int velocidade, int resistencia, int destreza,
-                        int impulsao, int jogo_cabeca, int remate, int capacidade_passe, int elasticidade)
+                        int impulsao, int jogo_cabeca, int remate, int capacidade_passe, int elasticidade,Class_jog tipo_jog)
     {
         this.nome = nome;
         this.velocidade = velocidade;
@@ -38,6 +39,8 @@ public class Jogadores {
         this.remate = remate;
         this.capacidade_passe = capacidade_passe;
         this.elasticidade = elasticidade;
+        this.tipo_jogador = tipo_jog;
+        
     }
 
     public Jogadores(Jogadores gr){
@@ -83,6 +86,9 @@ public class Jogadores {
 
     public int getElasticidade()
     { return this.elasticidade; }
+    
+    public Class_jog getTipo_jogador()
+    { return this.tipo_jogador; }
 
     /**
      *
@@ -122,5 +128,8 @@ public class Jogadores {
 
     public void setElasticidade(int elasticidade) {
         this.elasticidade = elasticidade;
+    }
+    public void setTipo_jogador(Class_jog tipo_jogador){
+        this.tipo_jogador = tipo_jogador;
     }
 }
