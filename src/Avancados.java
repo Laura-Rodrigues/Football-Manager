@@ -1,12 +1,14 @@
+import java.util.Objects;
+
 public class Avancados {
     private String nome;
-    private int velocidade;
-    private int resistencia;
-    private int destreza;
-    private int impulsao;
-    private int jogo_cabeca;
-    private int remate;
-    private int capacidade_passe;
+    private int velocidade;  // 3
+    private int resistencia;  // 2
+    private int destreza;  // 2
+    private int impulsao;  // 2
+    private int jogo_cabeca; // 2
+    private int remate;  //3
+    private int capacidade_passe; // 1
 
     public Avancados(){
         this.nome = "";
@@ -64,5 +66,36 @@ public class Avancados {
 
     public int getCapacidade_passe()
     { return this.capacidade_passe; }
+
+
+    public String toString() {
+        return "Avancados{" +
+                "nome='" + nome + '\'' +
+                ", velocidade=" + velocidade +
+                ", resistencia=" + resistencia +
+                ", destreza=" + destreza +
+                ", impulsao=" + impulsao +
+                ", jogo_cabeca=" + jogo_cabeca +
+                ", remate=" + remate +
+                ", capacidade_passe=" + capacidade_passe +
+                '}';
+    }
+
+    public Avancados clone() { return new Avancados(this); }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Avancados avancados = (Avancados) o;
+        return velocidade == avancados.velocidade &&
+                resistencia == avancados.resistencia &&
+                destreza == avancados.destreza &&
+                impulsao == avancados.impulsao &&
+                jogo_cabeca == avancados.jogo_cabeca &&
+                remate == avancados.remate &&
+                capacidade_passe == avancados.capacidade_passe &&
+                Objects.equals(nome, avancados.nome);
+    }
+
 
 }

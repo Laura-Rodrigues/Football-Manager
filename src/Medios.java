@@ -1,12 +1,14 @@
+import java.util.Objects;
+
 public class Medios {
     private String nome;
-    private int velocidade;
-    private int resistencia;
-    private int destreza;
-    private int impulsao;
-    private int jogo_cabeca;
-    private int remate;
-    private int capacidade_passe;
+    private int velocidade;  // 2
+    private int resistencia;  // 3
+    private int destreza;  // 3
+    private int impulsao;  // 1
+    private int jogo_cabeca;  // 1
+    private int remate;  // 2
+    private int capacidade_passe;  // 3
 
     public Medios(){
         this.nome = "";
@@ -64,5 +66,37 @@ public class Medios {
 
     public int getCapacidade_passe()
     { return this.capacidade_passe; }
+
+
+    @Override
+    public String toString() {
+        return "Medios{" +
+                "nome='" + nome + '\'' +
+                ", velocidade=" + velocidade +
+                ", resistencia=" + resistencia +
+                ", destreza=" + destreza +
+                ", impulsao=" + impulsao +
+                ", jogo_cabeca=" + jogo_cabeca +
+                ", remate=" + remate +
+                ", capacidade_passe=" + capacidade_passe +
+                '}';
+    }
+
+    public Medios clone() { return new Medios(this); }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Medios medios = (Medios) o;
+        return velocidade == medios.velocidade &&
+                resistencia == medios.resistencia &&
+                destreza == medios.destreza &&
+                impulsao == medios.impulsao &&
+                jogo_cabeca == medios.jogo_cabeca &&
+                remate == medios.remate &&
+                capacidade_passe == medios.capacidade_passe &&
+                Objects.equals(nome, medios.nome);
+    }
+
 
 }

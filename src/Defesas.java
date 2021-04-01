@@ -1,12 +1,14 @@
+import java.util.Objects;
+
 public class Defesas {
     private String nome;
-    private int velocidade;
-    private int resistencia;
-    private int destreza;
-    private int impulsao;
-    private int jogo_cabeca;
-    private int remate;
-    private int capacidade_passe;
+    private int velocidade;  // 1
+    private int resistencia;  // 3
+    private int destreza;   //2
+    private int impulsao;  //3
+    private int jogo_cabeca;  //1
+    private int remate;  // 1
+    private int capacidade_passe; // 2
 
     public Defesas(){
         this.nome = "";
@@ -64,6 +66,36 @@ public class Defesas {
 
     public int getCapacidade_passe()
     { return this.capacidade_passe; }
+
+
+    public String toString() {
+        return "Defesas{" +
+                "nome='" + nome + '\'' +
+                ", velocidade=" + velocidade +
+                ", resistencia=" + resistencia +
+                ", destreza=" + destreza +
+                ", impulsao=" + impulsao +
+                ", jogo_cabeca=" + jogo_cabeca +
+                ", remate=" + remate +
+                ", capacidade_passe=" + capacidade_passe +
+                '}';
+    }
+
+    public Defesas clone() { return new Defesas(this); }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Defesas defesas = (Defesas) o;
+        return velocidade == defesas.velocidade &&
+                resistencia == defesas.resistencia &&
+                destreza == defesas.destreza &&
+                impulsao == defesas.impulsao &&
+                jogo_cabeca == defesas.jogo_cabeca &&
+                remate == defesas.remate &&
+                capacidade_passe == defesas.capacidade_passe &&
+                Objects.equals(nome, defesas.nome);
+    }
 
 
 }

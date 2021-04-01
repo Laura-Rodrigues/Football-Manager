@@ -1,13 +1,16 @@
-public class Guarda_Redes {
+import java.util.Objects;
+
+public class Guarda_Redes extends Equipa {
     private String nome;
-    private int velocidade;
-    private int resistencia;
-    private int destreza;
-    private int impulsao;
-    private int jogo_cabeca;
-    private int remate;
-    private int capacidade_passe;
-    private int elasticidade;
+    // valores de 0 - 20
+    private int velocidade;  // 2
+    private int resistencia;  // 1
+    private int destreza;  // 2
+    private int impulsao;  // 3
+    private int jogo_cabeca;  // 1
+    private int remate;  // 1
+    private int capacidade_passe; // 2
+    private int elasticidade;  // 3
 
     public Guarda_Redes(){
         this.nome = "";
@@ -71,6 +74,62 @@ public class Guarda_Redes {
 
     public int getElasticidade()
     { return this.elasticidade; }
+
+
+
+
+    public int habilidadeGR (Guarda_Redes gr){
+        return (int) Math.round(this.getVelocidade() * 0.15 +
+                this.getResistencia()*0.05 +
+                this.getDestreza()*0.15 +
+                this.getImpulsao()*0.20 +
+                this.getJogo_cabeca()*0.01 +
+                this.getRemate()*0.04 +
+                this.getCapacidade_passe()*0.15 +
+                this.getElasticidade()*0.25);
+    }
+
+
+
+
+    // CLONE
+    public Guarda_Redes clone() { return new Guarda_Redes(this); }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder(" ");
+        sb.append("Guarda Redes: ").append(this.nome).append("\n");
+        sb.append("velocidade: ").append(this.velocidade).append("\n");
+        sb.append("resistencia: ").append(this.resistencia).append("\n");
+        sb.append("destreza: ").append(this.destreza).append("\n");
+        sb.append("impulsao: ").append(this.impulsao).append("\n");
+        sb.append("jogo de cabeca: ").append(this.jogo_cabeca).append("\n");
+        sb.append("remate: ").append(this.remate).append("\n");
+        sb.append("capacidade de passe: ").append(this.capacidade_passe).append("\n");
+        sb.append("elasticidade: ").append(this.elasticidade).append("\n");
+        return sb.toString();
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Guarda_Redes that = (Guarda_Redes) o;
+        return velocidade == that.velocidade &&
+                resistencia == that.resistencia &&
+                destreza == that.destreza &&
+                impulsao == that.impulsao &&
+                jogo_cabeca == that.jogo_cabeca &&
+                remate == that.remate &&
+                capacidade_passe == that.capacidade_passe &&
+                elasticidade == that.elasticidade &&
+                Objects.equals(nome, that.nome);
+    }
+
+
+
+
+
+
+
 
 
 }

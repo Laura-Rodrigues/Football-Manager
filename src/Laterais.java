@@ -1,12 +1,14 @@
+import java.util.Objects;
+
 public class Laterais {
     private String nome;
-    private int velocidade;
-    private int resistencia;
-    private int destreza;
-    private int impulsao;
-    private int jogo_cabeca;
-    private int remate;
-    private int capacidade_passe;
+    private int velocidade;  // 3
+    private int resistencia;  // 3
+    private int destreza;  // 2
+    private int impulsao;  // 1
+    private int jogo_cabeca;  // 1
+    private int remate;  // 1
+    private int capacidade_passe;  // 3
 
     public Laterais(){
         this.nome = "";
@@ -64,5 +66,36 @@ public class Laterais {
 
     public int getCapacidade_passe()
     { return this.capacidade_passe; }
+
+
+    public String toString() {
+        return "Laterais{" +
+                "nome='" + nome + '\'' +
+                ", velocidade=" + velocidade +
+                ", resistencia=" + resistencia +
+                ", destreza=" + destreza +
+                ", impulsao=" + impulsao +
+                ", jogo_cabeca=" + jogo_cabeca +
+                ", remate=" + remate +
+                ", capacidade_passe=" + capacidade_passe +
+                '}';
+    }
+
+    public Laterais clone() { return new Laterais(this); }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Laterais laterais = (Laterais) o;
+        return velocidade == laterais.velocidade &&
+                resistencia == laterais.resistencia &&
+                destreza == laterais.destreza &&
+                impulsao == laterais.impulsao &&
+                jogo_cabeca == laterais.jogo_cabeca &&
+                remate == laterais.remate &&
+                capacidade_passe == laterais.capacidade_passe &&
+                Objects.equals(nome, laterais.nome);
+    }
+
 
 }
