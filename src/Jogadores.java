@@ -1,6 +1,10 @@
 import java.util.Objects;
+import java.util.Comparator;
 
-public class Jogadores {
+public class Jogadores implements Comparable<Jogadores> {
+
+
+
     enum Class_jog{
         GRD,LAT,AVA,DEF,MED;
     }
@@ -61,7 +65,8 @@ public class Jogadores {
         this.tipo_jogador = jog.getTipo_jogador();
     }
 
-    
+
+
 
 
     /**
@@ -154,7 +159,8 @@ public class Jogadores {
                 "\nRemate=" + remate +
                 "\nCapacidade de passe=" + capacidade_passe +
                 "\nElasticidade=" + elasticidade +
-                "\nTipo jogador=" + tipo_jogador
+                "\nTipo jogador=" + tipo_jogador +
+                "\n----------------------------\n"
                 ;
     }
 
@@ -169,4 +175,17 @@ public class Jogadores {
                 tipo_jogador == jogadores.tipo_jogador;
     }
 
+
+
+    @Override
+    public int compareTo(Jogadores jogadores) {
+        int hab1 = this.getVelocidade(); // getHabilidade deve ser usado isto é so para testar
+        int hab2 = jogadores.getVelocidade();
+
+        if ( hab1 > hab2)
+            return -1;
+        if ( hab1 < hab2)
+            return 1;
+        else return 0;
+    }
 }
