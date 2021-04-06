@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class programa{
 	public static void main(String[] args){
 
+
 		Jogadores jog1 = new Jogadores("Andre Goncalves Pinto", 1, 30000, 0,
                         99999999, 100, 101, 0,
                          0,Jogadores.Class_jog.MED);
@@ -15,6 +16,7 @@ public class programa{
 		plantel.add(jog2);
 
 		 /*
+
 		System.out.println(jog1.toString());
 		System.out.println(jog2.toString());
 		*/

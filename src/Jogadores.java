@@ -11,16 +11,20 @@ public class Jogadores implements Comparable<Jogadores> {
     /**
     if GK then tipo_jogador = GRD;
     */
-    private String nome;
-    private int velocidade;
-    private int resistencia;
-    private int destreza;
-    private int impulsao;
-    private int jogo_cabeca;
-    private int remate;
-    private int capacidade_passe;
-    private int elasticidade;
-    private Class_jog tipo_jogador;
+    protected String nome;
+   //                          limitar valores de 0 - 20:
+    protected int velocidade;
+    protected int resistencia;
+    protected int destreza;
+    protected int impulsao;
+    protected int jogo_cabeca;
+    protected int remate;
+    protected int capacidade_passe;
+   
+    protected Class_jog tipo_jogador;
+
+  
+
 
     public Jogadores(){
         this.nome = "";
@@ -31,14 +35,9 @@ public class Jogadores implements Comparable<Jogadores> {
         this.jogo_cabeca = 0;
         this.remate = 0;
         this.capacidade_passe = 0;
-        this.elasticidade = 0;
-        this.tipo_jogador = Class_jog.GRD;
     }
 
-    public Jogadores(String nome, int velocidade, int resistencia, int destreza,
-                        int impulsao, int jogo_cabeca, int remate, int capacidade_passe,
-                         int elasticidade,Class_jog tipo_jog)
-    {
+    public Jogadores(String nome, int velocidade, int resistencia, int destreza, int impulsao, int jogo_cabeca, int remate, int capacidade_passe){
         this.nome = nome;
         this.velocidade = velocidade;
         this.resistencia = resistencia;
@@ -47,132 +46,80 @@ public class Jogadores implements Comparable<Jogadores> {
         this.jogo_cabeca = jogo_cabeca;
         this.remate = remate;
         this.capacidade_passe = capacidade_passe;
-        this.elasticidade = elasticidade;
-        this.tipo_jogador = tipo_jog;
-        
     }
 
-    public Jogadores(Jogadores jog){
-        this.nome = jog.getNome();
-        this.velocidade = jog.getVelocidade();
-        this.resistencia = jog.getResistencia();
-        this.destreza = jog.getDestreza();
-        this.impulsao = jog.getImpulsao();
-        this.jogo_cabeca = jog.getJogo_cabeca();
-        this.remate = jog.getRemate();
-        this.capacidade_passe = jog.getCapacidade_passe();
-        this.elasticidade = jog.getElasticidade();
-        this.tipo_jogador = jog.getTipo_jogador();
+    public Jogadores(Jogadores j){
+        this.nome = j.getNome();
+        this.velocidade = j.getVelocidade();
+        this.resistencia = j.getResistencia();
+        this.destreza = j.getDestreza();
+        this.impulsao = j.getImpulsao();
+        this.jogo_cabeca = j.getJogo_cabeca();
+        this.remate = j.getRemate();
+        this.capacidade_passe = j.getCapacidade_passe();
     }
 
 
+    // GETTERS E SETTERS
+    public String getNome() { return this.nome; }
+    public void setNome(String nome) { this.nome = nome; }
 
 
+    public int getVelocidade() { return this.velocidade; }
+    public void setVelocidade(int velocidade) { this.velocidade = velocidade; }
 
-    /**
-     *
-     * Getters
-     */
+    public int getResistencia() { return this.resistencia; }
+    public void setResistencia(int resistencia) { this.resistencia = resistencia; }
 
-    public String getNome()
-    { return this.nome; }
+    public int getDestreza() { return this.destreza; }
+    public void setDestreza(int destreza) { this.destreza = destreza; }
 
-    public int getVelocidade()
-    { return this.velocidade; }
+    public int getImpulsao() { return this.impulsao; }
+    public void setImpulsao(int impulsao) { this.impulsao = impulsao; }
 
-    public int getResistencia()
-    { return this.resistencia; }
+    public int getJogo_cabeca() { return this.jogo_cabeca; }
+    public void setJogo_cabeca(int jogo_cabeca) { this.jogo_cabeca = jogo_cabeca; }
 
-    public int getDestreza()
-    { return this.destreza; }
+    public int getRemate() { return this.remate; }
+    public void setRemate(int remate) { this.remate = remate; }
 
-    public int getImpulsao()
-    { return this.impulsao; }
 
-    public int getJogo_cabeca()
-    { return this.jogo_cabeca; }
-
-    public int getRemate()
-    { return this.remate; }
-
-    public int getCapacidade_passe()
-    { return this.capacidade_passe; }
-
-    public int getElasticidade()
-    { return this.elasticidade; }
     
-    public Class_jog getTipo_jogador()
-    { return this.tipo_jogador; }
 
-    /**
-     *
-     * Setters
-     */
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setVelocidade(int velocidade) {
-        this.velocidade = velocidade;
-    }
-
-    public void setResistencia(int resistencia) {
-        this.resistencia = resistencia;
-    }
-
-    public void setDestreza(int destreza) {
-        this.destreza = destreza;
-    }
-
-    public void setImpulsao(int impulsao) {
-        this.impulsao = impulsao;
-    }
-
-    public void setJogo_cabeca(int jogo_cabeca) {
-        this.jogo_cabeca = jogo_cabeca;
-    }
-
-    public void setRemate(int remate) {
-        this.remate = remate;
-    }
-
-    public void setCapacidade_passe(int capacidade_passe) {
-        this.capacidade_passe = capacidade_passe;
-    }
-
-    public void setElasticidade(int elasticidade) {
-        this.elasticidade = elasticidade;
-    }
-    public void setTipo_jogador(Class_jog tipo_jogador){
-        this.tipo_jogador = tipo_jogador;
-    }
+    public int getCapacidade_passe() { return this.capacidade_passe; }
+    public void setCapacidade_passe(int capacidade_passe) { this.capacidade_passe = capacidade_passe; }
 
 
-    public String toString() {
-        return "Jogador " +
-                "\nNome='" + nome + '\'' +
-                "\nVelocidade=" + velocidade +
-                "\nResistencia=" + resistencia +
-                "\nDestreza=" + destreza +
-                "\nImpulsao=" + impulsao +
-                "\nJogo de cabeça=" + jogo_cabeca +
-                "\nRemate=" + remate +
-                "\nCapacidade de passe=" + capacidade_passe +
-                "\nElasticidade=" + elasticidade +
-                "\nTipo jogador=" + tipo_jogador +
-                "\n----------------------------\n"
-                ;
-    }
+    // CLONE
+    public Jogadores clone() { return new Jogadores(this); }
 
-    public Jogadores clone(){ return new Jogadores(this);}
-
-
+    // EQUALS
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Jogadores jogadores = (Jogadores) o;
-        return Objects.equals(nome, jogadores.nome) &&
-                tipo_jogador == jogadores.tipo_jogador;
+        return velocidade == jogadores.velocidade &&
+                resistencia == jogadores.resistencia &&
+                destreza == jogadores.destreza &&
+                impulsao == jogadores.impulsao &&
+                jogo_cabeca == jogadores.jogo_cabeca &&
+                remate == jogadores.remate &&
+                capacidade_passe == jogadores.capacidade_passe &&
+                Objects.equals(nome, jogadores.nome);
+    }
+
+    // TOSTRING
+    public String toString() {
+        StringBuilder sb = new StringBuilder(" ");
+        sb.append("Jogador: ").append(this.nome).append("\n");
+        sb.append("velocidade: ").append(this.velocidade).append("\n");
+        sb.append("resistencia: ").append(this.resistencia).append("\n");
+        sb.append("destreza: ").append(this.destreza).append("\n");
+        sb.append("impulsao: ").append(this.impulsao).append("\n");
+        sb.append("jogo de cabeca: ").append(this.jogo_cabeca).append("\n");
+        sb.append("remate: ").append(this.remate).append("\n");
+        sb.append("capacidade de passe: ").append(this.capacidade_passe).append("\n");
+        return sb.toString();
     }
 
 
