@@ -125,6 +125,10 @@ public class Jogadores implements Comparable<Jogadores> {
 
 
     @Override
+    /**
+     * Se um jogador tiver uma habilidade superior então retorna -1,
+     * dessa forma Jogadores melhores estão na cabeça da lista;
+     */
     public int compareTo(Jogadores jogadores) {
         int hab1 = this.getVelocidade(); // getHabilidade deve ser usado isto é so para testar
         int hab2 = jogadores.getVelocidade();
