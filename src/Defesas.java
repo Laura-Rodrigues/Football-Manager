@@ -14,6 +14,21 @@ public class Defesas extends Jogadores {
         super(def.getNome(), def.getVelocidade(), def.getResistencia(), def.getDestreza(), def.getImpulsao(), def.getJogo_cabeca(), def.getRemate(), def.getCapacidade_passe());
     }
 
+    public int habilidadeDef (Defesas def){
+        return (int) Math.round(this.getVelocidade() * 0.15 +
+                this.getResistencia()*0.10 +
+                this.getDestreza()*0.08 +
+                this.getImpulsao()*0.25 +
+                this.getJogo_cabeca()*0.15 +
+                this.getRemate()*0.08 +
+                this.getCapacidade_passe()*0.19);
+    }
+
+
+
+
+
+
     public String toString() {
         return super.toString();
     }

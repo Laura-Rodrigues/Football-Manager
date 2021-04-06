@@ -14,6 +14,19 @@ public class Medios extends Jogadores{
         super(m.getNome(), m.getVelocidade(), m.getResistencia(), m.getDestreza(), m.getImpulsao(), m.getJogo_cabeca(), m.getRemate(), m.getCapacidade_passe());
     }
 
+    public int habilidadeMed (Medios med){
+        return (int) Math.round(this.getVelocidade() * 0.15 +
+                this.getResistencia()*0.20 +
+                this.getDestreza()*0.20 +
+                this.getImpulsao()*0.05 +
+                this.getJogo_cabeca()*0.05 +
+                this.getRemate()*0.15 +
+                this.getCapacidade_passe()*0.20);
+    }
+
+
+
+
     public String toString() {
         return super.toString();
     }

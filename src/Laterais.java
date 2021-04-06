@@ -18,6 +18,20 @@ public class Laterais extends Jogadores {
         return super.toString();
     }
 
+    public int habilidadeLat (Laterais lat){
+        return (int) Math.round(this.getVelocidade() * 0.23 +
+                this.getResistencia()*0.18 +
+                this.getDestreza()*0.15 +
+                this.getImpulsao()*0.08 +
+                this.getJogo_cabeca()*0.06 +
+                this.getRemate()*0.08 +
+                this.getCapacidade_passe()*0.22);
+    }
+
+
+
+
+
     public Laterais clone() { return new Laterais(this); }
 
     public boolean equals(Object o) {

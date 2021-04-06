@@ -3,7 +3,7 @@ import java.util.Objects;
 public class Jogadores {
 
     protected String nome;
-    // valores de 0 - 20:
+    //                          limitar valores de 0 - 20:
     protected int velocidade;
     protected int resistencia;
     protected int destreza;

@@ -16,6 +16,20 @@ public class Avancados extends Jogadores {
     }
 
 
+    public int habilidadeAv (Avancados av){
+        return (int) Math.round(this.getVelocidade() * 0.20 +
+                this.getResistencia()*0.08 +
+                this.getDestreza()*0.16 +
+                this.getImpulsao()*0.10 +
+                this.getJogo_cabeca()*0.16 +
+                this.getRemate()*0.25 +
+                this.getCapacidade_passe()*0.05);
+    }
+
+
+
+
+
     public String toString() {
         return super.toString();
     }
