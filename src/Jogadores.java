@@ -1,9 +1,18 @@
 import java.util.Objects;
+import java.util.Comparator;
 
-public class Jogadores {
+public class Jogadores implements Comparable<Jogadores> {
 
+
+
+    enum Class_jog{
+        GRD,LAT,AVA,DEF,MED;
+    }
+    /**
+    if GK then tipo_jogador = GRD;
+    */
     protected String nome;
-    //                          limitar valores de 0 - 20:
+   //                          limitar valores de 0 - 20:
     protected int velocidade;
     protected int resistencia;
     protected int destreza;
@@ -11,6 +20,11 @@ public class Jogadores {
     protected int jogo_cabeca;
     protected int remate;
     protected int capacidade_passe;
+   
+    protected Class_jog tipo_jogador;
+
+  
+
 
     public Jogadores(){
         this.nome = "";
@@ -45,9 +59,11 @@ public class Jogadores {
         this.capacidade_passe = j.getCapacidade_passe();
     }
 
+
     // GETTERS E SETTERS
     public String getNome() { return this.nome; }
     public void setNome(String nome) { this.nome = nome; }
+
 
     public int getVelocidade() { return this.velocidade; }
     public void setVelocidade(int velocidade) { this.velocidade = velocidade; }
@@ -67,8 +83,12 @@ public class Jogadores {
     public int getRemate() { return this.remate; }
     public void setRemate(int remate) { this.remate = remate; }
 
+
+    
+
     public int getCapacidade_passe() { return this.capacidade_passe; }
     public void setCapacidade_passe(int capacidade_passe) { this.capacidade_passe = capacidade_passe; }
+
 
     // CLONE
     public Jogadores clone() { return new Jogadores(this); }
@@ -102,4 +122,17 @@ public class Jogadores {
         return sb.toString();
     }
 
+
+
+    @Override
+    public int compareTo(Jogadores jogadores) {
+        int hab1 = this.getVelocidade(); // getHabilidade deve ser usado isto é so para testar
+        int hab2 = jogadores.getVelocidade();
+
+        if ( hab1 > hab2)
+            return -1;
+        if ( hab1 < hab2)
+            return 1;
+        else return 0;
+    }
 }
