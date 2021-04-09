@@ -56,22 +56,23 @@ public class Equipa {
     }
 
 
-    public boolean makeTeam(){
-        boolean r = false;
-        List<Jogadores> players = new ArrayList<>();
+    public void SortTeam(){
+        /*List<Jogadores> players = new ArrayList<>();
         players.add(jogadores.get(0));
         players.add(jogadores.get(1));
+
+         */
 
         if (jogadores.size() < 11)
         {
 
-            Collections.sort(players);
-            System.out.println(players);
-            r = true;
+            Collections.sort(jogadores);
+            System.out.println(jogadores);
+
         }
 
 
-        return r;
+
     }
 
 

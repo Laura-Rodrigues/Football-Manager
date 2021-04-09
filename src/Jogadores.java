@@ -1,5 +1,6 @@
 import java.util.Objects;
 import java.util.Comparator;
+import java.util.Random;
 
 public class Jogadores implements Comparable<Jogadores> {
 
@@ -28,16 +29,23 @@ public class Jogadores implements Comparable<Jogadores> {
 
     public Jogadores(){
         this.nome = "";
+        /*
         this.velocidade = 0;
+
         this.resistencia = 0;
         this.destreza = 0;
         this.impulsao = 0;
         this.jogo_cabeca = 0;
         this.remate = 0;
         this.capacidade_passe = 0;
+        */
+        this.tipo_jogador = Class_jog.GRD;
+        RandomizarJogador_No_Tipo();
     }
 
-    public Jogadores(String nome, int velocidade, int resistencia, int destreza, int impulsao, int jogo_cabeca, int remate, int capacidade_passe){
+    public Jogadores(String nome, int velocidade, int resistencia, int destreza,
+                     int impulsao, int jogo_cabeca, int remate,
+                     int capacidade_passe, Class_jog tipo_jogador){
         this.nome = nome;
         this.velocidade = velocidade;
         this.resistencia = resistencia;
@@ -46,6 +54,24 @@ public class Jogadores implements Comparable<Jogadores> {
         this.jogo_cabeca = jogo_cabeca;
         this.remate = remate;
         this.capacidade_passe = capacidade_passe;
+        this.tipo_jogador = tipo_jogador;
+    }
+
+    /*
+    Construtor para as outros classes poderem funcionar em PAZ
+     */
+    public Jogadores(String nome, int velocidade, int resistencia, int destreza,
+                     int impulsao, int jogo_cabeca, int remate,
+                     int capacidade_passe){
+        this.nome = nome;
+        this.velocidade = velocidade;
+        this.resistencia = resistencia;
+        this.destreza = destreza;
+        this.impulsao = impulsao;
+        this.jogo_cabeca = jogo_cabeca;
+        this.remate = remate;
+        this.capacidade_passe = capacidade_passe;
+
     }
 
     public Jogadores(Jogadores j){
@@ -57,7 +83,31 @@ public class Jogadores implements Comparable<Jogadores> {
         this.jogo_cabeca = j.getJogo_cabeca();
         this.remate = j.getRemate();
         this.capacidade_passe = j.getCapacidade_passe();
+        this.tipo_jogador = j.getTipo_jogador();
     }
+
+    public Jogadores(String nome,Class_jog tipo){
+        RandomizarJogador_No_Tipo();
+        this.nome= nome;
+        this.tipo_jogador = tipo;
+    }
+
+
+    public void RandomizarJogador_No_Tipo(){
+        Random rand = new Random();
+        int max = 100;
+
+        this.velocidade = (int)  (rand.nextFloat() * max);
+        this.resistencia = (int)  (rand.nextFloat() * max);
+        this.destreza = (int) (rand.nextFloat() * max);
+        this.impulsao = (int) (rand.nextFloat() * max);
+        this.jogo_cabeca = (int) (rand.nextFloat() * max);
+        this.remate = (int) (rand.nextFloat() * max);
+        this.capacidade_passe = (int) (rand.nextFloat() * max);
+
+    }
+
+
 
 
     // GETTERS E SETTERS
@@ -90,6 +140,35 @@ public class Jogadores implements Comparable<Jogadores> {
     public void setCapacidade_passe(int capacidade_passe) { this.capacidade_passe = capacidade_passe; }
 
 
+    public Class_jog getTipo_jogador() {
+        return tipo_jogador;
+    }
+
+    public void setTipo_jogador(Class_jog tipo_jogador) {
+        this.tipo_jogador = tipo_jogador;
+    }
+    public String tipo_jogador_toString(Class_jog tipo_jogador){
+        String r;
+        switch (tipo_jogador){
+            case AVA:
+                r = "Avançado";
+                break;
+            case DEF:
+                r = "Defesa";
+                break;
+            case MED:
+                r = "Médio";
+                break;
+            case LAT:
+                r = "Lateral";
+                break;
+            default:
+                r = "Guarda-Redes";
+                break;
+        }
+        return r;
+    }
+
     // CLONE
     public Jogadores clone() { return new Jogadores(this); }
 
@@ -111,14 +190,19 @@ public class Jogadores implements Comparable<Jogadores> {
     // TOSTRING
     public String toString() {
         StringBuilder sb = new StringBuilder(" ");
+        sb.append("\n-----------------------\n");
         sb.append("Jogador: ").append(this.nome).append("\n");
-        sb.append("velocidade: ").append(this.velocidade).append("\n");
-        sb.append("resistencia: ").append(this.resistencia).append("\n");
-        sb.append("destreza: ").append(this.destreza).append("\n");
-        sb.append("impulsao: ").append(this.impulsao).append("\n");
-        sb.append("jogo de cabeca: ").append(this.jogo_cabeca).append("\n");
-        sb.append("remate: ").append(this.remate).append("\n");
-        sb.append("capacidade de passe: ").append(this.capacidade_passe).append("\n");
+        sb.append("Velocidade: ").append(this.velocidade).append("\n");
+        sb.append("Resistencia: ").append(this.resistencia).append("\n");
+        sb.append("Destreza: ").append(this.destreza).append("\n");
+        sb.append("Impulsao: ").append(this.impulsao).append("\n");
+        sb.append("Jogo de cabeca: ").append(this.jogo_cabeca).append("\n");
+        sb.append("Remate: ").append(this.remate).append("\n");
+        sb.append("Capacidade de passe: ").append(this.capacidade_passe).append("\n");
+        sb.append("Tipo Jogador: ").append(this.tipo_jogador_toString(this.tipo_jogador)).append("\n");
+        sb.append("-----------------------\n");
+
+
         return sb.toString();
     }
 
