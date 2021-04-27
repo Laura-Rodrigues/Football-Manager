@@ -4,37 +4,74 @@ public class programa{
 	public static void main(String[] args){
 
 
-		Jogadores jog1 = new Jogadores("Andre Goncalves Pinto", 1, 30000, 0,
-                        99999999, 100, 101,
-                         0,Jogadores.Class_jog.MED);
-		Jogadores jog2 = new Jogadores("Andre Goncalves Correia", 20, 30000, 0,
-				99999999, 100, 101, 0,
-				Jogadores.Class_jog.GRD);
-		Jogadores jog3 = new Jogadores("Madelena Silva", Jogadores.Class_jog.AVA);
-		Jogadores jog4 = new Jogadores("Tino Costa", Jogadores.Class_jog.AVA);
-		Jogadores jog5 = new Jogadores("Artur Veloz", Jogadores.Class_jog.MED);
+		Jogadores jog1 = new Medios("Andre Goncalves Pinto", 1, 30000, 0,
+                        99999999, 100, 101,0,30);
+		Jogadores jog2 = new Guarda_Redes("Andre Goncalves Correia", 20, 30000, 0,
+				99999999, 100, 101, 0,9,1,3);
+		Jogadores jog3 = new Avancados("Madelena Silva");
+		Jogadores jog4 = new Avancados("Tino Costa");
+		Jogadores jog5 = new Medios("Artur Veloz");
+		Jogadores jog6 = new Guarda_Redes("Arturito Veloz");
+		Jogadores jog7 = new Laterais("Aars");
+		Jogadores jog8 = new Defesas("Veloz");
+		Jogadores jog9 = new Avancados("Rei");
+		Jogadores jog10 = new Medios("DInossauro");
+		Jogadores jog11 = new Avancados("Ovo");
+		Jogadores jog12 = new Medios("Banana");
+		Jogadores jog13 = new Defesas("Avestruz");
+		Jogadores jog14 = new Defesas("Camelo");
+		Jogadores jog15 = new Medios("Girafa");
+		Jogadores jog16 = new Medios("Leao");
+		Jogadores jog17 = new Medios("Crocodilo");
+
+
+		
 
 
 		ArrayList<Jogadores> plantel = new ArrayList<Jogadores>();
 
-		plantel.add(jog1);
-		plantel.add(jog2);
+		/*plantel.add(jog1);
+		plantel.add(jog2);*/
 		plantel.add(jog3);
 		plantel.add(jog4);
 		plantel.add(jog5);
+		plantel.add(jog6);
+		plantel.add(jog7);
+		plantel.add(jog8);
+		plantel.add(jog9);
+		plantel.add(jog10);
+		plantel.add(jog11);
+		plantel.add(jog12);
+		plantel.add(jog13);
+		plantel.add(jog14);
+		plantel.add(jog15);
+		plantel.add(jog16);
+		plantel.add(jog17);
+
+
+
 
 		 /*
 
 		System.out.println(jog1.toString());
 		System.out.println(jog2.toString());
 		*/
-
-
-		Equipa equipa1 = new Equipa(plantel,plantel,"Merelinense",20,31,14,0,0);
+		ArrayList<Jogadores> p_principal = new ArrayList<Jogadores>();
+		
+		int meu_plantel_array[] = new int[]{1,2,3,4,1};
+		Equipa equipa1 = new Equipa(plantel,p_principal,"Merelinense",20,31,14,0,0,meu_plantel_array);
 
 		//System.out.println( equipa1.getJogadores().toString());
 		equipa1.SortTeam();
 		//System.out.println( equipa1.getJogadores().toString());
+		//equipa1.dumpTeamTotal();
+		System.out.println(equipa1.getJogadores().size());
+		System.out.println("\n\n\nAcabou\n\n\\n");
+
+		equipa1.makeBestTeam();
+		equipa1.dumpTeamPrincipal();
+		System.out.println(equipa1.getPlantel_Principal().size());
+
 
 	}
 }
