@@ -10,6 +10,8 @@ public class Equipa {
     private ArrayList<Jogadores> jogadores;
     private ArrayList<Jogadores> plantel_Principal;
     private String nome_equipa;
+    //1->GRD 2->DEF 3->LAT 4->MED 5->AVA
+    private int plantel_array[] = new int[5];
     private int golos_marcados;
     private int golos_sofridos;
     private int vitorias;
@@ -20,6 +22,7 @@ public class Equipa {
         jogadores = new ArrayList<Jogadores>();
         plantel_Principal = new ArrayList<Jogadores>();
         nome_equipa = "";
+        setplantel_array();
         golos_marcados = 0;
         golos_sofridos = 0;
         vitorias = 0;
@@ -30,7 +33,7 @@ public class Equipa {
 
     public Equipa(ArrayList<Jogadores> jogadores,ArrayList<Jogadores> plantel_Principal,
                   String nome_equipa, int golos_marcados, int golos_sofridos,
-                  int vitorias, int derrotas, int empates)
+                  int vitorias, int derrotas, int empates,int array[])
     {
         this.jogadores = jogadores;
         this.plantel_Principal = plantel_Principal;
@@ -40,6 +43,8 @@ public class Equipa {
         this.vitorias = vitorias;
         this.derrotas = derrotas;
         this.empates = empates;
+        setplantel_array(array[1], array[2], array[3], array[4]);
+       
     }
 
 
@@ -56,27 +61,88 @@ public class Equipa {
     }
 
 
-    public void SortTeam(){
-        /*List<Jogadores> players = new ArrayList<>();
-        players.add(jogadores.get(0));
-        players.add(jogadores.get(1));
+    public void dumpTeamTotal(){
+        System.out.println(jogadores);
+    }
 
-         */
-
-        if (jogadores.size() < 11)
-        {
-
-            Collections.sort(jogadores);
-            System.out.println(jogadores);
-
-        }
-
-
-
+    public void dumpTeamPrincipal(){
+        System.out.println(plantel_Principal);
     }
 
 
+    public void SortTeam(){
+        
+        Collections.sort(jogadores);
+        
+    }
 
+
+    public void makeBestTeam(){
+        int array[] = new int[]{0,0,0,0,0};
+        int max = jogadores.size();
+        int pos =0;
+
+        while(pos < max && plantel_Principal.size() < 11)
+        {
+            Jogadores.Class_jog tipo = jogadores.get(pos).getTipo_jogador();
+            boolean insert=true;
+            switch(tipo){
+                case GRD:
+                    array[0]++;
+                    if (array[0]>plantel_array[0]) insert = false;
+                    break;
+                case DEF:
+                    array[1]++;
+                    if (array[1]>plantel_array[1]) insert = false;
+
+                    break;
+                case LAT:
+                    array[2]++;
+                    if (array[2]>plantel_array[2]) insert = false;
+                    break;
+                case MED:
+                    array[3]++;
+                    if (array[3]>plantel_array[3]) insert = false;
+                    break;
+                default:
+                    array[4]++;
+                    if (array[4]>plantel_array[4]) insert = false;
+                    break;
+            }
+            for (int i = 0; i < array.length; i++) {
+                System.out.println(array[i]);
+            }
+            System.out.println("FIM DO ARRAY");
+            if (insert == true);
+            {
+                plantel_Principal.add(jogadores.get(pos));
+            }
+            System.out.println(plantel_Principal.get(pos));
+            System.out.println(insert);
+            pos++;
+        }
+    }
+
+    /* INUTIL
+    //Para ver se arr1 é maior que arr2
+    public boolean excess_array(int arr1[],int arr2[]){
+        System.out.println(arr1);
+        System.out.println("-----");
+        System.out.println(arr2);
+
+        for (int i = 0; i < arr2.length; i++) {
+            System.out.println(arr1[i] + ">" + arr2[i] + " pos "+i);
+
+            if (arr1[i] > arr2[i]){
+                return true;
+
+            }
+        }
+        
+
+        return false;
+    }
+*/
     /**
      *
      * Nesta Função falta ser definido a variavel Habilidade na Class Jogadores
@@ -180,6 +246,28 @@ public class Equipa {
     public void setEmpates(int empates) {
         this.empates = empates;
     }
+
+
+    public int[] getplantel_array(){
+        return this.plantel_array;
+    }
+    public void setplantel_array(){
+        this.plantel_array[0] = 1;
+        this.plantel_array[1] = 3;
+        this.plantel_array[2] = 3;
+        this.plantel_array[3] = 3;
+        this.plantel_array[4] = 1;
+
+    }
+    public void setplantel_array(int def,int lat,int med,int ava){
+        this.plantel_array[0] = 1;
+        this.plantel_array[1] = def;
+        this.plantel_array[2] = lat;
+        this.plantel_array[3] = med;
+        this.plantel_array[4] = ava;
+    }
+
+
 
 
     public String toString() {

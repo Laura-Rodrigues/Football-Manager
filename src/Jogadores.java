@@ -2,7 +2,7 @@ import java.util.Objects;
 import java.util.Comparator;
 import java.util.Random;
 
-public class Jogadores implements Comparable<Jogadores> {
+public abstract class Jogadores implements Comparable<Jogadores> {
 
 
 
@@ -25,7 +25,9 @@ public class Jogadores implements Comparable<Jogadores> {
     protected Class_jog tipo_jogador;
 
   
-
+    public abstract int getHabilidade();
+    public abstract StringBuilder toStringExtra();
+    public abstract void RandomizarExtra(int max,Random rand);
 
     public Jogadores(){
         this.nome = "";
@@ -39,7 +41,7 @@ public class Jogadores implements Comparable<Jogadores> {
         this.remate = 0;
         this.capacidade_passe = 0;
         */
-        this.tipo_jogador = Class_jog.GRD;
+        define_class_jog();
         RandomizarJogador_No_Tipo();
     }
 
@@ -55,7 +57,12 @@ public class Jogadores implements Comparable<Jogadores> {
         this.remate = remate;
         this.capacidade_passe = capacidade_passe;
         this.tipo_jogador = tipo_jogador;
+        
+
     }
+
+
+    
 
     /*
     Construtor para as outros classes poderem funcionar em PAZ
@@ -71,6 +78,7 @@ public class Jogadores implements Comparable<Jogadores> {
         this.jogo_cabeca = jogo_cabeca;
         this.remate = remate;
         this.capacidade_passe = capacidade_passe;
+        define_class_jog();
 
     }
 
@@ -84,6 +92,7 @@ public class Jogadores implements Comparable<Jogadores> {
         this.remate = j.getRemate();
         this.capacidade_passe = j.getCapacidade_passe();
         this.tipo_jogador = j.getTipo_jogador();
+        define_class_jog();
     }
 
     public Jogadores(String nome,Class_jog tipo){
@@ -104,10 +113,19 @@ public class Jogadores implements Comparable<Jogadores> {
         this.jogo_cabeca = (int) (rand.nextFloat() * max);
         this.remate = (int) (rand.nextFloat() * max);
         this.capacidade_passe = (int) (rand.nextFloat() * max);
+        RandomizarExtra(max,rand);
 
     }
 
 
+    public void define_class_jog(){
+        Class c = this.getClass();
+        if      (c == Medios.class)         this.tipo_jogador = Jogadores.Class_jog.MED;
+        else if (c == Avancados.class)      this.tipo_jogador = Jogadores.Class_jog.AVA;
+        else if (c == Guarda_Redes.class)   this.tipo_jogador = Jogadores.Class_jog.GRD;
+        else if (c == Defesas.class)        this.tipo_jogador = Jogadores.Class_jog.DEF;
+        else                                this.tipo_jogador = Jogadores.Class_jog.LAT;
+    }
 
 
     // GETTERS E SETTERS
@@ -133,20 +151,13 @@ public class Jogadores implements Comparable<Jogadores> {
     public int getRemate() { return this.remate; }
     public void setRemate(int remate) { this.remate = remate; }
 
-
-    
-
     public int getCapacidade_passe() { return this.capacidade_passe; }
     public void setCapacidade_passe(int capacidade_passe) { this.capacidade_passe = capacidade_passe; }
 
 
-    public Class_jog getTipo_jogador() {
-        return tipo_jogador;
-    }
+    public Class_jog getTipo_jogador() { return tipo_jogador; }
+    public void setTipo_jogador(Class_jog tipo_jogador) { this.tipo_jogador = tipo_jogador; }
 
-    public void setTipo_jogador(Class_jog tipo_jogador) {
-        this.tipo_jogador = tipo_jogador;
-    }
     public String tipo_jogador_toString(Class_jog tipo_jogador){
         String r;
         switch (tipo_jogador){
@@ -169,8 +180,8 @@ public class Jogadores implements Comparable<Jogadores> {
         return r;
     }
 
-    // CLONE
-    public Jogadores clone() { return new Jogadores(this); }
+    // CLONE Nao se pode fazer isto
+    //public Jogadores clone() { return new Jogadores(this); }
 
     // EQUALS
     public boolean equals(Object o) {
@@ -199,13 +210,19 @@ public class Jogadores implements Comparable<Jogadores> {
         sb.append("Jogo de cabeca: ").append(this.jogo_cabeca).append("\n");
         sb.append("Remate: ").append(this.remate).append("\n");
         sb.append("Capacidade de passe: ").append(this.capacidade_passe).append("\n");
-        sb.append("Tipo Jogador: ").append(this.tipo_jogador_toString(this.tipo_jogador)).append("\n");
-        sb.append("-----------------------\n");
-
+        sb.append(this.toStringExtra());
+        sb.append(this.toStringfinal());
 
         return sb.toString();
     }
 
+    public StringBuilder toStringfinal(){
+        StringBuilder sb = new StringBuilder("");
+        sb.append("Tipo Jogador -> ").append(this.tipo_jogador_toString(this.tipo_jogador)).append("\n");
+        sb.append("Habilidade Total --> ").append(this.getHabilidade()).append(" <--\n");
+        sb.append("-----------------------\n");
+        return sb;
+    }
 
 
     @Override
@@ -214,8 +231,8 @@ public class Jogadores implements Comparable<Jogadores> {
      * dessa forma Jogadores melhores estão na cabeça da lista;
      */
     public int compareTo(Jogadores jogadores) {
-        int hab1 = this.getVelocidade(); // getHabilidade deve ser usado isto é so para testar
-        int hab2 = jogadores.getVelocidade();
+        int hab1 = this.getHabilidade(); // getHabilidade deve ser usado isto é so para testar
+        int hab2 = jogadores.getHabilidade();
 
         if ( hab1 > hab2)
             return -1;
