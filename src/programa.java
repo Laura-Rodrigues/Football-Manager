@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+
 public class programa{
 	public static void main(String[] args){
 
@@ -48,13 +49,26 @@ public class programa{
 		plantel.add(jog16);
 		plantel.add(jog17);
 		
-		ArrayList<Jogadores> p_principal = new ArrayList<Jogadores>();
 		
 		int meu_plantel_array[] = new int[]{1,2,3,4,1};
-		Equipa equipa1 = new Equipa(plantel,p_principal,"Merelinense",20,31,14,0,0,meu_plantel_array);
-		equipa1.SortTeam();
+		Equipa equipa1 = new Equipa(plantel,"Merelinense",20,31,14,0,0,meu_plantel_array);
 		equipa1.makeBestTeam();
-		System.out.println(equipa1.toString());
+		
+
+		Equipa equipa2 = new Equipa(plantel,"Vila Verde",0,31,0,20,0,meu_plantel_array);
+		equipa2.makeBestTeam();
+		//System.out.println(equipa2.toString());
+		// for (Jogadores j : equipa1.getJogadores()) {
+		// 	System.out.println(j.toString());
+		// }
+		equipa1.changeTeam(jog15,equipa2);
+
+		System.out.println(jog15.toString());
+
+		
+
+
+		
 
 
 	}
