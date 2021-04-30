@@ -1,7 +1,8 @@
+package com.code;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.List;
 
 
 public class Equipa {
@@ -11,7 +12,7 @@ public class Equipa {
     private ArrayList<Jogadores> plantel_Principal;
     private String nome_equipa;
     //1->GRD 2->DEF 3->LAT 4->MED 5->AVA
-    private int plantel_array[] = new int[5];
+    private int []plantel_array = new int[5];
     private int golos_marcados;
     private int golos_sofridos;
     private int vitorias;
@@ -31,9 +32,9 @@ public class Equipa {
 
     }
 
-    public Equipa(ArrayList<Jogadores> jogadores,ArrayList<Jogadores> plantel_Principal,
+    public Equipa(ArrayList<Jogadores> jogadores, ArrayList<Jogadores> plantel_Principal,
                   String nome_equipa, int golos_marcados, int golos_sofridos,
-                  int vitorias, int derrotas, int empates,int array[])
+                  int vitorias, int derrotas, int empates, int array[])
     {
         this.jogadores = jogadores;
         this.plantel_Principal = plantel_Principal;
@@ -77,7 +78,7 @@ public class Equipa {
     }
 
     public void makeBestTeam(){
-    int array[] = new int[]{0,0,0,0,0};
+    int []array = new int[]{0,0,0,0,0};
     int max = jogadores.size();
     int pos =0;
     while(pos < max && plantel_Principal.size() < 11)
@@ -114,10 +115,6 @@ public class Equipa {
     }
 }
 
-/*
-*
-* Nesta Função falta ser definido a variavel Habilidade na Class Jogadores
-*/
     public int getHabilidadeEquipa(){
     int r=0;
     for (Jogadores jog : plantel_Principal){

@@ -1,5 +1,6 @@
+package com.code;
+
 import java.util.Objects;
-import java.util.Comparator;
 import java.util.Random;
 
 public abstract class Jogadores implements Comparable<Jogadores> {
@@ -9,9 +10,7 @@ public abstract class Jogadores implements Comparable<Jogadores> {
     enum Class_jog{
         GRD,LAT,AVA,DEF,MED;
     }
-    /**
-    if GK then tipo_jogador = GRD;
-    */
+
     protected String nome;
    //                          limitar valores de 0 - 20:
     protected int velocidade;
