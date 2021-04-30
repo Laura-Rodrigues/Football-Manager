@@ -47,30 +47,14 @@ public class programa{
 		plantel.add(jog15);
 		plantel.add(jog16);
 		plantel.add(jog17);
-
-
-
-
-		 /*
-
-		System.out.println(jog1.toString());
-		System.out.println(jog2.toString());
-		*/
+		
 		ArrayList<Jogadores> p_principal = new ArrayList<Jogadores>();
 		
 		int meu_plantel_array[] = new int[]{1,2,3,4,1};
 		Equipa equipa1 = new Equipa(plantel,p_principal,"Merelinense",20,31,14,0,0,meu_plantel_array);
-
-		//System.out.println( equipa1.getJogadores().toString());
 		equipa1.SortTeam();
-		//System.out.println( equipa1.getJogadores().toString());
-		//equipa1.dumpTeamTotal();
-		System.out.println(equipa1.getJogadores().size());
-		System.out.println("\n\n\nAcabou\n\n\\n");
-
 		equipa1.makeBestTeam();
-		equipa1.dumpTeamPrincipal();
-		System.out.println(equipa1.getPlantel_Principal().size());
+		System.out.println(equipa1.toString());
 
 
 	}

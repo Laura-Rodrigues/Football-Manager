@@ -76,84 +76,56 @@ public class Equipa {
         
     }
 
-
     public void makeBestTeam(){
-        int array[] = new int[]{0,0,0,0,0};
-        int max = jogadores.size();
-        int pos =0;
-
-        while(pos < max && plantel_Principal.size() < 11)
+    int array[] = new int[]{0,0,0,0,0};
+    int max = jogadores.size();
+    int pos =0;
+    while(pos < max && plantel_Principal.size() < 11)
+    {
+        Jogadores.Class_jog tipo = jogadores.get(pos).getTipo_jogador();
+        boolean insert=true;
+        switch(tipo){
+            case GRD:
+                array[0]++;
+                if (array[0]>plantel_array[0]) insert = false;
+                break;
+            case DEF:
+                array[1]++;
+                if (array[1]>plantel_array[1]) insert = false;
+                break;
+            case LAT:
+                array[2]++;
+                if (array[2]>plantel_array[2]) insert = false;
+                break;
+            case MED:
+                array[3]++;
+                if (array[3]>plantel_array[3]) insert = false;
+                break;
+            default:
+                array[4]++;
+                if (array[4]>plantel_array[4]) insert = false;
+                break;
+        }
+        if (insert)
         {
-            Jogadores.Class_jog tipo = jogadores.get(pos).getTipo_jogador();
-            boolean insert=true;
-            switch(tipo){
-                case GRD:
-                    array[0]++;
-                    if (array[0]>plantel_array[0]) insert = false;
-                    break;
-                case DEF:
-                    array[1]++;
-                    if (array[1]>plantel_array[1]) insert = false;
-
-                    break;
-                case LAT:
-                    array[2]++;
-                    if (array[2]>plantel_array[2]) insert = false;
-                    break;
-                case MED:
-                    array[3]++;
-                    if (array[3]>plantel_array[3]) insert = false;
-                    break;
-                default:
-                    array[4]++;
-                    if (array[4]>plantel_array[4]) insert = false;
-                    break;
-            }
-            for (int i = 0; i < array.length; i++) {
-                System.out.println(array[i]);
-            }
-            System.out.println("FIM DO ARRAY");
-            if (insert == true);
-            {
-                plantel_Principal.add(jogadores.get(pos));
-            }
-            System.out.println(plantel_Principal.get(pos));
-            System.out.println(insert);
-            pos++;
+            plantel_Principal.add(jogadores.get(pos));
         }
+        pos++;
     }
+}
 
-    /* INUTIL
-    //Para ver se arr1 é maior que arr2
-    public boolean excess_array(int arr1[],int arr2[]){
-        System.out.println(arr1);
-        System.out.println("-----");
-        System.out.println(arr2);
-
-        for (int i = 0; i < arr2.length; i++) {
-            System.out.println(arr1[i] + ">" + arr2[i] + " pos "+i);
-
-            if (arr1[i] > arr2[i]){
-                return true;
-
-            }
-        }
-        
-
-        return false;
-    }
+/*
+*
+* Nesta Função falta ser definido a variavel Habilidade na Class Jogadores
 */
-    /**
-     *
-     * Nesta Função falta ser definido a variavel Habilidade na Class Jogadores
-
-     public int getHabilidadeEquipa(){
-        for (Jogadores jog : jogadores){
-            r += jog.getHabilidade;
-        }
-        return r;
+    public int getHabilidadeEquipa(){
+    int r=0;
+    for (Jogadores jog : plantel_Principal){
+            r += jog.getHabilidade();
     }
-     */
+    return r;
+    }
+     
 
 
 
@@ -268,20 +240,45 @@ public class Equipa {
     }
 
 
+    public StringBuilder jogadores2String(){
+        StringBuilder sb = new StringBuilder();
+        
+        for (Jogadores jogadores2 : plantel_Principal) {
+            sb.append(makeBox(8, jogadores2.getNome()));
+            sb.append("|   ").append(jogadores2.getNome()).append("   |\n");
+            sb.append(makeBox(8, jogadores2.getNome()));
 
-
+            sb.append("Pos : ").append(jogadores2.tipo_jogador_toString(jogadores2.getTipo_jogador())).append("\n");
+            sb.append("Habilidade : ").append(jogadores2.getHabilidade()).append("\n\n");
+        }
+        
+        return sb;
+    }
+    public StringBuilder makeBox(int start_size,String s){
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < start_size+ s.length(); i++) {
+            sb.append("-");
+        }
+        sb.append("\n");
+        return sb;
+    }
     public String toString() {
-        return "Equipa{" +
-                "jogadores=" + jogadores +
-                ", plantel_Principal=" + plantel_Principal +
-                ", nome_equipa='" + nome_equipa + '\'' +
-                ", golos_marcados=" + golos_marcados +
-                ", golos_sofridos=" + golos_sofridos +
-                ", vitorias=" + vitorias +
-                ", derrotas=" + derrotas +
-                ", empates=" + empates +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append(makeBox(18,nome_equipa));
+        sb.append("|   Equipa -> ").append(nome_equipa).append("   |\n");
+        sb.append(makeBox(18,nome_equipa)).append("\n");
+        sb.append(jogadores2String());
+        sb.append("Golos Marcados : ").append(golos_marcados);
+        sb.append(" Golos Sofridos : ").append(golos_sofridos).append("\n");
+        sb.append("V : ").append(vitorias).append(" D : ").append(derrotas).append(" E : ").append(empates).append("\n");
+        sb.append("Tática : ");
+        for(int i=0;i<plantel_array.length;i++)
+        {
+            sb.append(plantel_array[i]).append(" ");
+        }
+        sb.append("\n");
+        return sb.toString();
+       
     }
 
-    //public int habilidadeEquipa(ArrayList<Guarda_Redes> grs)
 }
