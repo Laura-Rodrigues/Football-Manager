@@ -32,13 +32,16 @@ public class Equipa {
 
     }
 
-    public Equipa(ArrayList<Jogadores> jogadores, ArrayList<Jogadores> plantel_Principal,
+    public Equipa(ArrayList<Jogadores> jogadores1,
                   String nome_equipa, int golos_marcados, int golos_sofridos,
                   int vitorias, int derrotas, int empates, int array[])
     {
-        this.jogadores = jogadores;
-        this.plantel_Principal = plantel_Principal;
         this.nome_equipa = nome_equipa;
+        this.jogadores = new ArrayList<Jogadores>();
+        for (Jogadores j : jogadores1) {
+            addJogador(j);
+        }
+        this.plantel_Principal = new ArrayList<Jogadores>();
         this.golos_marcados = golos_marcados;
         this.golos_sofridos = golos_sofridos;
         this.vitorias = vitorias;
@@ -48,27 +51,14 @@ public class Equipa {
        
     }
 
-
-    public boolean addJogador(Jogadores jog){
-        int i=0;boolean r = true;
-        for (;i<jogadores.size() && r ; i++)
-        {
-            if (jog.getTipo_jogador() == jogadores.get(i).getTipo_jogador() )
-                r = false;
-        }
-        if (r)
-        jogadores.add(jog);
-        return r;
+    public void addJogador(Jogadores j){
+        jogadores.add(j);
+        j.addEquipa(nome_equipa);
     }
 
 
-    public void dumpTeamTotal(){
-        System.out.println(jogadores);
-    }
 
-    public void dumpTeamPrincipal(){
-        System.out.println(plantel_Principal);
-    }
+   
 
 
     public void SortTeam(){
@@ -77,7 +67,9 @@ public class Equipa {
         
     }
 
+    //Função Principal para Preencher o Array List com os melhores Jogadores
     public void makeBestTeam(){
+    SortTeam();
     int []array = new int[]{0,0,0,0,0};
     int max = jogadores.size();
     int pos =0;
@@ -127,7 +119,24 @@ public class Equipa {
 
 
 
-
+    public void changeTeam(Jogadores j,Equipa e1){
+        boolean remove1 = false;
+        boolean remove2 = false;
+        for (Jogadores jogadores2 : jogadores) {
+            if (j.equals(jogadores2)){
+                remove1 = true;   
+            }
+        }
+        for (Jogadores jogadores3 : plantel_Principal) {
+            if (j.equals(jogadores3))
+            {
+                remove2= true;
+            }
+        }
+        if (remove1) jogadores.remove(j);
+        if (remove2) plantel_Principal.remove(j);
+        e1.addJogador(j);
+    }
 
 
     public boolean equals(Object o) {
@@ -235,8 +244,14 @@ public class Equipa {
         this.plantel_array[3] = med;
         this.plantel_array[4] = ava;
     }
+    public void dumpTeamTotal(){
+        System.out.println(jogadores);
+    }
 
-
+    public void dumpTeamPrincipal(){
+        System.out.println(plantel_Principal);
+    }
+    //Esta função só imprime jogadores do plantelPrincipal
     public StringBuilder jogadores2String(){
         StringBuilder sb = new StringBuilder();
         

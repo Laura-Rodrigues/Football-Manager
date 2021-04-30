@@ -1,6 +1,10 @@
 package com.code;
 
 import java.util.Objects;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Random;
 
 public abstract class Jogadores implements Comparable<Jogadores> {
@@ -22,6 +26,9 @@ public abstract class Jogadores implements Comparable<Jogadores> {
     protected int capacidade_passe;
    
     protected Class_jog tipo_jogador;
+    protected ArrayList<String> equipa_List;
+
+   
 
   
     public abstract int getHabilidade();
@@ -42,6 +49,7 @@ public abstract class Jogadores implements Comparable<Jogadores> {
         */
         define_class_jog();
         RandomizarJogador_No_Tipo();
+        equipa_List = new ArrayList<String>();
     }
 
     public Jogadores(String nome, int velocidade, int resistencia, int destreza,
@@ -56,6 +64,7 @@ public abstract class Jogadores implements Comparable<Jogadores> {
         this.remate = remate;
         this.capacidade_passe = capacidade_passe;
         this.tipo_jogador = tipo_jogador;
+        equipa_List = new ArrayList<String>();
         
 
     }
@@ -78,6 +87,7 @@ public abstract class Jogadores implements Comparable<Jogadores> {
         this.remate = remate;
         this.capacidade_passe = capacidade_passe;
         define_class_jog();
+        equipa_List = new ArrayList<String>();
 
     }
 
@@ -92,6 +102,8 @@ public abstract class Jogadores implements Comparable<Jogadores> {
         this.capacidade_passe = j.getCapacidade_passe();
         this.tipo_jogador = j.getTipo_jogador();
         define_class_jog();
+        equipa_List = new ArrayList<String>();
+
     }
 
     public Jogadores(String nome,Class_jog tipo){
@@ -100,6 +112,12 @@ public abstract class Jogadores implements Comparable<Jogadores> {
         this.tipo_jogador = tipo;
     }
 
+
+
+    public void addEquipa(String equipa1){
+        
+        equipa_List.add(equipa1);
+    }
 
     public void RandomizarJogador_No_Tipo(){
         Random rand = new Random();
@@ -157,6 +175,14 @@ public abstract class Jogadores implements Comparable<Jogadores> {
     public Class_jog getTipo_jogador() { return tipo_jogador; }
     public void setTipo_jogador(Class_jog tipo_jogador) { this.tipo_jogador = tipo_jogador; }
 
+    public ArrayList<String> getEquipa_List() {
+        return this.equipa_List;
+    }
+
+    public void setEquipa_List(ArrayList<String> equipa_List) {
+        this.equipa_List = equipa_List;
+    }
+
     public String tipo_jogador_toString(Class_jog tipo_jogador){
         String r;
         switch (tipo_jogador){
@@ -199,6 +225,7 @@ public abstract class Jogadores implements Comparable<Jogadores> {
 
     // TOSTRING
     public String toString() {
+        int i=1;
         StringBuilder sb = new StringBuilder(" ");
         sb.append("\n-----------------------\n");
         sb.append("Jogador: ").append(this.nome).append("\n");
@@ -209,6 +236,14 @@ public abstract class Jogadores implements Comparable<Jogadores> {
         sb.append("Jogo de cabeca: ").append(this.jogo_cabeca).append("\n");
         sb.append("Remate: ").append(this.remate).append("\n");
         sb.append("Capacidade de passe: ").append(this.capacidade_passe).append("\n");
+        sb.append("Historial de Equipas : ");
+        for (String string : equipa_List) {
+            sb.append(i).append("ª ");
+            i++;
+            sb.append(string);
+            sb.append(" | ");
+        }
+        sb.append("<- Atual\n");
         sb.append(this.toStringExtra());
         sb.append(this.toStringfinal());
 
