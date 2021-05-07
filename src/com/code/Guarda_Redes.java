@@ -1,3 +1,5 @@
+package com.code;
+
 import java.util.Objects;
 import java.util.Random;
 

@@ -1,7 +1,9 @@
+package com.code;
+
 import java.util.Objects;
 import java.util.Random;
 
-public class Medios extends Jogadores{
+public class Medios extends Jogadores {
 
     private int visaoDeJogo;
 
