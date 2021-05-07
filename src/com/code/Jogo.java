@@ -1,8 +1,11 @@
+
+import java.util.Objects;
+import java.util.Random;
 public class Jogo {
     enum game_state{
-        Unplayed(-1),
-        Playing(0),
-        Finished(1);
+        Unplayed,
+        Playing,
+        Finished;
     }
     private Equipa equipa_casa;
     private Equipa equipa_fora;
@@ -11,8 +14,8 @@ public class Jogo {
     private game_state state;
 
     public Jogo() {
-        this.equipa_casa = "";
-        this.equipa_fora = "";
+        this.equipa_casa = new Equipa();
+        this.equipa_fora = new Equipa();
         this.golos_casa = 0;
         this.golos_fora = 0;
         this.state = game_state.Unplayed;
@@ -30,7 +33,7 @@ public class Jogo {
         this.equipa_fora = equipa_fora;
         this.golos_casa = 0;
         this.golos_fora = 0;
-        this.state = -1;
+        this.state = game_state.Unplayed;
     }
 
 
