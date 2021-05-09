@@ -116,7 +116,14 @@ public class Equipa {
     }
      
 
-
+    public boolean existPlayer(Jogadores j){
+        for (Jogadores jogadores2 : jogadores) {
+            if (j.equals(jogadores2)){
+                return  true;   
+            }
+        }
+        return false;
+    }
 
 
     public void changeTeam(Jogadores j,Equipa e1){
@@ -134,7 +141,11 @@ public class Equipa {
             }
         }
         if (remove1) jogadores.remove(j);
-        if (remove2) plantel_Principal.remove(j);
+        if (remove2) {
+            plantel_Principal.remove(j);
+            makeBestTeam();
+        }
+
         e1.addJogador(j);
     }
 

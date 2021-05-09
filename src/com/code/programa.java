@@ -28,15 +28,15 @@ public class programa{
 		Jogadores jog15 = new Medios("Girafa");
 		Jogadores jog16 = new Medios("Leao");
 		Jogadores jog17 = new Medios("Crocodilo");
-
-
-		
+		Jogadores jog18 = new Medios("Tubarao");
+		Jogadores jog19 = new Medios("Morcego");
+		Jogadores jog20 = new Medios("Ave");
+		Jogadores jog21 = new Medios("Cao");
 
 
 		ArrayList<Jogadores> plantel = new ArrayList<Jogadores>();
 
-		/*plantel.add(jog1);
-		plantel.add(jog2);*/
+		
 		plantel.add(jog3);
 		plantel.add(jog4);
 		plantel.add(jog5);
@@ -60,14 +60,25 @@ public class programa{
 		
 
 		Equipa equipa2 = new Equipa(plantel,"Vila Verde",0,31,0,20,0,meu_plantel_array);
+
+		equipa2.addJogador(jog18);
+		equipa2.addJogador(jog19);
+		equipa2.addJogador(jog20);
+		equipa2.addJogador(jog21);
+
 		equipa2.makeBestTeam();
-		//System.out.println(equipa2.toString());
-		// for (Jogadores j : equipa1.getJogadores()) {
-		// 	System.out.println(j.toString());
-		// }
+
+		System.out.println(equipa1.existPlayer(jog15));
+		
 		equipa1.changeTeam(jog15,equipa2);
 
+		System.out.println(equipa1.existPlayer(jog15));
+
 		System.out.println(jog15.toString());
+
+		Jogo game = new Jogo(equipa1,equipa2);
+		game.Startgame();
+		game.Simulate();
 
 		
 
