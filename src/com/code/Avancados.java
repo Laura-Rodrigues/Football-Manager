@@ -26,6 +26,14 @@ public class Avancados extends Jogadores {
         super(a.getNome(), a.getVelocidade(), a.getResistencia(), a.getDestreza(), a.getImpulsao(), a.getJogo_cabeca(), a.getRemate(), a.getCapacidade_passe());
         this.desmarcacao = a.getDesmarcacao();
     }
+    public Avancados(Jogadores a){
+        super(a);
+        if (a.getClass() != getClass()) return;
+        else{
+        Avancados avancados = (Avancados) a;
+        this.desmarcacao = avancados.getDesmarcacao();
+        }
+    }
 
     public int getDesmarcacao() { return this.desmarcacao; }
     public void setDesmarcacao(int desmarcacao) { this.desmarcacao = desmarcacao; }

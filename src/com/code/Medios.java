@@ -23,6 +23,15 @@ public class Medios extends Jogadores {
          m.getJogo_cabeca(), m.getRemate(), m.getCapacidade_passe());
          this.visaoDeJogo = m.getVisaoDeJogo();
     }
+    public Medios(Jogadores a){
+        super(a);
+        if (a.getClass() != getClass()) return;
+        else{
+        Medios d = (Medios) a;
+        this.visaoDeJogo = d.getVisaoDeJogo();
+        }
+    }
+
     public Medios(String nome){
         super.RandomizarJogador_No_Tipo();
         super.setNome(nome);

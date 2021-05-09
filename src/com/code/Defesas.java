@@ -22,6 +22,14 @@ public class Defesas extends Jogadores {
         super(def.getNome(), def.getVelocidade(), def.getResistencia(), def.getDestreza(), def.getImpulsao(), def.getJogo_cabeca(), def.getRemate(), def.getCapacidade_passe());
         this.corte = def.getCorte();
     }
+    public Defesas(Jogadores a){
+        super(a);
+        if (a.getClass() != getClass()) return;
+        else{
+        Defesas d = (Defesas) a;
+        this.corte = d.getCorte();
+        }
+    }
     public Defesas(String nome){
         super.RandomizarJogador_No_Tipo();
         super.setNome(nome);

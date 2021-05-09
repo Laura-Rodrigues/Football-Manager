@@ -22,6 +22,16 @@ public class Laterais extends Jogadores {
         super(l.getNome(), l.getVelocidade(), l.getResistencia(), l.getDestreza(), l.getImpulsao(), l.getJogo_cabeca(), l.getRemate(), l.getCapacidade_passe());
         this.cruzamentos = l.getCruzamentos();
     }
+
+    public Laterais(Jogadores a){
+        super(a);
+        if (a.getClass() != getClass()) return;
+        else{
+        Laterais d = (Laterais) a;
+        this.cruzamentos = d.getCruzamentos();
+        }
+    }
+
     public Laterais(String nome){
         super.RandomizarJogador_No_Tipo();
         super.setNome(nome);

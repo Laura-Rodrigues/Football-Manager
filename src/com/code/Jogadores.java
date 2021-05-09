@@ -206,7 +206,21 @@ public abstract class Jogadores implements Comparable<Jogadores> {
     }
 
     // CLONE Nao se pode fazer isto
-    //public Jogadores clone() { return new Jogadores(this); }
+    public Jogadores clone() { 
+        switch(this.getTipo_jogador())
+        {
+            case AVA:
+            return new Avancados(this);
+        case DEF:
+            return new Defesas(this);
+        case MED:
+            return new Medios(this);
+        case LAT:
+            return new Laterais(this);
+        default:
+            return new Guarda_Redes(this);
+        }
+    }
 
     // EQUALS
     public boolean equals(Object o) {
