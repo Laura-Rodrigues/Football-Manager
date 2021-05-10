@@ -28,8 +28,7 @@ public class Avancados extends Jogadores {
     }
     public Avancados(Jogadores a){
         super(a);
-        if (a.getClass() != getClass()) return;
-        else{
+        if (a.getClass() == getClass()) {
         Avancados avancados = (Avancados) a;
         this.desmarcacao = avancados.getDesmarcacao();
         }

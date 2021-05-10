@@ -25,8 +25,7 @@ public class Medios extends Jogadores {
     }
     public Medios(Jogadores a){
         super(a);
-        if (a.getClass() != getClass()) return;
-        else{
+        if (a.getClass() == getClass()){
         Medios d = (Medios) a;
         this.visaoDeJogo = d.getVisaoDeJogo();
         }

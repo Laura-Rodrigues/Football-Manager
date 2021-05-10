@@ -33,12 +33,11 @@ public class Guarda_Redes extends Jogadores {
     }
     public Guarda_Redes(Jogadores a){
         super(a);
-        if (a.getClass() != getClass()) return;
-        else{
-        Guarda_Redes gr = (Guarda_Redes) a;
-        this.elasticidade = gr.getElasticidade();
-        this.posicionamento = gr.getPosicionamento();
-        this.reflexos = gr.getReflexos();
+        if (a.getClass() == getClass()) {
+            Guarda_Redes gr = (Guarda_Redes) a;
+            this.elasticidade = gr.getElasticidade();
+            this.posicionamento = gr.getPosicionamento();
+            this.reflexos = gr.getReflexos();
         }
     }
     public Guarda_Redes(String nome){
