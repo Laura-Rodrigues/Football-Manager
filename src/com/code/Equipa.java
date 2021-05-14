@@ -262,24 +262,57 @@ public class Equipa {
     public void dumpTeamPrincipal(){
         System.out.println(plantel_Principal);
     }
+
+
+    public StringBuilder print_Spaces(int tamanho,String array){
+        StringBuilder sb = new StringBuilder();
+        int offset = (tamanho - array.length()) / 2;
+        for (int i = 0; i < offset; i++)
+        {
+            sb.append(" ");
+        }
+        sb.append(array);
+        for (int i = 0; i < offset; i++)
+        {
+            sb.append(" ");
+        }
+        if (((tamanho -array.length()) % 2) == 1) sb.append(" ");
+
+        return sb;
+    }
+
+
     //Esta função só imprime jogadores do plantelPrincipal
     public StringBuilder jogadores2String(){
+        int size_j = 30;
+        int size_p = 15;
+        int size_h = 15;
+        int size_tracos = size_h + size_p + size_j + 4;
+
         StringBuilder sb = new StringBuilder();
+        sb.append(makeBox(size_tracos));
+            sb.append("|").append(print_Spaces(size_j,"JOGADORES"));
+            sb.append("|").append(print_Spaces(size_p,"POSICAO"));
+            sb.append("|").append(print_Spaces(size_h,"HABILIDADE")).append("|").append("\n");
+
         
         for (Jogadores jogadores2 : plantel_Principal) {
-            sb.append(makeBox(8, jogadores2.getNome()));
-            sb.append("|   ").append(jogadores2.getNome()).append("   |\n");
-            sb.append(makeBox(8, jogadores2.getNome()));
-
-            sb.append("Pos : ").append(jogadores2.tipo_jogador_toString(jogadores2.getTipo_jogador())).append("\n");
-            sb.append("Habilidade : ").append(jogadores2.getHabilidade()).append("\n\n");
+            String t = jogadores2.tipo_jogador_toString(jogadores2.getTipo_jogador());
+            Integer i = jogadores2.getHabilidade();
+            
+            sb.append(makeBox(size_tracos));
+            sb.append("|").append(print_Spaces(size_j,jogadores2.getNome()));
+            sb.append("|").append(print_Spaces(size_p,t));
+            sb.append("|").append(print_Spaces(size_h,i.toString())).append("|").append("\n");
         }
+        sb.append(makeBox(size_tracos));
+
         
         return sb;
     }
-    public StringBuilder makeBox(int start_size,String s){
+    public StringBuilder makeBox(int start_size){
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < start_size+ s.length(); i++) {
+        for (int i = 0; i < start_size; i++) {
             sb.append("-");
         }
         sb.append("\n");
@@ -287,11 +320,10 @@ public class Equipa {
     }
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(makeBox(18,nome_equipa));
-        sb.append("|   Equipa -> ").append(nome_equipa).append("   |\n");
-        sb.append(makeBox(18,nome_equipa)).append("\n");
+        sb.append(makeBox(64));
+        sb.append(print_Spaces(64,nome_equipa.toUpperCase())).append("\n");
         sb.append(jogadores2String());
-        sb.append("Golos Marcados : ").append(golos_marcados);
+        sb.append("\nGolos Marcados : ").append(golos_marcados);
         sb.append(" Golos Sofridos : ").append(golos_sofridos).append("\n");
         sb.append("V : ").append(vitorias).append(" D : ").append(derrotas).append(" E : ").append(empates).append("\n");
         sb.append("Tática : ");

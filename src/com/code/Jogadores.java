@@ -16,6 +16,7 @@ public abstract class Jogadores implements Comparable<Jogadores> {
     }
 
     protected String nome;
+    protected int num_camisola;
    //                          limitar valores de 0 - 20:
     protected int velocidade;
     protected int resistencia;
@@ -37,16 +38,6 @@ public abstract class Jogadores implements Comparable<Jogadores> {
 
     public Jogadores(){
         this.nome = "";
-        /*
-        this.velocidade = 0;
-
-        this.resistencia = 0;
-        this.destreza = 0;
-        this.impulsao = 0;
-        this.jogo_cabeca = 0;
-        this.remate = 0;
-        this.capacidade_passe = 0;
-        */
         define_class_jog();
         RandomizarJogador_No_Tipo();
         equipa_List = new ArrayList<String>();
@@ -56,6 +47,7 @@ public abstract class Jogadores implements Comparable<Jogadores> {
                      int impulsao, int jogo_cabeca, int remate,
                      int capacidade_passe, Class_jog tipo_jogador){
         this.nome = nome;
+        this.num_camisola = -1;
         this.velocidade = velocidade;
         this.resistencia = resistencia;
         this.destreza = destreza;
@@ -65,10 +57,25 @@ public abstract class Jogadores implements Comparable<Jogadores> {
         this.capacidade_passe = capacidade_passe;
         this.tipo_jogador = tipo_jogador;
         equipa_List = new ArrayList<String>();
-        
-
     }
 
+    
+    public Jogadores(String nome,int num_camisola, int velocidade, int resistencia, int destreza,
+                    int impulsao, int jogo_cabeca, int remate,
+                    int capacidade_passe, Class_jog tipo_jogador)
+{
+        this.nome = nome;
+        this.num_camisola = num_camisola;
+        this.velocidade = velocidade;
+        this.resistencia = resistencia;
+        this.destreza = destreza;
+        this.impulsao = impulsao;
+        this.jogo_cabeca = jogo_cabeca;
+        this.remate = remate;
+        this.capacidade_passe = capacidade_passe;
+        this.tipo_jogador = tipo_jogador;
+        equipa_List = new ArrayList<String>();
+}
 
     
 
@@ -122,7 +129,7 @@ public abstract class Jogadores implements Comparable<Jogadores> {
     public void RandomizarJogador_No_Tipo(){
         Random rand = new Random();
         int max = 100;
-
+        this.num_camisola = (int) (rand.nextFloat() * max);
         this.velocidade = (int)  (rand.nextFloat() * max);
         this.resistencia = (int)  (rand.nextFloat() * max);
         this.destreza = (int) (rand.nextFloat() * max);
@@ -149,6 +156,9 @@ public abstract class Jogadores implements Comparable<Jogadores> {
     public String getNome() { return this.nome; }
     public void setNome(String nome) { this.nome = nome; }
 
+
+    public int getNum_camisola() { return this.num_camisola;}
+    public void setNum_camisola(int num_camisola) { this.num_camisola = num_camisola;}
 
     public int getVelocidade() { return this.velocidade; }
     public void setVelocidade(int velocidade) { this.velocidade = velocidade; }
@@ -228,6 +238,7 @@ public abstract class Jogadores implements Comparable<Jogadores> {
         if (o == null || getClass() != o.getClass()) return false;
         Jogadores jogadores = (Jogadores) o;
         return velocidade == jogadores.velocidade &&
+                num_camisola == jogadores.num_camisola &&
                 resistencia == jogadores.resistencia &&
                 destreza == jogadores.destreza &&
                 impulsao == jogadores.impulsao &&
@@ -243,6 +254,7 @@ public abstract class Jogadores implements Comparable<Jogadores> {
         StringBuilder sb = new StringBuilder(" ");
         sb.append("\n-----------------------\n");
         sb.append("Jogador: ").append(this.nome).append("\n");
+        sb.append("Nº Camisola: ").append(this.num_camisola).append("\n");
         sb.append("Velocidade: ").append(this.velocidade).append("\n");
         sb.append("Resistencia: ").append(this.resistencia).append("\n");
         sb.append("Destreza: ").append(this.destreza).append("\n");

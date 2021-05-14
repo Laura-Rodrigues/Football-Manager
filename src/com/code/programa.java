@@ -80,9 +80,7 @@ public class programa{
 		game.Startgame();
 		game.Simulate();
 
-		
-
-
+		System.out.println(equipa2);
 		
 
 
