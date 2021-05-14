@@ -1,9 +1,7 @@
-
 import java.sql.Date;
 import java.util.Objects;
 import java.util.Random;
 
-import javax.swing.plaf.synth.SynthStyleFactory;
 public class Jogo {
     enum game_state{
         Unplayed,

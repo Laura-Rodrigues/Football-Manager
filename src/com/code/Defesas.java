@@ -24,10 +24,9 @@ public class Defesas extends Jogadores {
     }
     public Defesas(Jogadores a){
         super(a);
-        if (a.getClass() != getClass()) return;
-        else{
-        Defesas d = (Defesas) a;
-        this.corte = d.getCorte();
+        if (a.getClass() == getClass()){
+            Defesas d = (Defesas) a;
+            this.corte = d.getCorte();
         }
     }
     public Defesas(String nome){

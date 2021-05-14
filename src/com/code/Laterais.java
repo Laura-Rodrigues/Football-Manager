@@ -25,8 +25,7 @@ public class Laterais extends Jogadores {
 
     public Laterais(Jogadores a){
         super(a);
-        if (a.getClass() != getClass()) return;
-        else{
+        if (a.getClass() == getClass()) {
         Laterais d = (Laterais) a;
         this.cruzamentos = d.getCruzamentos();
         }
