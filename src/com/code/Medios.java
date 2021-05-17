@@ -12,10 +12,10 @@ public class Medios extends Jogadores {
         this.visaoDeJogo = 0;
     }
 
-    public Medios(String nome, int velocidade, int resistencia,
-     int destreza, int impulsao, int jogo_cabeca, int remate, int capacidade_passe, int visao_jogo){
-        super(nome, velocidade, resistencia, destreza, impulsao, jogo_cabeca, remate, capacidade_passe);
-        this.visaoDeJogo = visao_jogo;
+
+    public Medios(String nomeJ, int numeroJ, int vel, int res, int des, int imp, int cab, int rem, int p, int rec) {
+        super(nomeJ, numeroJ, vel, res, des, imp, cab, rem, p,Jogadores.Class_jog.MED);
+        this.visaoDeJogo = rec;
     }
 
     public Medios(Medios m){
@@ -36,6 +36,27 @@ public class Medios extends Jogadores {
         super.setNome(nome);
     }
 
+    /**
+     * 
+     * 
+     * PARSER
+     * @return
+     */
+
+    public  Jogadores parse(String input){
+        String[] campos = input.split(",");
+        return new Medios(campos[0], Integer.parseInt(campos[1]),
+                Integer.parseInt(campos[2]),
+                Integer.parseInt(campos[3]),
+                Integer.parseInt(campos[4]),
+                Integer.parseInt(campos[5]),
+                Integer.parseInt(campos[6]),
+                Integer.parseInt(campos[7]),
+                Integer.parseInt(campos[8]),
+                Integer.parseInt(campos[9]));
+    }
+
+    
     public int getVisaoDeJogo() { return this.visaoDeJogo; }
     public void setVisaoDeJogo(int visao_jogo) { this.visaoDeJogo = visao_jogo; }
 

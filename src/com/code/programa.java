@@ -6,13 +6,8 @@ import java.util.ArrayList;
 
 
 public class programa{
-	public static void main(String[] args){
+	public static void main(String[] args) throws Exception {
 
-
-		Jogadores jog1 = new Medios("Andre Goncalves Pinto", 1, 30000, 0,
-                        99999999, 100, 101,0,30);
-		Jogadores jog2 = new Guarda_Redes("Andre Goncalves Correia", 20, 30000, 0,
-				99999999, 100, 101, 0,9,1,3);
 		Jogadores jog3 = new Avancados("Madelena Silva");
 		Jogadores jog4 = new Avancados("Tino Costa");
 		Jogadores jog5 = new Medios("Artur Veloz");
@@ -81,8 +76,18 @@ public class programa{
 		game.Simulate();
 
 		System.out.println(equipa2);
-		
 
+
+		String s = "Laura Nunes Rodrigues,20,59,51,73,75,6,100,60,70";
+		
+		Jogadores meu_gr = new Guarda_Redes();
+		Jogadores grzinho =  meu_gr.parse(s);
+		System.out.println(grzinho.toString());
+
+		Parser.parse();
+		Jogadores fake = (Jogadores) Parser.getJogadores().get(10);
+		equipa1.changeTeam(fake,equipa2);
+		System.out.println(fake);
 
 	}
 }

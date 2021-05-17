@@ -12,10 +12,10 @@ public class Laterais extends Jogadores {
         this.cruzamentos = 0;
     }
 
-    public Laterais(String nome, int velocidade, int resistencia, int destreza, int impulsao, int jogo_cabeca, int remate, int capacidade_passe,
-                    int cruzamentos){
-        super(nome, velocidade, resistencia, destreza, impulsao, jogo_cabeca, remate, capacidade_passe);
-        this.cruzamentos = cruzamentos;
+    //Construtor para funcionar com o codigo dos professores
+    public Laterais(String nomeJ, int numeroJ, int vel, int res, int des, int imp, int cab, int rem, int p, int cruz) {
+        super(nomeJ, numeroJ, vel, res, des, imp, cab, rem, p,Jogadores.Class_jog.LAT);
+       this.cruzamentos = cruz;
     }
 
     public Laterais(Laterais l){
@@ -36,6 +36,25 @@ public class Laterais extends Jogadores {
         super.setNome(nome);
     }
 
+
+    /**
+     * 
+     * 
+     * PARSER
+     * @return
+     */
+    public  Jogadores parse(String input){
+        String[] campos = input.split(",");
+        return new Laterais(campos[0], Integer.parseInt(campos[1]),
+                Integer.parseInt(campos[2]),
+                Integer.parseInt(campos[3]),
+                Integer.parseInt(campos[4]),
+                Integer.parseInt(campos[5]),
+                Integer.parseInt(campos[6]),
+                Integer.parseInt(campos[7]),
+                Integer.parseInt(campos[8]),
+                Integer.parseInt(campos[9]));
+    }
     public int getCruzamentos() { return this.cruzamentos; }
     public void setCruzamentos(int cruzamentos) { this.cruzamentos = cruzamentos; }
 

@@ -1,6 +1,13 @@
 import java.sql.Date;
 import java.util.Objects;
 import java.util.Random;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+//Esta class consegue Simular um jogo entre 2 equipas
+//No final do jogo estar calculado, pode ser convertida para a Class JogoFeito
 
 public class Jogo {
     enum game_state{
@@ -14,6 +21,9 @@ public class Jogo {
     private int golos_fora;
     private game_state state;
     private Date data;
+    Map<Integer, Integer> substituicoesCasa = new HashMap<>();
+    Map<Integer, Integer> substitucoesFora = new HashMap<>();
+
 
     public Jogo() {
         this.equipa_casa = new Equipa();
@@ -24,7 +34,7 @@ public class Jogo {
         data = new Date(System.currentTimeMillis());
 
     }
-
+    
     public Jogo(Equipa equipa_casa, Equipa equipa_fora, int golos_casa, int golos_fora, game_state state, Date data) {
         this.equipa_casa = equipa_casa;
         this.equipa_fora = equipa_fora;

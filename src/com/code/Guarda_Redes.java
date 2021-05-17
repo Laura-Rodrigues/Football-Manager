@@ -22,7 +22,18 @@ public class Guarda_Redes extends Jogadores {
         this.elasticidade = elasticidade;
         this.posicionamento = posicionamento;
         this.reflexos = reflexos;
+    }
 
+
+    //Construtor para funcionar com o codigo dos professores :)
+    public Guarda_Redes(String nome,int num, int velocidade, int resistencia, int destreza, int impulsao, int jogo_cabeca, int remate, int capacidade_passe, 
+                        int elasticidade){
+        super(nome,num, velocidade, resistencia, destreza, impulsao, jogo_cabeca, remate, capacidade_passe, Jogadores.Class_jog.GRD);
+        this.elasticidade = elasticidade;
+       
+        Random r = new Random();
+        this.posicionamento =  (int) (r.nextDouble() * 100);
+        this.reflexos       =  (int) (r.nextDouble() * 100);
     }
 
     public Guarda_Redes(Guarda_Redes gr){
@@ -43,6 +54,30 @@ public class Guarda_Redes extends Jogadores {
     public Guarda_Redes(String nome){
         super.RandomizarJogador_No_Tipo();
         super.setNome(nome);
+    }
+
+
+
+    /**
+     * 
+     * 
+     * 
+     * 
+     * PARSER
+     * 
+     */
+
+    public Jogadores parse(String input){
+        String[] campos = input.split(",");
+        return new Guarda_Redes(campos[0], Integer.parseInt(campos[1]),
+                Integer.parseInt(campos[2]),
+                Integer.parseInt(campos[3]),
+                Integer.parseInt(campos[4]),
+                Integer.parseInt(campos[5]),
+                Integer.parseInt(campos[6]),
+                Integer.parseInt(campos[7]),
+                Integer.parseInt(campos[8]),
+                Integer.parseInt(campos[9]));
     }
 
     // GET E SET

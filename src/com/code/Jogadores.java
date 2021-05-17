@@ -35,6 +35,7 @@ public abstract class Jogadores implements Comparable<Jogadores> {
     public abstract int getHabilidade();
     public abstract StringBuilder toStringExtra();
     public abstract void RandomizarExtra(int max,Random rand);
+    public abstract Jogadores parse(String s);
 
     public Jogadores(){
         this.nome = "";

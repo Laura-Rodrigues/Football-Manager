@@ -12,12 +12,19 @@ public class Defesas extends Jogadores {
         this.corte = 0;
     }
 
-    public Defesas(String nome, int velocidade, int resistencia, int destreza, int impulsao, int jogo_cabeca, int remate, int capacidade_passe
+    public Defesas(String nome, int num,int velocidade, int resistencia, int destreza, int impulsao, int jogo_cabeca, int remate, int capacidade_passe
                     ,int corte){
         super(nome, velocidade, resistencia, destreza, impulsao, jogo_cabeca, remate, capacidade_passe);
         this.corte = corte;
     }
 
+    //Construtor para funcionar com o dos Stores
+    public Defesas(String nomeJ, int numeroJ, int vel, int res, int des, int imp, int cab, int rem, int p) {
+            super(nomeJ, numeroJ, vel, res, des, imp, cab, rem, p,Jogadores.Class_jog.DEF);
+            Random r = new Random();
+            this.corte =  (int) (r.nextDouble() * 100);
+        }
+    
     public Defesas(Defesas def){
         super(def.getNome(), def.getVelocidade(), def.getResistencia(), def.getDestreza(), def.getImpulsao(), def.getJogo_cabeca(), def.getRemate(), def.getCapacidade_passe());
         this.corte = def.getCorte();
@@ -32,6 +39,26 @@ public class Defesas extends Jogadores {
     public Defesas(String nome){
         super.RandomizarJogador_No_Tipo();
         super.setNome(nome);
+    }
+
+
+
+    /**
+     * 
+     * PARSER
+     * 
+     */
+
+    public  Defesas parse(String input){
+        String[] campos = input.split(",");
+        return new Defesas(campos[0], Integer.parseInt(campos[1]),
+                Integer.parseInt(campos[2]),
+                Integer.parseInt(campos[3]),
+                Integer.parseInt(campos[4]),
+                Integer.parseInt(campos[5]),
+                Integer.parseInt(campos[6]),
+                Integer.parseInt(campos[7]),
+                Integer.parseInt(campos[8]));
     }
 
     public int getCorte() { return this.corte; }

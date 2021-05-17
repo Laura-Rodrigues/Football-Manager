@@ -12,11 +12,15 @@ public class Avancados extends Jogadores {
         this.desmarcacao = 0;
     }
 
-    public Avancados(String nome, int velocidade, int resistencia, int destreza, int impulsao, int jogo_cabeca, int remate, int capacidade_passe
-                    , int desmarcacao){
-        super(nome, velocidade, resistencia, destreza, impulsao, jogo_cabeca, remate, capacidade_passe);
-        this.desmarcacao = desmarcacao;
+    
+
+    //Construtor para funcionar com os stores
+    public Avancados(String nomeJ, int numeroJ, int vel, int res, int des, int imp, int cab, int rem, int p) {
+        super(nomeJ, numeroJ, vel, res, des, imp, cab, rem, p,Jogadores.Class_jog.AVA);
+        Random r = new Random();
+        this.desmarcacao = (int) (r.nextDouble() * 100);
     }
+
     public Avancados(String nome){
         super.RandomizarJogador_No_Tipo();
         super.setNome(nome);
@@ -32,6 +36,24 @@ public class Avancados extends Jogadores {
         Avancados avancados = (Avancados) a;
         this.desmarcacao = avancados.getDesmarcacao();
         }
+    }
+
+
+    /**
+     * 
+     * PARSER
+     * @return
+     */
+    public  Jogadores parse(String input){
+        String[] campos = input.split(",");
+        return new Avancados(campos[0], Integer.parseInt(campos[1]),
+                Integer.parseInt(campos[2]),
+                Integer.parseInt(campos[3]),
+                Integer.parseInt(campos[4]),
+                Integer.parseInt(campos[5]),
+                Integer.parseInt(campos[6]),
+                Integer.parseInt(campos[7]),
+                Integer.parseInt(campos[8]));
     }
 
     public int getDesmarcacao() { return this.desmarcacao; }

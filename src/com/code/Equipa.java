@@ -31,6 +31,17 @@ public class Equipa {
         empates = 0;
 
     }
+    public Equipa(String nomeE) {
+        nome_equipa = nomeE;
+        jogadores = new ArrayList<Jogadores>();
+        plantel_Principal = new ArrayList<Jogadores>();
+        setplantel_array();
+        golos_marcados = 0;
+        golos_sofridos = 0;
+        vitorias = 0;
+        derrotas = 0;
+        empates = 0;
+    }    
 
     public Equipa(ArrayList<Jogadores> jogadores1,
                   String nome_equipa, int golos_marcados, int golos_sofridos,
@@ -49,6 +60,24 @@ public class Equipa {
         this.empates = empates;
         setplantel_array(array[1], array[2], array[3], array[4]);
        
+    }
+
+
+
+    /**
+     * 
+     * 
+     * PARSER
+     * @param j
+     */
+    public void insereJogador(Jogadores j) {
+        jogadores.add(j);
+        j.addEquipa(nome_equipa);
+    }
+
+    public static Equipa parse(String input){
+        String[] campos = input.split(",");
+        return new Equipa(campos[0]);
     }
 
     public void addJogador(Jogadores j){
@@ -125,6 +154,8 @@ public class Equipa {
         return false;
     }
 
+    //Troca um jogador de equipa,
+    //Se existe nesta equipa entao é removido e só depois é que é inserido
 
     public void changeTeam(Jogadores j,Equipa e1){
         boolean remove1 = false;
