@@ -1,5 +1,3 @@
-//package src;
-
 import java.util.Objects;
 import java.util.Random;
 
@@ -84,7 +82,7 @@ public class Avancados extends Jogadores {
         this.desmarcacao = (int) (rand.nextFloat() * max);
 
     }
-    
+
     public Avancados clone() { return new Avancados(this); }
 
     public boolean equals(Object o) {
