@@ -3,6 +3,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Iterator;
 import java.util.Map;
 
 //Esta Class só guarda valores
@@ -57,9 +58,23 @@ public class JogoFeito {
     }
 
     public String toString() {
-        return  "JogoFeito:" + equipaCasa + " - " + equipaFora
-                + " -> " + substituicoesCasa.toString()
-                + " -> " + substitucoesFora.toString();
+        StringBuilder s1 = new StringBuilder();
+
+        for (Map.Entry<Integer,Integer> n : substituicoesCasa.entrySet()) {
+            s1.append(n.getKey()).append(" -> ").append(n.getValue()).append(",");
+        }
+        s1.deleteCharAt(s1.length()-1);
+
+        StringBuilder s2 = new StringBuilder();
+        for (Map.Entry<Integer,Integer> n : substitucoesFora.entrySet()) {
+            s2.append(n.getKey()).append(" -> ").append(n.getValue()).append(",");
+        }
+        s2.deleteCharAt(s2.length()-1);
+
+
+        return  "\n" + equipaCasa + " " + golosCasa + " - " + golosFora + " " + equipaFora
+                + "\nSubs Casa " + s1.toString()
+                + "\nSubs Fora " + s2.toString() ;
 }
 
 }

@@ -52,10 +52,10 @@ public class programa{
 
 		Equipa equipa2 = new Equipa(plantel,"Vila Verde",0,31,0,20,0,meu_plantel_array);
 
-		equipa2.addJogador(jog18);
-		equipa2.addJogador(jog19);
-		equipa2.addJogador(jog20);
-		equipa2.addJogador(jog21);
+		equipa2.insereJogador(jog18);
+		equipa2.insereJogador(jog19);
+		equipa2.insereJogador(jog20);
+		equipa2.insereJogador(jog21);
 
 		equipa2.makeBestTeam();
 
@@ -80,7 +80,10 @@ public class programa{
 		Jogadores grzinho =  meu_gr.parse(s);
 		System.out.println(grzinho.toString());
 
-		Parser.parse();
+		try {Parser.parse();}
+		catch(LinhaIncorretaException e) {
+			System.out.println("Ocorreu um erro lendo do ficheiro.");
+		}
 		Jogadores fake = (Jogadores) Parser.getJogadores().get(10);
 		equipa1.changeTeam(fake,equipa2);
 		System.out.println(fake);

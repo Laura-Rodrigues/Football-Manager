@@ -48,7 +48,8 @@ public class Equipa {
         this.nome_equipa = nome_equipa;
         this.jogadores = new ArrayList<Jogadores>();
         for (Jogadores j : jogadores1) {
-            addJogador(j);
+            j.addEquipa(nome_equipa);
+            insereJogador(j);
         }
         this.plantel_Principal = new ArrayList<Jogadores>();
         this.golos_marcados = golos_marcados;
@@ -70,23 +71,13 @@ public class Equipa {
      */
     public void insereJogador(Jogadores j) {
         jogadores.add(j);
-        j.addEquipa(nome_equipa);
+       // j.addEquipa(nome_equipa);
     }
 
     public static Equipa parse(String input){
         String[] campos = input.split(",");
         return new Equipa(campos[0]);
-    }
-
-    public void addJogador(Jogadores j){
-        jogadores.add(j);
-        j.addEquipa(nome_equipa);
-    }
-
-
-
-   
-
+    }   
 
     public void SortTeam(){
         
@@ -174,8 +165,8 @@ public class Equipa {
             plantel_Principal.remove(j);
             makeBestTeam();
         }
-
-        e1.addJogador(j);
+        j.addEquipa(e1.getNome_equipa());
+        e1.insereJogador(j);
     }
 
 
@@ -313,7 +304,7 @@ public class Equipa {
 
     //Esta função só imprime jogadores do plantelPrincipal
     public StringBuilder jogadores2String(){
-        int size_j = 30;
+        int size_j = 50;
         int size_p = 15;
         int size_h = 15;
         int size_tracos = size_h + size_p + size_j + 4;
@@ -325,7 +316,7 @@ public class Equipa {
             sb.append("|").append(print_Spaces(size_h,"HABILIDADE")).append("|").append("\n");
 
         
-        for (Jogadores jogadores2 : plantel_Principal) {
+        for (Jogadores jogadores2 : jogadores) {
             String t = jogadores2.tipo_jogador_toString(jogadores2.getTipo_jogador());
             Integer i = jogadores2.getHabilidade();
             
@@ -349,8 +340,8 @@ public class Equipa {
     }
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(makeBox(64));
-        sb.append(print_Spaces(64,nome_equipa.toUpperCase())).append("\n");
+        sb.append(makeBox(84));
+        sb.append(print_Spaces(84,nome_equipa.toUpperCase())).append("\n");
         sb.append(jogadores2String());
         sb.append("\nGolos Marcados : ").append(golos_marcados);
         sb.append(" Golos Sofridos : ").append(golos_sofridos).append("\n");

@@ -24,47 +24,57 @@ public class Parser {
     private static Jogadores j4 = new Laterais();
     private static Jogadores j5 = new Defesas();
 
-    public static void parse() throws LinhaIncorretaException {
-
-        
+    public static void parse() throws LinhaIncorretaException {        
         for (String linha : linhas) {
             j = null;
             linhaPartida = linha.split(":", 2);
             switch(linhaPartida[0]){
                 case "Equipa":
+                    if(ultima != null)
+                    {
+                        ultima.makeBestTeam();
+                        equipas.put(ultima.getNome_equipa(),ultima);
+                    }
+                
                     Equipa e = Equipa.parse(linhaPartida[1]);
-                    equipas.put(e.getNome_equipa(), e);
+                    //equipas.put(e.getNome_equipa(), e);
                     ultima = e;
                     break;
                 case "Guarda-Redes":
                     j = j1.parse(linhaPartida[1]);
-                    jogadores.put(j.getNum_camisola(), j);
                     if (ultima == null) throw new LinhaIncorretaException(); //we need to insert the player into the team
-                    ultima.insereJogador(j); //if no team was parsed previously, file is not well-formed
+                    j.addEquipa(ultima.getNome_equipa());
+                    jogadores.put(j.getNum_camisola(), j);
+                    ultima.insereJogador(j.clone()); //if no team was parsed previously, file is not well-formed
                     break;
                 case "Defesa":
                     j = j5.parse(linhaPartida[1]);
-                    jogadores.put(j.getNum_camisola(), j);
                     if (ultima == null) throw new LinhaIncorretaException(); //we need to insert the player into the team
-                    ultima.insereJogador(j); //if no team was parsed previously, file is not well-formed
+                    j.addEquipa(ultima.getNome_equipa());
+                    jogadores.put(j.getNum_camisola(), j);
+                    ultima.insereJogador(j.clone()); //if no team was parsed previously, file is not well-formed
                     break;
                 case "Medio":
                     j = j3.parse(linhaPartida[1]);
-                    jogadores.put(j.getNum_camisola(), j);
+                    j.addEquipa(ultima.getNome_equipa());
                     if (ultima == null) throw new LinhaIncorretaException(); //we need to insert the player into the team
-                    ultima.insereJogador(j); //if no team was parsed previously, file is not well-formed
+
+                    jogadores.put(j.getNum_camisola(), j);
+                    ultima.insereJogador(j.clone()); //if no team was parsed previously, file is not well-formed
                     break;
                 case "Lateral":
                     j = j4.parse(linhaPartida[1]);
-                    jogadores.put(j.getNum_camisola(), j);
                     if (ultima == null) throw new LinhaIncorretaException(); //we need to insert the player into the team
-                    ultima.insereJogador(j); //if no team was parsed previously, file is not well-formed
+                    j.addEquipa(ultima.getNome_equipa());
+                    jogadores.put(j.getNum_camisola(), j);
+                    ultima.insereJogador(j.clone()); //if no team was parsed previously, file is not well-formed
                     break;
                 case "Avancado":
                     j = j2.parse(linhaPartida[1]);
-                    jogadores.put(j.getNum_camisola(), j);
                     if (ultima == null) throw new LinhaIncorretaException(); //we need to insert the player into the team
-                    ultima.insereJogador(j); //if no team was parsed previously, file is not well-formed
+                    j.addEquipa(ultima.getNome_equipa());
+                    jogadores.put(j.getNum_camisola(), j);
+                    ultima.insereJogador(j.clone()); //if no team was parsed previously, file is not well-formed
                     break;
                 case "Jogo":
                     JogoFeito jo = JogoFeito.parse(linhaPartida[1]);
@@ -75,10 +85,15 @@ public class Parser {
 
             }
         }
-        //debug
-        for (Equipa e: equipas.values()){
-            System.out.println(e.toString());
+        if(ultima != null)
+        {
+            ultima.makeBestTeam();
+            equipas.put(ultima.getNome_equipa(),ultima);
         }
+        //debug
+        // for (Equipa e: equipas.values()){
+        //     System.out.println(e.toString());
+        // }
         for (JogoFeito jog: jogos){
             System.out.println(jog.toString());
         }
@@ -86,18 +101,16 @@ public class Parser {
         // {
         //     System.out.println(jf.toString());
         // }
-
-
     }
 
     public static List<String> lerFicheiro(String nomeFich) {
         List<String> lines;
         try { lines = Files.readAllLines(Paths.get(nomeFich), StandardCharsets.UTF_8); }
-        catch(IOException exc) { lines = new ArrayList<>(); }
+        catch(IOException exc) { 
+            System.out.println("Nome do ficheiro incorreto.");
+            lines = new ArrayList<>(); }
         return lines;
     }
-
-    
 
     public static Map getJogadores(){
         return Parser.jogadores;
