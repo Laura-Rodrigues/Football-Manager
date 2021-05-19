@@ -11,7 +11,7 @@ import java.util.Map;
 
 
 public class Parser {
-    private static List<String> linhas = lerFicheiro("output.txt");
+    private static List<String> linhas;
     private static Map<String, Equipa> equipas = new HashMap<>(); //nome, equipa
     private static Map<Integer, Jogadores> jogadores = new HashMap<>(); //numero, Jogadores
     private static List<JogoFeito> jogos = new ArrayList<>();
@@ -24,7 +24,10 @@ public class Parser {
     private static Jogadores j4 = new Laterais();
     private static Jogadores j5 = new Defesas();
 
-    public static void parse() throws LinhaIncorretaException {        
+    public static void parse() throws LinhaIncorretaException {  
+        linhas = lerFicheiro("output.txt");
+        //Se o tamanho do ficheiro for 0.   
+        if (linhas.size() == 0) throw  new LinhaIncorretaException();
         for (String linha : linhas) {
             j = null;
             linhaPartida = linha.split(":", 2);
@@ -103,7 +106,7 @@ public class Parser {
         // }
     }
 
-    public static List<String> lerFicheiro(String nomeFich) {
+    public static List<String> lerFicheiro(String nomeFich){
         List<String> lines;
         try { lines = Files.readAllLines(Paths.get(nomeFich), StandardCharsets.UTF_8); }
         catch(IOException exc) { 
