@@ -1,9 +1,9 @@
+package Model;
+
 import java.sql.Date;
 import java.util.Objects;
 import java.util.Random;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 //Esta class consegue Simular um jogo entre 2 equipas
