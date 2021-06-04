@@ -3,6 +3,7 @@ package Controller;
 import Model.*;
 import View.*;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Interpretador implements IController{
@@ -68,7 +69,13 @@ public class Interpretador implements IController{
     public void start(){
         this.view.menu();
         while(true){
-            int instruction = this.scan.nextInt();
+            int instruction;
+            try {
+                instruction = this.scan.nextInt();
+            }
+            catch (InputMismatchException e) { // Não foi inscrito um int
+                instruction = 10;
+            }
             this.scan.nextLine();
             switch(instruction){
                 case -1:

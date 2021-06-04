@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Menu implements IView{
 
     public void waitingInstruction(){
-        System.out.print("\t>");
+        System.out.print("\t> ");
     }
 
     public void warningMenus(){
@@ -17,10 +17,10 @@ public class Menu implements IView{
 
     public void menu(){
         StringBuilder sb = new StringBuilder("\n-------------------------------------------\n\t\t\t Football Manager\n-------------------------------------------\n");
-        sb.append("0) Mostrar menu.\n");
+        sb.append("0) Mostrar menu\n");
         sb.append("1) Gerir entidades\n");
         sb.append("2) Resultado de Jogo\n");
-        sb.append("-1) Sair.\n");
+        sb.append("-1) Sair\n");
         sb.append("Escreva o número correspondente à opção pretendida.\n\t> ");
         System.out.print(sb);
     }
