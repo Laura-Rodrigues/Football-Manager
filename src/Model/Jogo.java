@@ -3,8 +3,13 @@ package Model;
 import java.sql.Date;
 import java.util.Objects;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
+
 
 //Esta class consegue Simular um jogo entre 2 equipas
 //No final do jogo estar calculado, pode ser convertida para a Class JogoFeito
@@ -63,6 +68,9 @@ public class Jogo {
     }
 
     public void addGoalCasa(){
+        try{Thread.sleep(3000);}catch(InterruptedException e){System.out.println(e);}
+        System.out.println("Golo da Casa Caralhoooo");
+
         equipa_casa.setGolos_marcados(equipa_casa.getGolos_marcados() + 1);
         equipa_fora.setGolos_sofridos(equipa_fora.getGolos_sofridos() + 1);
         this.golos_casa++;
@@ -71,12 +79,48 @@ public class Jogo {
     }
 
     public void addGoalFora(){
+        try{Thread.sleep(3000);}catch(InterruptedException e){System.out.println(e);} 
+        System.out.println("Golo Fora man");
+
         equipa_fora.setGolos_marcados(equipa_fora.getGolos_marcados() + 1);
         equipa_casa.setGolos_sofridos(equipa_casa.getGolos_sofridos() + 1);
         this.golos_fora++;
     }
 
+    public String mensagemTriste(Equipa e1,Equipa e2)
+    {
+        Random r = new Random();
+        int next = r.nextInt(3);
 
+        switch (next)
+        {
+            default:
+            System.out.println(e2.getNome_equipa());
+               List<Jogadores> aqui = e2.getPlantel_Principal().stream().filter(s -> s.getTipo_jogador() == Jogadores.Class_jog.GRD).collect(Collectors.toList());
+                return " rematou para a baliza mas " + aqui.get(0).getNome() + " defendeu" ;
+            case 5:
+                return " quase que enquadrava o remate,mas foi ao lado";
+            case 10:
+                return " atirou com demasiada força";
+        }
+    }
+
+    public void print_jogada_Falhada(){
+        Random r = new Random();
+        if (r.nextInt(2) ==1)
+        {
+            System.out.print(getEquipa_casa().randomJogador().getNome() +
+             mensagemTriste(getEquipa_casa(),getEquipa_fora()) + "\n\n");
+        }
+        else
+        {
+            System.out.println("ok man");
+            System.out.print(getEquipa_fora().randomJogador().getNome() +
+            mensagemTriste(getEquipa_fora(),getEquipa_casa()) + "\n\n");
+        }
+        try{Thread.sleep(100);}catch(InterruptedException e){System.out.println(e);}
+
+    }
 
     public double SkillDisparity(){
        int valor_1 = equipa_casa.getHabilidadeEquipa();
@@ -122,6 +166,9 @@ public class Jogo {
         //     printGame();
              
         // }
+        System.out.println("Jogo entre " + equipa_casa.getNome_equipa() + " e "
+                             + equipa_fora.getNome_equipa() + " prestes a começar...");
+        try{Thread.sleep(3000);}catch(InterruptedException e){System.out.println(e);}
         int valor_1 = equipa_casa.getHabilidadeEquipa();
         int valor_2 = equipa_fora.getHabilidadeEquipa();
         double chance_min;//Entre 0 e 1
@@ -143,10 +190,11 @@ public class Jogo {
             chance_max = chance_min * gap;
         }
         Random t = new Random();
-        System.out.println(valor_1);
-        System.out.println(valor_2);
-        System.out.println(chance_min);
-        System.out.println(chance_max);
+        //Valores para imprimir
+        // System.out.println(valor_1);
+        // System.out.println(valor_2);
+        // System.out.println(chance_min);
+        // System.out.println(chance_max);
         for (int i = 0; i < 10; i++) {
             double tentativa =  t.nextDouble();// Devolve entre 0 e 1
             if (tentativa < chance_min) 
@@ -160,7 +208,10 @@ public class Jogo {
                 if (bestTeam() == 1)
                 addGoalCasa();
                 else addGoalFora();
-            } 
+            }
+            else
+            print_jogada_Falhada();
+            
         }
         printGame();
     }

@@ -3,6 +3,7 @@ package Model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.Random;
 
 
 public class Equipa {
@@ -74,6 +75,14 @@ public class Equipa {
     public void insereJogador(Jogadores j) {
         jogadores.add(j);
        // j.addEquipa(nome_equipa);
+    }
+
+
+    public Jogadores randomJogador()
+    {
+       Random r = new Random();
+       int r_jog = (int)  (r.nextDouble() * getPlantel_Principal().size());
+       return getPlantel_Principal().get(r_jog);
     }
 
     public static Equipa parse(String input){

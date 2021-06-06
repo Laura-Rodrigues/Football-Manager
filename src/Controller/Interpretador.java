@@ -83,15 +83,23 @@ public class Interpretador implements IController{
                     return;
 
                 case 0:
-                    this.view.menu();
+                Menu.clearScreen();
+                this.view.menu();
+
                     break;
 
                 case 1:
+                Menu.clearScreen();
                     menu1();
+
+
                     break;
 
                 case 2:
+                Menu.clearScreen();
                     menu2();
+
+
                     break;
             }
             if(instruction != 0) this.view.waitingInstruction();
