@@ -118,4 +118,9 @@ public class Parser {
     public static Map getJogadores(){
         return Parser.jogadores;
     }
+
+    public static Map<String, Equipa> getEquipas(){
+        return Parser.equipas;
+    }
+    
 }

@@ -130,7 +130,7 @@ public class Equipa {
         }
         if (insert)
         {
-            plantel_Principal.add(jogadores.get(pos));
+            plantel_Principal.add(jogadores.get(pos).clone());
         }
         pos++;
     }

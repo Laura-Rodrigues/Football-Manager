@@ -16,19 +16,14 @@ public class Guarda_Redes extends Jogadores {
         this.reflexos = 0;
     }
 
-    public Guarda_Redes(String nome, int velocidade, int resistencia, int destreza, int impulsao, int jogo_cabeca, int remate, int capacidade_passe, 
-                        int elasticidade, int posicionamento, int reflexos){
-        super(nome, velocidade, resistencia, destreza, impulsao, jogo_cabeca, remate, capacidade_passe);
-        this.elasticidade = elasticidade;
-        this.posicionamento = posicionamento;
-        this.reflexos = reflexos;
-    }
+  
 
 
     //Construtor para funcionar com o codigo dos professores :)
     public Guarda_Redes(String nome,int num, int velocidade, int resistencia, int destreza, int impulsao, int jogo_cabeca, int remate, int capacidade_passe, 
                         int elasticidade){
         super(nome,num, velocidade, resistencia, destreza, impulsao, jogo_cabeca, remate, capacidade_passe, Jogadores.Class_jog.GRD);
+
         this.elasticidade = elasticidade;
        
         Random r = new Random();
@@ -37,7 +32,7 @@ public class Guarda_Redes extends Jogadores {
     }
 
     public Guarda_Redes(Guarda_Redes gr){
-        super(gr.getNome(), gr.getVelocidade(), gr.getResistencia(), gr.getDestreza(), gr.getImpulsao(), gr.getJogo_cabeca(), gr.getRemate(), gr.getCapacidade_passe());
+        super(gr.getNome(),gr.getNum_camisola(), gr.getVelocidade(), gr.getResistencia(), gr.getDestreza(), gr.getImpulsao(), gr.getJogo_cabeca(), gr.getRemate(), gr.getCapacidade_passe());
         this.elasticidade = gr.getElasticidade();
         this.posicionamento = gr.getPosicionamento();
         this.reflexos = gr.getReflexos();

@@ -80,10 +80,11 @@ public abstract class Jogadores implements Comparable<Jogadores> {
     /*
     Construtor para as outros classes poderem funcionar em PAZ
      */
-    public Jogadores(String nome, int velocidade, int resistencia, int destreza,
+    public Jogadores(String nome, int num,int velocidade, int resistencia, int destreza,
                      int impulsao, int jogo_cabeca, int remate,
                      int capacidade_passe){
         this.nome = nome;
+        this.num_camisola = num;
         this.velocidade = velocidade;
         this.resistencia = resistencia;
         this.destreza = destreza;

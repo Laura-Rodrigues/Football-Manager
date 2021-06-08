@@ -10,7 +10,7 @@ public class Interpretador implements IController{
 
     //private IModel model;
     private IView view;
-
+    
     private Scanner scan;
 
 
@@ -67,8 +67,8 @@ public class Interpretador implements IController{
 
 
     public void start(){
-        this.view.menu();
         while(true){
+            this.view.menu();
             int instruction;
             try {
                 instruction = this.scan.nextInt();
@@ -83,20 +83,20 @@ public class Interpretador implements IController{
                     return;
 
                 case 0:
-                Menu.clearScreen();
+                //Menu.clearScreen();
                 this.view.menu();
 
                     break;
 
                 case 1:
-                Menu.clearScreen();
+                //Menu.clearScreen();
                     menu1();
 
 
                     break;
 
                 case 2:
-                Menu.clearScreen();
+                //Menu.clearScreen();
                     menu2();
 
 

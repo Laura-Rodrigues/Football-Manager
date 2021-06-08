@@ -21,7 +21,7 @@ CLASSES = \
 		  Model/Equipa.java \
 		  Model/JogoFeito.java \
 		  Model/Jogo.java \
-		  App.java 
+		  programa.java
 
 default: classes
 
@@ -31,4 +31,4 @@ clean:
 	$(RM) View/*.class Model/*.class Controller/*.class *.class
 	
 run:
-	java App
+	java programa
