@@ -1,3 +1,5 @@
+package Parser;
+
 import Model.*;
 
 import java.io.IOException;
@@ -24,8 +26,8 @@ public class Parser {
     private static Jogadores j4 = new Laterais();
     private static Jogadores j5 = new Defesas();
 
-    public static void parse() throws LinhaIncorretaException {  
-        linhas = lerFicheiro("output.txt");
+    public static void parse(String path) throws LinhaIncorretaException {
+        linhas = lerFicheiro(path);
         //Se o tamanho do ficheiro for 0.   
         if (linhas.size() == 0) throw  new LinhaIncorretaException();
         for (String linha : linhas) {
@@ -40,7 +42,6 @@ public class Parser {
                     }
                 
                     Equipa e = Equipa.parse(linhaPartida[1]);
-                    //equipas.put(e.getNome_equipa(), e);
                     ultima = e;
                     break;
                 case "Guarda-Redes":

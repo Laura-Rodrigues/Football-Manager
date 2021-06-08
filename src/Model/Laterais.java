@@ -19,7 +19,7 @@ public class Laterais extends Jogadores {
     }
 
     public Laterais(Laterais l){
-        super(l.getNome(), l.getVelocidade(), l.getResistencia(), l.getDestreza(), l.getImpulsao(), l.getJogo_cabeca(), l.getRemate(), l.getCapacidade_passe());
+        super(l.getNome(), l.getNum_camisola(), l.getVelocidade(), l.getResistencia(), l.getDestreza(), l.getImpulsao(), l.getJogo_cabeca(), l.getRemate(), l.getCapacidade_passe());
         this.cruzamentos = l.getCruzamentos();
     }
 

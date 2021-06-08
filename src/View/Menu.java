@@ -1,9 +1,8 @@
 package View;
 
-import java.util.Arrays;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import Model.Jogadores;
+import Parser.Parser;
+import java.util.*;
 
 public class Menu implements IView{
     public int t = 40;//tamanho 
@@ -93,8 +92,97 @@ public class Menu implements IView{
     }
 
     public void CriarJogadorView(){
-
+        StringBuilder sb = new StringBuilder();
+        sb.append(makemyBox(t));
+        sb.append(print_Espacos(t,"Tipo de jogador"));
+        sb.append(makemyBox(t));
+        sb.append("1) Guarda-Redes\n");
+        sb.append("2) Lateral\n");
+        sb.append("3) Defesa\n");
+        sb.append("4) Médio\n");
+        sb.append("5) Avançado\n");
+        sb.append(makemyBox(t));
+        sb.append("Escreva o número correspondente à opção pretendida.\n\t> ");
+        System.out.print(sb);
     }
+
+    public void CriarGR(){
+        StringBuilder sb = new StringBuilder("Insira os dados na seguinte ordem (dando enter após cada):\n");
+        sb.append("Nome\n");
+        sb.append("Nº de camisola\n");
+        sb.append("Velocidade\n");
+        sb.append("Resistência\n");
+        sb.append("Destreza\n");
+        sb.append("Impulsão\n");
+        sb.append("Jogo de cabeça\n");
+        sb.append("Remate\n");
+        sb.append("Capacidade de passe\n");
+        sb.append("Elasticidade\n");
+        sb.append("Posicionamento\n");
+        sb.append("Reflexos\n");
+        System.out.println(sb);
+    }
+
+    public void CriarLAT(){
+        StringBuilder sb = new StringBuilder("Insira os dados na seguinte ordem (dando enter após cada):\n");
+        sb.append("Nome\n");
+        sb.append("Nº de camisola\n");
+        sb.append("Velocidade\n");
+        sb.append("Resistência\n");
+        sb.append("Destreza\n");
+        sb.append("Impulsão\n");
+        sb.append("Jogo de cabeça\n");
+        sb.append("Remate\n");
+        sb.append("Capacidade de passe\n");
+        sb.append("Cruzamentos\n");
+        System.out.println(sb);
+    }
+
+    public void CriarDEF(){
+        StringBuilder sb = new StringBuilder("Insira os dados na seguinte ordem (dando enter após cada):\n");
+        sb.append("Nome\n");
+        sb.append("Nº de camisola\n");
+        sb.append("Velocidade\n");
+        sb.append("Resistência\n");
+        sb.append("Destreza\n");
+        sb.append("Impulsão\n");
+        sb.append("Jogo de cabeça\n");
+        sb.append("Remate\n");
+        sb.append("Capacidade de passe\n");
+        sb.append("Corte\n");
+        System.out.println(sb);
+    }
+
+    public void CriarMED(){
+        StringBuilder sb = new StringBuilder("Insira os dados na seguinte ordem (dando enter após cada):\n");
+        sb.append("Nome\n");
+        sb.append("Nº de camisola\n");
+        sb.append("Velocidade\n");
+        sb.append("Resistência\n");
+        sb.append("Destreza\n");
+        sb.append("Impulsão\n");
+        sb.append("Jogo de cabeça\n");
+        sb.append("Remate\n");
+        sb.append("Capacidade de passe\n");
+        sb.append("Visão de Jogo\n");
+        System.out.println(sb);
+    }
+
+    public void CriarAVA(){
+        StringBuilder sb = new StringBuilder("Insira os dados na seguinte ordem (dando enter após cada):\n");
+        sb.append("Nome\n");
+        sb.append("Nº de camisola\n");
+        sb.append("Velocidade\n");
+        sb.append("Resistência\n");
+        sb.append("Destreza\n");
+        sb.append("Impulsão\n");
+        sb.append("Jogo de cabeça\n");
+        sb.append("Remate\n");
+        sb.append("Capacidade de passe\n");
+        sb.append("Desmarcação\n");
+        System.out.println(sb);
+    }
+
     public void CriarEquipaView(){
 
     }
@@ -104,7 +192,8 @@ public class Menu implements IView{
     public void GerirJogadorView(){
 
     }
-    public void ListarView(){
+    public void ListarView(ArrayList<Jogadores> jog){
+       //System.out.println(Parser.getJogadores());
 
     }
     public void HabilidadesView(){
@@ -114,87 +203,4 @@ public class Menu implements IView{
 
     }
 
-
-/*
-    private List<String> opcoes;
-    private int op;
-
-    public Menu(String[] opcoes) {
-        this.opcoes = Arrays.asList(opcoes);
-        this.op = 0;
-    }
-
-    public void executa() {
-        do {
-            showMenu();
-            this.op = lerOpcao();
-        } while (this.op == -1);
-    }
-
-    private void showMenu() {
-        System.out.println("\n *** Menu *** ");
-        for (int i=0; i<this.opcoes.size(); i++) {
-            System.out.print(i+1);
-            System.out.print(" - ");
-            System.out.println(this.opcoes.get(i));
-        }
-        System.out.println("0 - Sair / Voltar atrás");
-    }
-
-    private int lerOpcao() {
-        int op;
-        Scanner is = new Scanner(System.in);
-
-        System.out.print("Opção: ");
-        try {
-            op = is.nextInt();
-        }
-        catch (InputMismatchException e) { // Não foi inscrito um int
-            op = -1;
-        }
-        if (op<0 || op>this.opcoes.size()) {
-            System.out.println("Opção Inválida!!!");
-            op = -1;
-        }
-        return op;
-    }
-
-    public int getOpcao() {
-        return this.op;
-    }
-
-
-    public static void main(String[] args){
-
-    String[] s1 = {"Gerir entidades", "Resultado de Jogo"};
-    String[] s2 = {"Criar Jogador", "Criar equipa","Gerir equipa","Gerir jogador","Listar jogadores e equipas","Habilidades"};
-    String[] s3 = {"Criar jogo"};
-
-    Menu m1 = new Menu(s1);
-    Menu m2 = new Menu(s2);
-    Menu m3 = new Menu(s3);
-    int op;
-
-        do {
-            m1.executa();
-            op = m1.getOpcao();
-            int i;
-
-            System.out.println("Option read: " + op);
-
-            switch (op) {
-                case 1:
-                    m2.executa();
-                    System.out.println("...");
-                    break;
-                case 2:
-                    m3.executa();
-                    break;
-                default:
-                    System.out.println("Option?? " + op);
-                    break;
-            }
-        } while (op != 0); System.out.println("Ending program ...");
-    }
-*/
 }

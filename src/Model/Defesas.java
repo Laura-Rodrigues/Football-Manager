@@ -14,7 +14,7 @@ public class Defesas extends Jogadores {
 
     public Defesas(String nome, int num,int velocidade, int resistencia, int destreza, int impulsao, int jogo_cabeca, int remate, int capacidade_passe
                     ,int corte){
-        super(nome, velocidade, resistencia, destreza, impulsao, jogo_cabeca, remate, capacidade_passe);
+        super(nome, num, velocidade, resistencia, destreza, impulsao, jogo_cabeca, remate, capacidade_passe,Jogadores.Class_jog.DEF);
         this.corte = corte;
     }
 
@@ -26,7 +26,7 @@ public class Defesas extends Jogadores {
         }
     
     public Defesas(Defesas def){
-        super(def.getNome(), def.getVelocidade(), def.getResistencia(), def.getDestreza(), def.getImpulsao(), def.getJogo_cabeca(), def.getRemate(), def.getCapacidade_passe());
+        super(def.getNome(), def.getNum_camisola(), def.getVelocidade(), def.getResistencia(), def.getDestreza(), def.getImpulsao(), def.getJogo_cabeca(), def.getRemate(), def.getCapacidade_passe());
         this.corte = def.getCorte();
     }
     public Defesas(Jogadores a){

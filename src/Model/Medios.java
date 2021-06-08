@@ -19,7 +19,7 @@ public class Medios extends Jogadores {
     }
 
     public Medios(Medios m){
-        super(m.getNome(), m.getVelocidade(), m.getResistencia(), m.getDestreza(), m.getImpulsao(),
+        super(m.getNome(), m.getNum_camisola(), m.getVelocidade(), m.getResistencia(), m.getDestreza(), m.getImpulsao(),
          m.getJogo_cabeca(), m.getRemate(), m.getCapacidade_passe());
          this.visaoDeJogo = m.getVisaoDeJogo();
     }

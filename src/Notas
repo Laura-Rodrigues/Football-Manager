@@ -4,10 +4,6 @@ FALTA FAZER:
     sendo que em cada jogo podem jogar N jogadores titulares e utilizarem-se M suplentes.
 
     - JOGO:
-           · Definir as equipas titulares e as substituições a efectuar.
-           · Em cada jogo e para cada equipa deverá ser identificada a lista dos seus jogadores
-            titulares (11 jogadores) e das substituições (3 substituições em que se identifica
-            o jogador que sai e o que entra).
            · A equipa que é apresentada poderá ter uma maior habilidade em função dos seus
             jogadores e também em função da posição em que um determinado jogador actua.
            · Existência de, pelo menos, 2 modelos táticos:  1-4-4-2 (1 guarda-redes, 4 defesas, 4 médios e 2 avançados)
@@ -24,7 +20,7 @@ FALTA FAZER:
             A gravação deve ser feita de forma a permitir que o estado que foi gravado
          seja recuperado novamente.  Na altura da entrega do projecto deve ser também entregue
          um estado (guardado em ficheiro) que possa ser carregado durante a apresentação.
-    - Suportar o carregamento de um estado em modo texto - ex: output.txt
+
 
 
     - Encapsulamento.

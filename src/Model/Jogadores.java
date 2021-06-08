@@ -78,12 +78,13 @@ public abstract class Jogadores implements Comparable<Jogadores> {
     
 
     /*
-    Construtor para as outros classes poderem funcionar em PAZ
+    Construtor para o menu
      */
-    public Jogadores(String nome, int velocidade, int resistencia, int destreza,
+    public Jogadores(String nome, int num, int velocidade, int resistencia, int destreza,
                      int impulsao, int jogo_cabeca, int remate,
                      int capacidade_passe){
         this.nome = nome;
+        this.num_camisola = num;
         this.velocidade = velocidade;
         this.resistencia = resistencia;
         this.destreza = destreza;
@@ -98,6 +99,7 @@ public abstract class Jogadores implements Comparable<Jogadores> {
 
     public Jogadores(Jogadores j){
         this.nome = j.getNome();
+        this.num_camisola = j.getNum_camisola();
         this.velocidade = j.getVelocidade();
         this.resistencia = j.getResistencia();
         this.destreza = j.getDestreza();
