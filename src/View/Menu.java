@@ -15,10 +15,7 @@ public class Menu implements IView{
     public void warningMenus(){
         System.out.print("\n\nA voltar para o primeiro menu..........\n");
     }
-    public static void clearScreen() {  
-        System.out.print("\033[H\033[2J");  
-        System.out.flush();  
-    }  
+
     public StringBuilder print_Espacos(int tamanho,String array){
         StringBuilder sb = new StringBuilder();
         int offset = (tamanho - array.length()) / 2;
@@ -47,7 +44,6 @@ public class Menu implements IView{
     }
 
     public void menu(){
-        //StringBuilder sb = new StringBuilder("\n-------------------------------------------\n\t\t\t Football Manager\n-------------------------------------------\n");
         StringBuilder sb = new StringBuilder();
         
         
@@ -57,6 +53,7 @@ public class Menu implements IView{
         sb.append("0) Mostrar menu\n");
         sb.append("1) Gerir entidades\n");
         sb.append("2) Resultado de Jogo\n");
+        sb.append("3) Simulação de Jogo\n");
         sb.append("-1) Sair\n");
         sb.append(makemyBox(t));
         sb.append("Escreva o número correspondente à opção pretendida.\n\t> ");
@@ -64,7 +61,6 @@ public class Menu implements IView{
     }
 
     public void menu1(){
-        //StringBuilder sb = new StringBuilder("\n-------------------------------------------\n  Requisitos base de gestão das entidades\n-------------------------------------------\n");
         StringBuilder sb = new StringBuilder();
         sb.append(makemyBox(t));
         sb.append(print_Espacos(t,"Requisitos base de gestão das entidades"));
@@ -73,21 +69,20 @@ public class Menu implements IView{
         sb.append("2) Criar equipa\n");
         sb.append("3) Gerir equipa\n");
         sb.append("4) Gerir jogador\n");
-        sb.append("5) Listar jogadores\n");
-        sb.append("6) Listar equipas\n");
-        sb.append("7) Habilidades\n");
+        sb.append("5) Listar jogadores e suas habilidades\n");
+        sb.append("6) Listar equipas e suas habilidades\n");
         sb.append(makemyBox(t));
         sb.append("Escreva o número correspondente à opção pretendida.\n\t> ");
         System.out.print(sb);
     }
 
     public void menu2(){
-       // StringBuilder sb = new StringBuilder("\n-------------------------------------------\n\t  Calcular o resultado de um jogo\n-------------------------------------------\n");
         StringBuilder sb = new StringBuilder();
         sb.append(makemyBox(t));
         sb.append(print_Espacos(t,"Calcular o resultado de um jogo"));
         sb.append(makemyBox(t));
         sb.append("1) Criar Jogo\n");
+        sb.append("2) 1 equipa vs. todas\n");
         sb.append(makemyBox(t));
         sb.append("Escreva o número correspondente à opção pretendida.\n\t> ");
         System.out.print(sb);
@@ -186,13 +181,29 @@ public class Menu implements IView{
     }
 
     public void CriarEquipaView(){
-
+        System.out.println("A equipa vai ser criada vazia. Para introduzir jogadores escolha no menu GERIR EQUIPA\n\tIntroduza o nome da nova equipa: ");
     }
     public void GerirEquipaView(){
-
+        StringBuilder sb = new StringBuilder();
+        sb.append(makemyBox(t));
+        sb.append(print_Espacos(t,"Gerir Equipa"));
+        sb.append(makemyBox(t));
+        sb.append("1) Adicionar jogadores\n");
+        sb.append("2) Remover jogadores\n");
+        sb.append(makemyBox(t));
+        sb.append("Escreva o número correspondente à opção pretendida.\n\t> ");
+        System.out.print(sb);
     }
-    public void GerirJogadorView(){
+    public void Add(){
+        System.out.println("Introduza o nome do jogador e da Equipa a que quer adicioná-lo\n");
+    }
 
+    public void Remove(){
+        System.out.println("Introduza o nome do jogador e da Equipa de onde quer removê-lo\n");
+    }
+
+    public void GerirJogadorView(){
+        System.out.println("Introduza o nome do jogador e a sua Equipa atual. A qual Equipa quer adicioná-lo?\n");
     }
     public void ListarView() {
         for (Jogadores jf : Parser.getJogadores().values()) {
@@ -204,11 +215,11 @@ public class Menu implements IView{
             System.out.println(jf.sb_short());
         }
     }
-    public void HabilidadesView(){
-
-    }
     public void CriarJogoView(){
 
+    }
+    public void SimulateJogo(){
+        System.out.println("Introduza o nome das duas equipas\n");
     }
 
 }

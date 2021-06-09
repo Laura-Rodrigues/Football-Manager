@@ -290,8 +290,8 @@ public abstract class Jogadores implements Comparable<Jogadores> {
         StringBuilder sb = new StringBuilder();
         
         sb.append("|").append(Equipa.print_Spaces(70,this.getNome()));
-        sb.append("|").append(Equipa.print_Spaces(15,t)).append("|");
-        //sb.append("|").append(Equipa.print_Spaces(15,i.toString())).append("|").append("\n");
+        sb.append("|").append(Equipa.print_Spaces(15,t));
+        sb.append("|").append(Equipa.print_Spaces(15,i.toString())).append("|");
       
         return sb;
 

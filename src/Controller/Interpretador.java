@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.*;
+import Model.Game.Jogo;
 import View.*;
 import Parser.Parser;
 
@@ -38,12 +39,24 @@ public class Interpretador implements IController{
                 break;
             case 2:
                 this.view.CriarEquipaView();
+                String nome = this.scan.nextLine();
+                Equipa eq = new Equipa(new ArrayList<>(),nome,0,0,0,0,0,new int[5]);
+                Parser.getEquipas().put(nome,eq);
                 break;
             case 3:
-                this.view.GerirEquipaView();
+                menuGerirEquipa();
                 break;
             case 4:
                 this.view.GerirJogadorView();
+                String nome1 = this.scan.nextLine();
+                String eq1 = this.scan.nextLine();
+                Jogadores j1 = Parser.getJogadores().get(nome1);
+                Equipa e1 = Parser.getEquipas().get(eq1);
+                String eq2 = this.scan.nextLine();
+                Equipa e2 = Parser.getEquipas().get(eq2);
+                e1.changeTeam(j1,e2);
+                e1.makeBestTeam();
+                e2.makeBestTeam();
                 break;
             case 5:
                 this.view.ListarView();
@@ -51,9 +64,7 @@ public class Interpretador implements IController{
             case 6:
                 this.view.ListarEquipaView();
                 break;
-            case 7:
-                this.view.HabilidadesView();
-                break;
+
         }
         this.view.warningMenus();
     }
@@ -113,6 +124,36 @@ public class Interpretador implements IController{
         //this.view.warningMenus();
     }
 
+    public void menuGerirEquipa(){
+        this.view.GerirEquipaView();
+        int instruction = scan.nextInt();
+        this.scan.nextLine();
+        switch(instruction){
+            case 1:
+                this.view.Add();
+                String nome = this.scan.nextLine();
+                String eq = this.scan.nextLine();
+                Jogadores j = Parser.getJogadores().get(nome);
+                Equipa e = Parser.getEquipas().get(eq);
+                e.getJogadores().add(j);
+                if (e.getJogadores().size() >= 11){
+                    e.makeBestTeam();
+                }
+                break;
+            case 2:
+                this.view.Remove();
+                String nome2 = this.scan.nextLine();
+                String eq2 = this.scan.nextLine();
+                Jogadores j2 = Parser.getJogadores().get(nome2);
+                Equipa e2 = Parser.getEquipas().get(eq2);
+                e2.getJogadores().remove(j2);
+                if (e2.getJogadores().size() >= 11){
+                    e2.makeBestTeam();
+                }
+                break;
+        }
+    }
+
     public void menu2(){
         this.view.menu2();
         int instruction = scan.nextInt();
@@ -152,6 +193,17 @@ public class Interpretador implements IController{
 
                 case 2:
                     menu2();
+                    break;
+                case 3:
+                    this.view.SimulateJogo();
+                    String eq1 = this.scan.nextLine();
+                    Equipa e1 = Parser.getEquipas().get(eq1);
+                    String eq2 = this.scan.nextLine();
+                    Equipa e2 = Parser.getEquipas().get(eq2);
+
+                    Jogo game = new Jogo(e1,e2);
+
+                    game.Simulate();
                     break;
             }
             //if(instruction != 0) this.view.waitingInstruction();

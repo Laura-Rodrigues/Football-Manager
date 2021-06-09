@@ -18,9 +18,11 @@ public interface IView {
     public void CriarAVA();
     public void CriarEquipaView();
     public void GerirEquipaView();
+    public void Add();
+    public void Remove();
     public void GerirJogadorView();
     public void ListarView();
     public void ListarEquipaView();
-    public void HabilidadesView();
     public void CriarJogoView();
+    public void SimulateJogo();
 }
