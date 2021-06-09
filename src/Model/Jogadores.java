@@ -1,10 +1,11 @@
 package Model;
 
 import java.util.Objects;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-public abstract class Jogadores implements Comparable<Jogadores> {
+public abstract class Jogadores implements Comparable<Jogadores>,Serializable {
 
 
 
@@ -32,7 +33,7 @@ public abstract class Jogadores implements Comparable<Jogadores> {
     public abstract int getHabilidade();
     public abstract StringBuilder toStringExtra();
     public abstract void RandomizarExtra(int max,Random rand);
-    public abstract Jogadores parse(String s);
+    public abstract  Jogadores parse(String s);
 
     public Jogadores(){
         this.nome = "";
@@ -154,36 +155,24 @@ public abstract class Jogadores implements Comparable<Jogadores> {
     // GETTERS E SETTERS
     public String getNome() { return this.nome; }
     public void setNome(String nome) { this.nome = nome; }
-
-
     public int getNum_camisola() { return this.num_camisola;}
     public void setNum_camisola(int num_camisola) { this.num_camisola = num_camisola;}
-
     public int getVelocidade() { return this.velocidade; }
     public void setVelocidade(int velocidade) { this.velocidade = velocidade; }
-
     public int getResistencia() { return this.resistencia; }
     public void setResistencia(int resistencia) { this.resistencia = resistencia; }
-
     public int getDestreza() { return this.destreza; }
     public void setDestreza(int destreza) { this.destreza = destreza; }
-
     public int getImpulsao() { return this.impulsao; }
     public void setImpulsao(int impulsao) { this.impulsao = impulsao; }
-
     public int getJogo_cabeca() { return this.jogo_cabeca; }
     public void setJogo_cabeca(int jogo_cabeca) { this.jogo_cabeca = jogo_cabeca; }
-
     public int getRemate() { return this.remate; }
     public void setRemate(int remate) { this.remate = remate; }
-
     public int getCapacidade_passe() { return this.capacidade_passe; }
     public void setCapacidade_passe(int capacidade_passe) { this.capacidade_passe = capacidade_passe; }
-
-
     public Class_jog getTipo_jogador() { return tipo_jogador; }
     public void setTipo_jogador(Class_jog tipo_jogador) { this.tipo_jogador = tipo_jogador; }
-
     public ArrayList<String> getEquipa_List() {
         return this.equipa_List;
     }

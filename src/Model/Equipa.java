@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Objects;
@@ -7,9 +8,9 @@ import java.util.Random;
 import Model.Jogadores.Class_jog;
 
 
-public class Equipa {
+public class Equipa implements Serializable{
+    
     // A habilidade global de uma equipa ́e função da habilidadede cada um dos jogadores.
-
     private ArrayList<Jogadores> jogadores;
     private ArrayList<Jogadores> plantel_Principal;
     private String nome_equipa;
@@ -63,16 +64,9 @@ public class Equipa {
         this.empates = empates;
         setplantel_array(array[1], array[2], array[3], array[4]);
        
+       
     }
 
-
-
-    /**
-     * 
-     * 
-     * PARSER
-     * @param j
-     */
     public void insereJogador(Jogadores j) {
         jogadores.add(j);
        // j.addEquipa(nome_equipa);
@@ -124,10 +118,13 @@ public class Equipa {
                 tipo_num=4;
                 break;
         }
-
         array[tipo_num]++;
         //Se for possivel inserir essa Posicao no plantel
-        if (array[tipo_num]> plantel_array[tipo_num]) break;
+        if (array[tipo_num]> plantel_array[tipo_num]) 
+        {
+            pos++;
+            continue;
+        }
     
         plantel_Principal.add(jogadores.get(pos).clone());
         pos++;
@@ -165,7 +162,7 @@ public class Equipa {
     }
     
     //Muda a configuracao do array para a desejada
-    setplantel_array(array[1],array[2],array[3],array[4]);
+    //setplantel_array(array[1],array[2],array[3],array[4]);
 }
 
     public int getHabilidadeEquipa(){

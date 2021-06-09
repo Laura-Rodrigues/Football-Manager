@@ -5,6 +5,7 @@ import Model.Exceptions.LinhaIncorretaException;
 import Model.Game.JogoFeito;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Parser {
+public class Parser implements Serializable {
     private static List<String> linhas;
     private static Map<String, Equipa> equipas = new HashMap<>(); //nome, equipa
     private static Map<String, Jogadores> jogadores = new HashMap<>(); //numero, Jogadores
