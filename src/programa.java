@@ -1,7 +1,7 @@
 import Model.*;
 
 import java.util.ArrayList;
-
+import Parser.Parser;
 
 public class programa{
 	public static void main(String[] args) throws Exception {
@@ -65,26 +65,31 @@ public class programa{
 
 		System.out.println(jog15.toString());
 
-		Jogo game = new Jogo(equipa1,equipa2);
-		game.Startgame();
-		game.Simulate();
+		// Jogo game = new Jogo(equipa1,equipa2);
+		// game.Startgame();
+		// game.Simulate();
 
 		// System.out.println(equipa2);
 
 
-		// String s = "Laura Nunes Rodrigues,20,59,51,73,75,6,100,60,70";
+		String s = "Laura Nunes Rodrigues,20,59,51,73,75,6,100,60,70";
 		
-		// Jogadores meu_gr = new Guarda_Redes();
-		// Jogadores grzinho =  meu_gr.parse(s);
-		// System.out.println(grzinho.toString());
+		Jogadores meu_gr = new Guarda_Redes();
+		Jogadores grzinho =  meu_gr.parse(s);
+		System.out.println(grzinho.toString());
 
-		// try {Parser.parse();}
-		// catch(LinhaIncorretaException e) {
-		// 	System.out.println("Ocorreu um erro lendo do ficheiro.");
-		// }
-		// Jogadores fake = (Jogadores) Parser.getJogadores().get(10);
-		// equipa1.changeTeam(fake,equipa2);
-		// System.out.println(fake);
+		try {Parser.parse("src/output.txt");}
+		catch(LinhaIncorretaException e) {
+			System.out.println("Ocorreu um erro lendo do ficheiro.");
+		}
+		Equipa e5 = Parser.getEquipas().get("Sporting Club Schubert");
+		Equipa e6 = Parser.getEquipas().get("Handel Athletic");
+		Jogo game = new Jogo(e5,e6);
+		//game.Substitute(e5);
+		game.Substitute(e5, 48, 16);
+		for (Jogadores j200 : e5.getPlantel_Principal()) {
+			System.out.println(j200.getNome());
+		}
 
 	}
 }

@@ -81,8 +81,7 @@ public abstract class Jogadores implements Comparable<Jogadores> {
     Construtor para o menu
      */
     public Jogadores(String nome, int num, int velocidade, int resistencia, int destreza,
-                     int impulsao, int jogo_cabeca, int remate,
-                     int capacidade_passe){
+                     int impulsao, int jogo_cabeca, int remate, int capacidade_passe){
         this.nome = nome;
         this.num_camisola = num;
         this.velocidade = velocidade;

@@ -16,6 +16,7 @@ public class Guarda_Redes extends Jogadores {
         this.reflexos = 0;
     }
 
+
     public Guarda_Redes(String nome, int num, int velocidade, int resistencia, int destreza, int impulsao, int jogo_cabeca, int remate, int capacidade_passe,
                         int elasticidade, int posicionamento, int reflexos){
         super(nome, num, velocidade, resistencia, destreza, impulsao, jogo_cabeca, remate, capacidade_passe, Jogadores.Class_jog.GRD);
@@ -25,10 +26,12 @@ public class Guarda_Redes extends Jogadores {
     }
 
 
+
     //Construtor para ler ficheiros
     public Guarda_Redes(String nome,int num, int velocidade, int resistencia, int destreza, int impulsao, int jogo_cabeca, int remate, int capacidade_passe, 
                         int elasticidade){
         super(nome,num, velocidade, resistencia, destreza, impulsao, jogo_cabeca, remate, capacidade_passe, Jogadores.Class_jog.GRD);
+
         this.elasticidade = elasticidade;
        
         Random r = new Random();

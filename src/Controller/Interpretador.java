@@ -13,6 +13,7 @@ public class Interpretador implements IController{
     private IView view;
 
     ArrayList<Jogadores> jogadores = new ArrayList<>();
+
     private Scanner scan;
 
 
@@ -124,8 +125,8 @@ public class Interpretador implements IController{
 
 
     public void start(){
-        this.view.menu();
         while(true){
+            this.view.menu();
             int instruction;
             try {
                 instruction = this.scan.nextInt();
