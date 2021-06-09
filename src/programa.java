@@ -89,7 +89,7 @@ public class programa{
 		Jogo game = new Jogo(e5,e6);
 		//game.Substitute(e5);
 		//try{game.Substitute(e5, 51, 214);}
-		catch(Exception e){System.out.println(e);};
+		//catch(Exception e){System.out.println(e);};
 
 		game.Simulate();
 		

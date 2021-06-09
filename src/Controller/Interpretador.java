@@ -121,7 +121,6 @@ public class Interpretador implements IController{
                 Parser.getJogadores().put(nome5,jog5);
                 break;
         }
-        //this.view.warningMenus();
     }
 
     public void menuGerirEquipa(){
