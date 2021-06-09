@@ -12,7 +12,7 @@ public class Menu implements IView{
     }
 
     public void warningMenus(){
-        System.out.print("A voltar para o primeiro menu..........\n");
+        System.out.print("\n\nA voltar para o primeiro menu..........\n");
     }
     public static void clearScreen() {  
         System.out.print("\033[H\033[2J");  
@@ -193,8 +193,6 @@ public class Menu implements IView{
 
     }
     public void ListarView(ArrayList<Jogadores> jog){
-       //System.out.println(Parser.getJogadores());
-
     }
     public void HabilidadesView(){
 

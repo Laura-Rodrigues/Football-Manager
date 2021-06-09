@@ -14,7 +14,7 @@ public abstract class Jogadores implements Comparable<Jogadores> {
 
     protected String nome;
     protected int num_camisola;
-   //                          limitar valores de 0 - 20:
+   //                          limitar valores de 0 - 100:
     protected int velocidade;
     protected int resistencia;
     protected int destreza;
