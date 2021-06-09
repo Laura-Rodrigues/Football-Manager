@@ -8,7 +8,7 @@ public abstract class Jogadores implements Comparable<Jogadores> {
 
 
 
-    enum Class_jog{
+    public enum Class_jog{
         GRD,LAT,AVA,DEF,MED;
     }
 

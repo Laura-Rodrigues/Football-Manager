@@ -1,4 +1,4 @@
-package Model;
+package Model.Game;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,10 +16,13 @@ public class JogoFeito {
     private LocalDate date;
     private List<Integer> jogadoresCasa;
     private List<Integer> jogadoresFora;
+
+    //Chave é o jogador a sair e o valor é o jogador a entrar
     Map<Integer, Integer> substituicoesCasa = new HashMap<>();
     Map<Integer, Integer> substitucoesFora = new HashMap<>();
 
-    public JogoFeito (String ec, String ef, int gc, int gf, LocalDate d,  List<Integer> jc, Map<Integer, Integer> sc,  List<Integer> jf, Map<Integer, Integer> sf){
+    public JogoFeito (String ec, String ef, int gc, int gf, LocalDate d,
+      List<Integer> jc, Map<Integer, Integer> sc,  List<Integer> jf, Map<Integer, Integer> sf){
         equipaCasa = ec;
         equipaFora = ef;
         golosCasa = gc;
@@ -63,12 +66,14 @@ public class JogoFeito {
         for (Map.Entry<Integer,Integer> n : substituicoesCasa.entrySet()) {
             s1.append(n.getKey()).append(" -> ").append(n.getValue()).append(",");
         }
+        //Apaga o ultimo ','
         s1.deleteCharAt(s1.length()-1);
 
         StringBuilder s2 = new StringBuilder();
         for (Map.Entry<Integer,Integer> n : substitucoesFora.entrySet()) {
             s2.append(n.getKey()).append(" -> ").append(n.getValue()).append(",");
         }
+        //Apaga o ultimo ','
         s2.deleteCharAt(s2.length()-1);
 
 

@@ -1,6 +1,8 @@
 package Parser;
 
 import Model.*;
+import Model.Exceptions.LinhaIncorretaException;
+import Model.Game.JogoFeito;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -20,6 +22,7 @@ public class Parser {
     private static Equipa ultima = null; 
     private static Jogadores j = null;
     private static String[] linhaPartida;
+    private static final boolean debug = false;
     private static Jogadores j1 = new Guarda_Redes();
     private static Jogadores j2 = new Avancados();
     private static Jogadores j3 = new Medios();
@@ -94,17 +97,20 @@ public class Parser {
             ultima.makeBestTeam();
             equipas.put(ultima.getNome_equipa(),ultima);
         }
-        //debug
-        // for (Equipa e: equipas.values()){
-        //     System.out.println(e.toString());
-        // }
-        for (JogoFeito jog: jogos){
-            System.out.println(jog.toString());
+        
+        if (debug)
+        {
+            for (Equipa e: equipas.values()){
+                System.out.println(e.toString());
+            }
+            for (JogoFeito jog: jogos){
+                System.out.println(jog.toString());
+            }
+            for(Jogadores jf : jogadores.values())
+            {
+                System.out.println(jf.toString());
+            }
         }
-        // for(Jogadores jf : jogadores.values())
-        // {
-        //     System.out.println(jf.toString());
-        // }
     }
 
     public static List<String> lerFicheiro(String nomeFich){

@@ -1,4 +1,6 @@
 import Model.*;
+import Model.Exceptions.LinhaIncorretaException;
+import Model.Game.Jogo;
 
 import java.util.ArrayList;
 import Parser.Parser;
@@ -66,7 +68,6 @@ public class programa{
 		System.out.println(jog15.toString());
 
 		// Jogo game = new Jogo(equipa1,equipa2);
-		// game.Startgame();
 		// game.Simulate();
 
 		// System.out.println(equipa2);
@@ -78,7 +79,7 @@ public class programa{
 		Jogadores grzinho =  meu_gr.parse(s);
 		System.out.println(grzinho.toString());
 
-		try {Parser.parse("src/output.txt");}
+		try {Parser.parse("output.txt");}
 		catch(LinhaIncorretaException e) {
 			System.out.println("Ocorreu um erro lendo do ficheiro.");
 		}
@@ -86,10 +87,10 @@ public class programa{
 		Equipa e6 = Parser.getEquipas().get("Handel Athletic");
 		Jogo game = new Jogo(e5,e6);
 		//game.Substitute(e5);
-		game.Substitute(e5, 48, 16);
-		for (Jogadores j200 : e5.getPlantel_Principal()) {
-			System.out.println(j200.getNome());
-		}
+		try{game.Substitute(e5, 51, 214);}
+		catch(Exception e){System.out.println(e);};
+		
+		game.Simulate();
 
 	}
 }

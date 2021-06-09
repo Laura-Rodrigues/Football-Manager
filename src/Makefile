@@ -12,15 +12,17 @@ CLASSES = \
 		  Controller/IController.java \
 		  Controller/Interpretador.java \
 		  Model/Jogadores.java \
-		  Model/LinhaIncorretaException.java \
+		  Model/Exceptions/LinhaIncorretaException.java \
+		  Model/Exceptions/InvalidExcepction.java \
 		  Model/Defesas.java \
 		  Model/Avancados.java \
 		  Model/Guarda_Redes.java \
 		  Model/Medios.java \
 		  Model/Laterais.java \
 		  Model/Equipa.java \
-		  Model/JogoFeito.java \
-		  Model/Jogo.java \
+		  Parser/Parser.java \
+		  Model/Game/JogoFeito.java \
+		  Model/Game/Jogo.java \
 		  programa.java
 
 default: classes
