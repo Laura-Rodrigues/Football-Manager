@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.*;
+import Model.Exceptions.LinhaIncorretaException;
 import Model.Game.Jogo;
 import View.*;
 import Parser.Parser;
@@ -225,15 +226,9 @@ public class Interpretador implements IController{
                 case -1:
                     this.scan.close();
                     return;
-/*
-                case 0:
-                    this.view.menu();
-                    break;
-*/
                 case 1:
                     menu1();
                     break;
-
                 case 2:
                     menu2();
                     break;
@@ -248,8 +243,19 @@ public class Interpretador implements IController{
 
                     game.Simulate(true);
                     break;
+                case 4:
+                    // Guardar logs em ficheiro
+                    break;
+                case 5:
+                    this.view.load();
+                    String path = this.scan.nextLine();
+                    try {
+                        Parser.parse(path); }
+                    catch(LinhaIncorretaException e) {
+                        System.out.println("Ocorreu um erro lendo do ficheiro.");
+                    }
+                    break;
             }
-            //if(instruction != 0) this.view.waitingInstruction();
         }
 
     }
