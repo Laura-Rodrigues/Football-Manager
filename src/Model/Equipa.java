@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.Random;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-
 import Model.Jogadores.Class_jog;
 
 
@@ -106,36 +103,33 @@ public class Equipa {
     int []array = new int[]{0,0,0,0,0};
     int max = jogadores.size();
     int pos =0;
+    int tipo_num;
     while(pos < max && plantel_Principal.size() < 11)
     {
         Jogadores.Class_jog tipo = jogadores.get(pos).getTipo_jogador();
-        boolean insert=true;
         switch(tipo){
             case GRD:
-                array[0]++;
-                if (array[0]>plantel_array[0]) insert = false;
+                tipo_num=0;
                 break;
             case DEF:
-                array[1]++;
-                if (array[1]>plantel_array[1]) insert = false;
+                tipo_num=1;
                 break;
             case LAT:
-                array[2]++;
-                if (array[2]>plantel_array[2]) insert = false;
+                tipo_num=2;
                 break;
             case MED:
-                array[3]++;
-                if (array[3]>plantel_array[3]) insert = false;
+                tipo_num=3;
                 break;
             default:
-                array[4]++;
-                if (array[4]>plantel_array[4]) insert = false;
+                tipo_num=4;
                 break;
         }
-        if (insert)
-        {
-            plantel_Principal.add(jogadores.get(pos).clone());
-        }
+
+        array[tipo_num]++;
+        //Se for possivel inserir essa Posicao no plantel
+        if (array[tipo_num]> plantel_array[tipo_num]) break;
+    
+        plantel_Principal.add(jogadores.get(pos).clone());
         pos++;
     }
 
@@ -144,9 +138,8 @@ public class Equipa {
         //Caso o plantel nao tenha 11 jogadores
         int min=1;
         int i;
-        boolean found = false;
         Jogadores.Class_jog tipo2;
-        for (i = 2; i < 5; i++) {
+        for (i = 2; i < array.length; i++) {
             if(array[min] < array[i])
             min = i;
         }
@@ -165,17 +158,14 @@ public class Equipa {
             if (j.getTipo_jogador() == tipo2 && !plantel_Principal.contains(j) )
             {
                 plantel_Principal.add(j.clone());
-                found = true;
                 break;
             }
         }
         array[min]++;
-        if(found) continue;
-
-        
-        
-
     }
+    
+    //Muda a configuracao do array para a desejada
+    setplantel_array(array[1],array[2],array[3],array[4]);
 }
 
     public int getHabilidadeEquipa(){
