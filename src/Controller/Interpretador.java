@@ -160,6 +160,50 @@ public class Interpretador implements IController{
         switch(instruction){
             case 1:
                 this.view.CriarJogoView();
+                String eq1 = this.scan.nextLine();
+                Equipa e1 = Parser.getEquipas().get(eq1);
+                String eq2 = this.scan.nextLine();
+                Equipa e2 = Parser.getEquipas().get(eq2);
+                Jogo jogo = new Jogo(e1,e2);
+
+/*
+                System.out.println("Quantas substituições vai ter " + eq1 + " ? ");
+                int sub1 = this.scan.nextInt();
+                for (int i=0; i<sub1; i++){
+                    int n1 = this.scan.nextInt();
+
+                    System.out.println(" -> ");
+                    int n2 = this.scan.nextInt();
+                    Jogadores j1 = Parser.getEquipas().get(eq1).getJogadores().get(n1);
+                    Jogadores j2 = Parser.getEquipas().get(eq2).getJogadores().get(n2);
+                    jogo.addSubstitucao(j1,j2,1);
+                }
+
+                System.out.println("Quantas substituições vai ter " + eq2 + " ? ");
+                int sub2 = this.scan.nextInt();
+                for (int i=0; i<sub2; i++){
+                    int n1 = this.scan.nextInt();
+                    Jogadores j1 = Parser.getEquipas().get(eq1).getJogadores().get(n1);
+                    System.out.println(" -> ");
+                    int n2 = this.scan.nextInt();
+                    Jogadores j2 = Parser.getEquipas().get(eq2).getJogadores().get(n2);
+                    jogo.addSubstitucao(j1,j2,2);
+                }
+*/              jogo.Simulate();
+                break;
+            case 2:
+                this.view.EquipaVsView();
+                String eq = this.scan.nextLine();
+                Equipa e = Parser.getEquipas().get(eq);
+
+                Jogo game1;
+                for (Equipa equipa_file : Parser.getEquipas().values()) {
+                    if (e != equipa_file){
+                        game1 = new Jogo(e,equipa_file);
+                        game1.Simulate();
+                    }
+                }
+
                 break;
         }
         this.view.warningMenus();
@@ -202,7 +246,7 @@ public class Interpretador implements IController{
 
                     Jogo game = new Jogo(e1,e2);
 
-                    game.Simulate();
+                    game.Simulate(true);
                     break;
             }
             //if(instruction != 0) this.view.waitingInstruction();

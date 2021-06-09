@@ -216,7 +216,10 @@ public class Menu implements IView{
         }
     }
     public void CriarJogoView(){
-
+        System.out.println("Introduza o nome das duas equipas\n");
+    }
+    public void EquipaVsView(){
+        System.out.println("Introduza o nome da equipa\n");
     }
     public void SimulateJogo(){
         System.out.println("Introduza o nome das duas equipas\n");
