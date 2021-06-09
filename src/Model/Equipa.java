@@ -403,14 +403,18 @@ public class Equipa implements Serializable{
         sb.append("\n").append(print_Spaces(85,nome_equipa.toUpperCase())).append("\n");
         sb.append(makeBox(88));
 
+
         for (Jogadores jog : jogadores) {
             String t = jog.tipo_jogador_toString(jog.getTipo_jogador());
-
 
             sb.append("|").append(print_Spaces(70,jog.getNome()));
             sb.append("|").append(print_Spaces(15,t)).append("|\n");
         }
         sb.append(makeBox(88));
+        Integer i = this.getHabilidadeEquipa();
+        sb.append("\tHABILIDADE EQUIPA: ").append(i).append("\n");
+        sb.append(makeBox(88));
+
         return sb;
 
     }
