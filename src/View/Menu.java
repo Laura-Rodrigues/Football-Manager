@@ -194,7 +194,9 @@ public class Menu implements IView{
     }
     public void ListarView(ArrayList<Jogadores> jog){
        //System.out.println(Parser.getJogadores());
-
+       for (Jogadores jf : Parser.getJogadores().values()) {
+        jf.toString_short();
+    }
     }
     public void HabilidadesView(){
 

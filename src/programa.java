@@ -85,12 +85,15 @@ public class programa{
 		}
 		Equipa e5 = Parser.getEquipas().get("Sporting Club Schubert");
 		Equipa e6 = Parser.getEquipas().get("Handel Athletic");
+		System.out.println(e6);
 		Jogo game = new Jogo(e5,e6);
 		//game.Substitute(e5);
 		try{game.Substitute(e5, 51, 214);}
 		catch(Exception e){System.out.println(e);};
-		
+
 		game.Simulate();
+		
+		
 
 	}
 }

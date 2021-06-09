@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.Random;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
+import Model.Jogadores.Class_jog;
 
 
 public class Equipa {
@@ -133,6 +137,44 @@ public class Equipa {
             plantel_Principal.add(jogadores.get(pos).clone());
         }
         pos++;
+    }
+
+    while(plantel_Principal.size() < 11)
+    {
+        //Caso o plantel nao tenha 11 jogadores
+        int min=1;
+        int i;
+        boolean found = false;
+        Jogadores.Class_jog tipo2;
+        for (i = 2; i < 5; i++) {
+            if(array[min] < array[i])
+            min = i;
+        }
+        switch(min)
+        {
+            case 1:
+            tipo2 = Class_jog.DEF;
+            case 2:
+            tipo2 = Class_jog.LAT;
+            case 3:
+            tipo2 = Class_jog.MED;
+            default:
+            tipo2 = Class_jog.AVA;
+        }
+        for (Jogadores j : jogadores) {
+            if (j.getTipo_jogador() == tipo2 && !plantel_Principal.contains(j) )
+            {
+                plantel_Principal.add(j.clone());
+                found = true;
+                break;
+            }
+        }
+        array[min]++;
+        if(found) continue;
+
+        
+        
+
     }
 }
 
@@ -295,7 +337,7 @@ public class Equipa {
     }
 
 
-    public StringBuilder print_Spaces(int tamanho,String array){
+    public static StringBuilder print_Spaces(int tamanho,String array){
         StringBuilder sb = new StringBuilder();
         int offset = (tamanho - array.length()) / 2;
         for (int i = 0; i < offset; i++)
@@ -312,6 +354,14 @@ public class Equipa {
         return sb;
     }
 
+    public static  StringBuilder makeBox(int start_size){
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < start_size; i++) {
+            sb.append("-");
+        }
+        sb.append("\n");
+        return sb;
+    }
 
     //Esta função só imprime jogadores do plantelPrincipal
     public StringBuilder jogadores2String(){
@@ -341,14 +391,7 @@ public class Equipa {
         
         return sb;
     }
-    public StringBuilder makeBox(int start_size){
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < start_size; i++) {
-            sb.append("-");
-        }
-        sb.append("\n");
-        return sb;
-    }
+    
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(makeBox(84));

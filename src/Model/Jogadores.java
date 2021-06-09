@@ -283,6 +283,21 @@ public abstract class Jogadores implements Comparable<Jogadores> {
         return sb;
     }
 
+    public void toString_short()
+    {
+        String t = this.tipo_jogador_toString(this.getTipo_jogador());
+        Integer i = this.getHabilidade();
+
+        StringBuilder sb = new StringBuilder();
+        
+        sb.append("|").append(Equipa.print_Spaces(70,this.getNome()));
+        sb.append("|").append(Equipa.print_Spaces(15,t));
+        sb.append("|").append(Equipa.print_Spaces(15,i.toString())).append("|").append("\n");
+      
+        System.out.print(sb);
+
+    }
+
 
     @Override
     /**

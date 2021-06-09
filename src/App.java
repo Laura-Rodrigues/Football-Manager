@@ -8,7 +8,7 @@ public class App {
     public static void main(String[] args){
 
         try {
-            Parser.parse("src/output.txt"); }
+            Parser.parse("output.txt"); }
         catch(LinhaIncorretaException e) {
         	System.out.println("Ocorreu um erro lendo do ficheiro.");
         }
