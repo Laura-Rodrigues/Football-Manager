@@ -2,6 +2,11 @@ import Model.*;
 import Model.Exceptions.LinhaIncorretaException;
 import Model.Game.Jogo;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import Parser.Parser;
 
@@ -48,7 +53,7 @@ public class programa{
 		plantel.add(jog17);
 		
 		int meu_plantel_array[] = new int[]{1,2,3,4,1};
-		Equipa equipa1 = new Equipa(plantel,"Merelinense",20,31,14,0,0,meu_plantel_array);
+		Equipa equipa1 = new Equipa(plantel,"Merelinense",0,0,0,0,0,meu_plantel_array);
 		equipa1.insereJogador(jog6);
 		equipa1.makeBestTeam();
 		
@@ -62,22 +67,13 @@ public class programa{
 		equipa2.makeBestTeam();
 
 		
-		equipa1.changeTeam(jog15,equipa2);
 
-
-		System.out.println(jog15.toString());
 
 		// Jogo game = new Jogo(equipa1,equipa2);
 		// game.Simulate();
 
 		// System.out.println(equipa2);
 
-
-		String s = "Laura Nunes Rodrigues,20,59,51,73,75,6,100,60,70";
-		
-		Jogadores meu_gr = new Guarda_Redes();
-		Jogadores grzinho =  meu_gr.parse(s);
-		System.out.println(grzinho.toString());
 
 		try {Parser.parse("output.txt");}
 		catch(LinhaIncorretaException e) {
@@ -88,10 +84,42 @@ public class programa{
 		System.out.println(e6);
 		Jogo game = new Jogo(e5,e6);
 		//game.Substitute(e5);
-		//try{game.Substitute(e5, 51, 214);}
-		//catch(Exception e){System.out.println(e);};
+
+		try{game.Substitute(e5, 51, 214);}
+		catch(Exception e){System.out.println(e);};
 
 		game.Simulate();
+
+		// Jogo game1;
+		// for (Equipa equipa_file : Parser.getEquipas().values()) {
+		// 	game1 = new Jogo(equipa1,equipa_file);
+		// 	game1.Simulate();
+		// }
+		try {
+			FileOutputStream fileOut =
+			new FileOutputStream("/tmp/jogador.ser");
+			ObjectOutputStream out = new ObjectOutputStream(fileOut);
+			out.writeObject(jog3);
+			out.close();
+			fileOut.close();
+			System.out.printf("Serialized data is saved in tmp/jogador.ser");
+		 } catch (IOException i) {
+			i.printStackTrace();
+		 }
+
+		 Jogadores novo_jogador;
+		 try {
+			FileInputStream fileIn = new FileInputStream("/tmp/jogador.ser");
+			ObjectInputStream in = new ObjectInputStream(fileIn);
+			novo_jogador = (Jogadores) in.readObject();
+			in.close();
+			fileIn.close();
+		 } catch (IOException i) {
+			i.printStackTrace();
+			return;
+		 }
+
+		 System.out.println(novo_jogador);
 		
 		
 

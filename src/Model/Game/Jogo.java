@@ -15,13 +15,14 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
+import java.io.Serializable;
 import java.lang.Object;
 
 
 //Esta class consegue Simular um jogo entre 2 equipas
 //No final do jogo estar calculado, pode ser convertida para a Class JogoFeito
 
-public class Jogo {
+public class Jogo implements Serializable{
     enum game_state{
         Unplayed,
         Playing,
@@ -65,14 +66,12 @@ public class Jogo {
                                              !e1.getPlantel_Principal().contains(s)).
                                              collect(Collectors.toList());
             
-            System.out.println("Tamanho equipa antes : " + e1.getPlantel_Principal().size());
             
             if(j_substituiveis.size() == 0 ) continue;
             int num_entra = r.nextInt(j_substituiveis.size());
 
             e1.getPlantel_Principal().remove(j1);
             e1.getPlantel_Principal().add(j_substituiveis.get(num_entra).clone());
-            System.out.println("Tamanho equipa depois : " + e1.getPlantel_Principal().size());
            
             //Adicionar a substituicao à estrutura de dados
             addSubstitucao(j1,j_substituiveis.get(num_entra), (e1 == equipa_casa) ? 1 : 2);
@@ -219,6 +218,30 @@ public class Jogo {
 
     }
 
+    public void postGameResults()
+    {
+        if(golos_casa > golos_fora)
+        {
+            //Equipa 1 ganhou
+            equipa_casa.setVitorias(equipa_casa.getVitorias() + 1);
+            equipa_fora.setDerrotas(equipa_fora.getDerrotas() + 1);
+
+        }
+        else if(golos_casa == golos_fora)
+        {
+            //Empataram
+            equipa_casa.setEmpates(equipa_casa.getEmpates() + 1);
+            equipa_fora.setEmpates(equipa_fora.getEmpates() + 1);
+
+        }
+        else
+        {
+            //Equipa 2 ganhou
+            equipa_casa.setDerrotas(equipa_casa.getDerrotas() + 1);
+            equipa_fora.setVitorias(equipa_fora.getVitorias() + 1);
+        }
+
+    }
 
     public int bestTeam(){
         int valor_1 = equipa_casa.getHabilidadeEquipa();
@@ -277,13 +300,16 @@ public class Jogo {
 
         //Criar substituicoes
         for (int i = 0; i < max_substitucoes; i++) {
-            //Substitute(equipa_casa);
+            Substitute(equipa_casa);
             Substitute(equipa_fora);
         }
 
         printGame();
 
         this.setState(game_state.Finished);
+
+        //No final do jogo é adicionado as estatistica às equipas
+        postGameResults();
 
         //Para asegurar que quando acabar o jogo no plantel principal vai estar a melhor equipa possivel
         equipa_casa.makeBestTeam();
