@@ -19,7 +19,8 @@ public interface IView {
     public void CriarEquipaView();
     public void GerirEquipaView();
     public void GerirJogadorView();
-    public void ListarView(ArrayList<Jogadores> jog);
+    public void ListarView();
+    public void ListarEquipaView();
     public void HabilidadesView();
     public void CriarJogoView();
 }

@@ -1,5 +1,6 @@
 package View;
 
+import Model.Equipa;
 import Model.Jogadores;
 import Parser.Parser;
 import java.util.*;
@@ -72,8 +73,9 @@ public class Menu implements IView{
         sb.append("2) Criar equipa\n");
         sb.append("3) Gerir equipa\n");
         sb.append("4) Gerir jogador\n");
-        sb.append("5) Listar jogadores e equipas\n");
-        sb.append("6) Habilidades\n");
+        sb.append("5) Listar jogadores\n");
+        sb.append("6) Listar equipas\n");
+        sb.append("7) Habilidades\n");
         sb.append(makemyBox(t));
         sb.append("Escreva o número correspondente à opção pretendida.\n\t> ");
         System.out.print(sb);
@@ -192,7 +194,15 @@ public class Menu implements IView{
     public void GerirJogadorView(){
 
     }
-    public void ListarView(ArrayList<Jogadores> jog){
+    public void ListarView() {
+        for (Jogadores jf : Parser.getJogadores().values()) {
+            System.out.println(jf.toString_short());
+        }
+    }
+    public void ListarEquipaView(){
+        for (Equipa jf : Parser.getEquipas().values()) {
+            System.out.println(jf.sb_short());
+        }
     }
     public void HabilidadesView(){
 

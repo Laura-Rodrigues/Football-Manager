@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
+import java.lang.Object;
 
 
 //Esta class consegue Simular um jogo entre 2 equipas
@@ -32,12 +33,23 @@ public class Jogo {
     private int golos_fora;
     private game_state state;
     private Date data;
-    public final boolean enable_Mensagens = false;
+    private Map<Integer,Integer>  subs_casa = new HashMap<>();
+    private Map<Integer,Integer>  subs_fora = new HashMap<>();
+
+    private boolean enable_Mensagens = false;
     private final int tentativas_remate = 10;
     private final double minima_chance_golo = 0.2;
     private final int intervalo_mensagens = 2000;
-  
+    private final int max_substitucoes = 3;
 
+  
+    public void addSubstitucao(Jogadores j1,Jogadores j2,int equipa_num)
+    {
+        if (equipa_num == 1)
+        subs_casa.put(j1.getNum_camisola(),j2.getNum_camisola());
+        else
+        subs_fora.put(j1.getNum_camisola(),j2.getNum_camisola());
+    }
     //Substituir um jogador aleatorio por um com uma posicao correspondente
     public void Substitute(Equipa e1)
     {
@@ -53,22 +65,29 @@ public class Jogo {
                                              !e1.getPlantel_Principal().contains(s)).
                                              collect(Collectors.toList());
             
+            System.out.println("Tamanho equipa antes : " + e1.getPlantel_Principal().size());
+            
             if(j_substituiveis.size() == 0 ) continue;
             int num_entra = r.nextInt(j_substituiveis.size());
 
             e1.getPlantel_Principal().remove(j1);
-            e1.getPlantel_Principal().add(j_substituiveis.get(num_entra));
+            e1.getPlantel_Principal().add(j_substituiveis.get(num_entra).clone());
+            System.out.println("Tamanho equipa depois : " + e1.getPlantel_Principal().size());
+           
+            //Adicionar a substituicao à estrutura de dados
+            addSubstitucao(j1,j_substituiveis.get(num_entra), (e1 == equipa_casa) ? 1 : 2);
 
             found = true;
         }
     }
 
     //Substitui se possivel os jogadores
-    public void Substitute(Equipa e1,int num_entra,int num_fora) throws InvalidExcepction
+    public void Substitute(Equipa e1,int num_fora,int num_entra) throws InvalidExcepction
     {
+        Jogadores j1 = null,j2 = null;
         boolean found1 = false,found2 = false;
         for (int i = 0; i < e1.getPlantel_Principal().size() && !found1; i++) {
-           Jogadores j1 = e1.getPlantel_Principal().get(i);
+            j1 = e1.getPlantel_Principal().get(i);
            //Encontrado o jogador correspondente
            if (j1.getNum_camisola() == num_fora)
             {
@@ -78,32 +97,39 @@ public class Jogo {
         }
         //Se nao existir o jogador entao não há substituicao
         if (!found1)
-        throw new InvalidExcepction(" Substituicao não realizada,Jogador a sair nao existe\n");
+        {
+            throw new InvalidExcepction(" Substituicao não realizada,Jogador a sair nao existe\n");
+        }
 
 
         for (int i = 0; i < e1.getJogadores().size() && !found2; i++) {
-            Jogadores j2 = e1.getJogadores().get(i);
-            //Encontrado o jogador para entrar e ele nao pertence à equipa principal
+            j2 = e1.getJogadores().get(i);
+            
+            //Encontrado o jogador para entrar e ele não pertence à equipa principal
             if (j2.getNum_camisola() == num_entra && !e1.getPlantel_Principal().contains(j2) )
              {
-
-                 e1.getPlantel_Principal().add(j2);
-                 found2 = true;
+                e1.getPlantel_Principal().add(j2);
+                found2 = true;
              }
          }
-         //Caso nao tenha sido encontrado um substituito adequado
+         //Caso nao tenha sido encontrado um substituto adequado
          //É substituido o primeiro jogador disponivel
          if(!found2)
          {
              for (Jogadores j3 : e1.getJogadores()) {
                  if (!e1.getPlantel_Principal().contains(j3))
                  {
-                     e1.getPlantel_Principal().add(j3);
-                     break;
+                    e1.getPlantel_Principal().add(j3);
+                    addSubstitucao(j1,j3, (e1 == equipa_casa) ? 1 : 2);
+                    break;
                  }
              }
              throw new InvalidExcepction(" Jogador substituido por um aleatorio disponivel\n");
          }
+         else
+         addSubstitucao(j1,j2, (e1 == equipa_casa) ? 1 : 2);
+
+
   
 
     }
@@ -124,9 +150,16 @@ public class Jogo {
     }
 
     public void addGoalCasa(){
-        if(enable_Mensagens){
-        try{Thread.sleep(intervalo_mensagens);}catch(InterruptedException e){System.out.println(e);}
-        System.out.println("Golo da Casa Caralhoooo");
+        if (enable_Mensagens)
+        {
+            System.out.print("\n"+ equipa_casa.getNome_equipa() + " MARCOU ");
+            System.out.print("Golo");
+            for (int i = 0; i < 15; i++) 
+            {
+                System.out.print("o");
+                try{Thread.sleep(intervalo_mensagens/15);}catch(InterruptedException e){System.out.println(e);} 
+            }
+            System.out.print("\n\n");
         }
         equipa_casa.setGolos_marcados(equipa_casa.getGolos_marcados() + 1);
         equipa_fora.setGolos_sofridos(equipa_fora.getGolos_sofridos() + 1);
@@ -136,10 +169,19 @@ public class Jogo {
     }
 
     public void addGoalFora(){
-        if(enable_Mensagens){
-        try{Thread.sleep(intervalo_mensagens);}catch(InterruptedException e){System.out.println(e);} 
-        System.out.println("Golo Fora man");
+        if (enable_Mensagens)
+        {
+            System.out.print(equipa_fora.getNome_equipa() + " MARCOU ");
+            System.out.print("Golo");
+            for (int i = 0; i < 15; i++) 
+            {
+                System.out.print("o");
+                try{Thread.sleep(intervalo_mensagens/15);}catch(InterruptedException e){System.out.println(e);} 
+            }
+            System.out.print("\n");
         }
+        
+    
         equipa_fora.setGolos_marcados(equipa_fora.getGolos_marcados() + 1);
         equipa_casa.setGolos_sofridos(equipa_casa.getGolos_sofridos() + 1);
         this.golos_fora++;
@@ -152,14 +194,13 @@ public class Jogo {
 
         switch (next)
         {
+            case 0:
+            return " quase que enquadrava o remate,mas foi ao lado...";
+            case 1:
+            return " atirou com demasiada força";
             default:
-            System.out.println(e2.getNome_equipa());
                List<Jogadores> aqui = e2.getPlantel_Principal().stream().filter(s -> s.getTipo_jogador() == Jogadores.Class_jog.GRD).collect(Collectors.toList());
-                return " rematou para a baliza mas " + aqui.get(0).getNome() + " defendeu" ;
-            case 5:
-                return " quase que enquadrava o remate,mas foi ao lado";
-            case 10:
-                return " atirou com demasiada força";
+                return " rematou para a baliza mas " + aqui.get(0).getNome() + " defendeu..." ;
         }
     }
 
@@ -184,6 +225,11 @@ public class Jogo {
        int valor_2 = equipa_fora.getHabilidadeEquipa();
        if (valor_1 > valor_2 ) return 1;
        else return 2;
+    }
+    public void Simulate(boolean enable_m)
+    {
+        enable_Mensagens = enable_m;
+        Simulate();
     }
     
     public void Simulate(){
@@ -228,10 +274,42 @@ public class Jogo {
             print_jogada_Falhada();
             
         }
+
+        //Criar substituicoes
+        for (int i = 0; i < max_substitucoes; i++) {
+            //Substitute(equipa_casa);
+            Substitute(equipa_fora);
+        }
+
         printGame();
 
         this.setState(game_state.Finished);
 
+        //Para asegurar que quando acabar o jogo no plantel principal vai estar a melhor equipa possivel
+        equipa_casa.makeBestTeam();
+        equipa_fora.makeBestTeam();
+
+    }
+
+    public StringBuilder printSubs(StringBuilder sb)
+    {
+        sb.append("\nSubstituicoes Casa : ");
+        for (Map.Entry<Integer,Integer> entrada : subs_casa.entrySet()) {
+            sb.append(entrada.getKey()).append(" -> ").append(entrada.getValue()).append(", ");
+        }
+        sb.append("\nSubstitucoes Fora : ");
+        for (Map.Entry<Integer,Integer> entrada : subs_fora.entrySet()) {
+            sb.append(entrada.getKey()).append(" -> ").append(entrada.getValue()).append(", ");
+        }
+        sb.append("\n");
+        return sb;
+    }
+    public void printGame(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(equipa_casa.getNome_equipa()).append(" ").append(golos_casa);
+        sb.append(" - ").append(golos_fora).append(" ").append(equipa_fora.getNome_equipa());
+        sb = printSubs(sb);
+        System.out.println( sb.toString());
     }
 
     /**
@@ -310,12 +388,7 @@ public class Jogo {
     }
 
 
-    public void printGame(){
-        StringBuilder sb = new StringBuilder();
-        sb.append(equipa_casa.getNome_equipa()).append(" ").append(golos_casa);
-        sb.append(" - ").append(golos_fora).append(" ").append(equipa_fora.getNome_equipa());
-        System.out.println( sb.toString());
-    }
+    
     @Override
     public String toString() {
         return "{" +

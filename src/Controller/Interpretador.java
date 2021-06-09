@@ -13,8 +13,6 @@ public class Interpretador implements IController{
     //private IModel model;
     private IView view;
 
-    ArrayList<Jogadores> jogadores = new ArrayList<>();
-
     private Scanner scan;
 
 
@@ -48,9 +46,12 @@ public class Interpretador implements IController{
                 this.view.GerirJogadorView();
                 break;
             case 5:
-                this.view.ListarView(jogadores);
+                this.view.ListarView();
                 break;
             case 6:
+                this.view.ListarEquipaView();
+                break;
+            case 7:
                 this.view.HabilidadesView();
                 break;
         }
@@ -70,7 +71,7 @@ public class Interpretador implements IController{
                         capacidade_passe = this.scan.nextInt(), elasticidade = this.scan.nextInt(),
                         posicionamento = this.scan.nextInt(), reflexos = this.scan.nextInt();
                 Jogadores jog = new Guarda_Redes(nome,num,velocidade, resistencia,destreza,impulsao,jogo_cabeca,remate,capacidade_passe,elasticidade,posicionamento,reflexos);
-                Parser.getJogadores().put(num,jog);
+                Parser.getJogadores().put(nome,jog);
                 break;
             case 2:
                 this.view.CriarLAT();
@@ -79,7 +80,7 @@ public class Interpretador implements IController{
                         impulsao2 = this.scan.nextInt(), jogo_cabeca2 = this.scan.nextInt(), remate2 = this.scan.nextInt(),
                         capacidade_passe2 = this.scan.nextInt(), cruzamentos = this.scan.nextInt();
                 Jogadores jog2 = new Guarda_Redes(nome2,num2,velocidade2, resistencia2,destreza2,impulsao2,jogo_cabeca2,remate2,capacidade_passe2,cruzamentos);
-                Parser.getJogadores().put(num2,jog2);
+                Parser.getJogadores().put(nome2,jog2);
                 break;
             case 3:
                 this.view.CriarDEF();
@@ -88,7 +89,7 @@ public class Interpretador implements IController{
                         impulsao3 = this.scan.nextInt(), jogo_cabeca3 = this.scan.nextInt(), remate3 = this.scan.nextInt(),
                         capacidade_passe3 = this.scan.nextInt(), corte = this.scan.nextInt();
                 Jogadores jog3 = new Guarda_Redes(nome3,num3,velocidade3, resistencia3,destreza3,impulsao3,jogo_cabeca3,remate3,capacidade_passe3,corte);
-                Parser.getJogadores().put(num3,jog3);
+                Parser.getJogadores().put(nome3,jog3);
                 break;
             case 4:
                 this.view.CriarMED();
@@ -97,7 +98,7 @@ public class Interpretador implements IController{
                         impulsao4 = this.scan.nextInt(), jogo_cabeca4 = this.scan.nextInt(), remate4 = this.scan.nextInt(),
                         capacidade_passe4 = this.scan.nextInt(), visaoDeJogo = this.scan.nextInt();
                 Jogadores jog4 = new Guarda_Redes(nome4,num4,velocidade4, resistencia4,destreza4,impulsao4,jogo_cabeca4,remate4,capacidade_passe4,visaoDeJogo);
-                Parser.getJogadores().put(num4,jog4);
+                Parser.getJogadores().put(nome4,jog4);
                 break;
             case 5:
                 this.view.CriarAVA();
@@ -106,7 +107,7 @@ public class Interpretador implements IController{
                         impulsao5 = this.scan.nextInt(), jogo_cabeca5 = this.scan.nextInt(), remate5 = this.scan.nextInt(),
                         capacidade_passe5 = this.scan.nextInt(), desmarcacao = this.scan.nextInt();
                 Jogadores jog5 = new Guarda_Redes(nome5,num5,velocidade5, resistencia5,destreza5,impulsao5,jogo_cabeca5,remate5,capacidade_passe5,desmarcacao);
-                Parser.getJogadores().put(num5,jog5);
+                Parser.getJogadores().put(nome5,jog5);
                 break;
         }
         //this.view.warningMenus();
