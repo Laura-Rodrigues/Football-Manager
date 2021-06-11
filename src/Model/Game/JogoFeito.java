@@ -1,5 +1,6 @@
 package Model.Game;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,7 +9,7 @@ import java.util.Map;
 
 //Esta Class só guarda valores
 
-public class JogoFeito {
+public class JogoFeito implements Serializable{
     private String equipaCasa;
     private String equipaFora;
     private int golosCasa;

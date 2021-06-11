@@ -20,6 +20,7 @@ CLASSES = \
 		  Model/Medios.java \
 		  Model/Laterais.java \
 		  Model/Equipa.java \
+		  Parser/Loadable_Parser.java \
 		  Parser/Parser.java \
 		  Controller/SerializeData.java \
 		  Model/Game/JogoFeito.java \
@@ -31,7 +32,6 @@ default: classes
 classes: $(CLASSES:.java=.class)
 
 clean:
-	$(RM) View/*.class Model/*.class Controller/*.class *.class
-	
+	find . -name "*.class" -type f -delete
 run:
 	java programa

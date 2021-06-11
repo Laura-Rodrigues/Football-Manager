@@ -13,6 +13,61 @@ import Model.Game.*;
 import Parser.*;
 public class SerializeData implements Serializable{
 
+
+   public static void serialize_LoadableParser(Loadable_Parser p) 
+    {
+        try {
+            FileOutputStream fileOut =
+            new FileOutputStream("/tmp/loadableparser.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(p);
+            out.close();
+            fileOut.close();
+            System.out.printf("Serialized data is saved in tmp/loadableparser.ser");
+         } catch (IOException i) {
+            i.printStackTrace();
+         }
+    }
+
+    public static void deserialize_LoadableParser() throws ClassNotFoundException
+    {
+    
+         Loadable_Parser l;// = Parser.parser_toLoadable();
+         try {
+            FileInputStream fileIn = new FileInputStream("/tmp/loadableparser.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            l = (Loadable_Parser) in.readObject();
+            in.close();
+            fileIn.close();
+         } catch (IOException i) {
+            i.printStackTrace();
+            return;
+         }
+         Parser.Loadable_to_Parser(l);
+    }
+
+    public static void deserialize_LoadableParser(String s) throws ClassNotFoundException
+    {
+    
+         Loadable_Parser l;// = Parser.parser_toLoadable();
+         try {
+            FileInputStream fileIn = new FileInputStream(s);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            l = (Loadable_Parser) in.readObject();
+            in.close();
+            fileIn.close();
+         } catch (IOException i) {
+            i.printStackTrace();
+            return;
+         }
+         Parser.Loadable_to_Parser(l);
+    }
+
+
+    /**
+     * 
+     * Nao sao tao importantes
+     */
     public static void serialize_Jogador(Jogadores j) 
     {
         try {

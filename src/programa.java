@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+
+import Parser.Loadable_Parser;
 import Parser.Parser;
 import Controller.*;
 
@@ -97,9 +99,11 @@ public class programa{
 		// 	game1.Simulate();
 		// }
 			
-		SerializeData.serialize_Parser(Parser.);
-		
-		
+		//SerializeData.serialize_Parser(Parser.);
+		Loadable_Parser l = Parser.parser_toLoadable();
+		SerializeData.serialize_LoadableParser(l);
+		SerializeData.deserialize_LoadableParser();
+		System.out.println(Parser.getJogadores());
 
 	}
 }
