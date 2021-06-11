@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import Model.Equipa;
 import Model.Jogadores;
 import Model.Exceptions.InvalidExcepction;
-import Controller.Parser.Parser;
+import Controller.Parser.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;

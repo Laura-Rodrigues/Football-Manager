@@ -11,6 +11,7 @@ import Model.*;
 import Model.Game.*;
 
 import Controller.Parser.*;
+
 public class SerializeData implements Serializable{
    public static String s1 = "/tmp/loadableparser.ser";
 
