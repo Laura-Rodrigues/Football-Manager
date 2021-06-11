@@ -4,6 +4,7 @@ import Model.*;
 import Model.Exceptions.LinhaIncorretaException;
 import Model.Game.Jogo;
 import View.*;
+import Parser.Loadable_Parser;
 import Parser.Parser;
 
 import java.util.ArrayList;
@@ -48,13 +49,18 @@ public class Interpretador implements IController{
                 menuGerirEquipa();
                 break;
             case 4:
+            Equipa e1,e2;
+            Jogadores j1;
+            do {
                 this.view.GerirJogadorView();
                 String nome1 = this.scan.nextLine();
                 String eq1 = this.scan.nextLine();
-                Jogadores j1 = Parser.getJogadores().get(nome1);
-                Equipa e1 = Parser.getEquipas().get(eq1);
+                j1 = Parser.getJogadores().get(nome1);
+                e1 = Parser.getEquipas().get(eq1);
                 String eq2 = this.scan.nextLine();
-                Equipa e2 = Parser.getEquipas().get(eq2);
+                e2 = Parser.getEquipas().get(eq2);
+            } while (j1 == null || e1 == null || e2 == null);
+                
                 e1.changeTeam(j1,e2);
                 e1.makeBestTeam();
                 e2.makeBestTeam();
@@ -76,52 +82,58 @@ public class Interpretador implements IController{
         this.scan.nextLine();
         switch(instruction){
             case 1:
-                this.view.CriarGR();
-                String nome = this.scan.nextLine();
-                int velocidade = this.scan.nextInt(), num = this.scan.nextInt(), resistencia = this.scan.nextInt(), destreza = this.scan.nextInt(),
-                        impulsao = this.scan.nextInt(), jogo_cabeca = this.scan.nextInt(), remate = this.scan.nextInt(),
-                        capacidade_passe = this.scan.nextInt(), elasticidade = this.scan.nextInt(),
-                        posicionamento = this.scan.nextInt(), reflexos = this.scan.nextInt();
-                Jogadores jog = new Guarda_Redes(nome,num,velocidade, resistencia,destreza,impulsao,jogo_cabeca,remate,capacidade_passe,elasticidade,posicionamento,reflexos);
-                Parser.getJogadores().put(nome,jog);
-                break;
+            this.view.CriarGR();
+            break;
             case 2:
-                this.view.CriarLAT();
-                String nome2 = this.scan.nextLine();
-                int velocidade2 = this.scan.nextInt(), num2 = this.scan.nextInt(), resistencia2 = this.scan.nextInt(), destreza2 = this.scan.nextInt(),
-                        impulsao2 = this.scan.nextInt(), jogo_cabeca2 = this.scan.nextInt(), remate2 = this.scan.nextInt(),
-                        capacidade_passe2 = this.scan.nextInt(), cruzamentos = this.scan.nextInt();
-                Jogadores jog2 = new Guarda_Redes(nome2,num2,velocidade2, resistencia2,destreza2,impulsao2,jogo_cabeca2,remate2,capacidade_passe2,cruzamentos);
-                Parser.getJogadores().put(nome2,jog2);
-                break;
+            this.view.CriarLAT();
+            break;
             case 3:
-                this.view.CriarDEF();
-                String nome3 = this.scan.nextLine();
-                int velocidade3 = this.scan.nextInt(), num3 = this.scan.nextInt(), resistencia3 = this.scan.nextInt(), destreza3 = this.scan.nextInt(),
-                        impulsao3 = this.scan.nextInt(), jogo_cabeca3 = this.scan.nextInt(), remate3 = this.scan.nextInt(),
-                        capacidade_passe3 = this.scan.nextInt(), corte = this.scan.nextInt();
-                Jogadores jog3 = new Guarda_Redes(nome3,num3,velocidade3, resistencia3,destreza3,impulsao3,jogo_cabeca3,remate3,capacidade_passe3,corte);
-                Parser.getJogadores().put(nome3,jog3);
-                break;
+            this.view.CriarDEF();
+            break;
             case 4:
-                this.view.CriarMED();
-                String nome4 = this.scan.nextLine();
-                int velocidade4 = this.scan.nextInt(), num4 = this.scan.nextInt(), resistencia4 = this.scan.nextInt(), destreza4 = this.scan.nextInt(),
-                        impulsao4 = this.scan.nextInt(), jogo_cabeca4 = this.scan.nextInt(), remate4 = this.scan.nextInt(),
-                        capacidade_passe4 = this.scan.nextInt(), visaoDeJogo = this.scan.nextInt();
-                Jogadores jog4 = new Guarda_Redes(nome4,num4,velocidade4, resistencia4,destreza4,impulsao4,jogo_cabeca4,remate4,capacidade_passe4,visaoDeJogo);
-                Parser.getJogadores().put(nome4,jog4);
-                break;
+            this.view.CriarMED();
+            break;
             case 5:
-                this.view.CriarAVA();
-                String nome5 = this.scan.nextLine();
-                int velocidade5 = this.scan.nextInt(), num5 = this.scan.nextInt(), resistencia5 = this.scan.nextInt(), destreza5 = this.scan.nextInt(),
-                        impulsao5 = this.scan.nextInt(), jogo_cabeca5 = this.scan.nextInt(), remate5 = this.scan.nextInt(),
-                        capacidade_passe5 = this.scan.nextInt(), desmarcacao = this.scan.nextInt();
-                Jogadores jog5 = new Guarda_Redes(nome5,num5,velocidade5, resistencia5,destreza5,impulsao5,jogo_cabeca5,remate5,capacidade_passe5,desmarcacao);
-                Parser.getJogadores().put(nome5,jog5);
-                break;
+            this.view.CriarAVA();
+            break;
         }
+        String nome = this.scan.nextLine();
+        int velocidade = this.scan.nextInt(), num = this.scan.nextInt(), resistencia = this.scan.nextInt(), destreza = this.scan.nextInt(),
+        impulsao = this.scan.nextInt(), jogo_cabeca = this.scan.nextInt(), remate = this.scan.nextInt(),capacidade_passe = this.scan.nextInt();
+        Jogadores jog;
+        switch(instruction){
+            case 1:
+            int elasticidade = this.scan.nextInt(), posicionamento = this.scan.nextInt(), reflexos = this.scan.nextInt();
+            jog = new Guarda_Redes(nome,num,velocidade, resistencia,destreza,impulsao,jogo_cabeca,remate,capacidade_passe,elasticidade,posicionamento,reflexos);
+            Parser.getJogadores().put(nome,jog);
+            break;
+
+            case 2:
+            int cruzamentos = this.scan.nextInt();
+            jog = new Laterais(nome,num,velocidade, resistencia,destreza,impulsao,jogo_cabeca,remate,capacidade_passe,cruzamentos);
+            Parser.getJogadores().put(nome,jog);
+            break;
+
+            case 3:
+            int corte = this.scan.nextInt();
+            jog = new Defesas(nome,num,velocidade, resistencia,destreza,impulsao,jogo_cabeca,remate,capacidade_passe,corte);
+            Parser.getJogadores().put(nome,jog);
+            break;
+
+            case 4:
+            int visaoDeJogo = this.scan.nextInt();
+            jog = new Medios(nome,num,velocidade, resistencia,destreza,impulsao,jogo_cabeca,remate,capacidade_passe,visaoDeJogo);
+            Parser.getJogadores().put(nome,jog);
+            break;
+
+            case 5:
+            int desmarcacao = this.scan.nextInt();
+            jog = new Avancados(nome,num,velocidade, resistencia,destreza,impulsao,jogo_cabeca,remate,capacidade_passe,desmarcacao);
+            Parser.getJogadores().put(nome,jog);
+
+            break;
+        }
+        
     }
 
     public void menuGerirEquipa(){
@@ -130,22 +142,33 @@ public class Interpretador implements IController{
         this.scan.nextLine();
         switch(instruction){
             case 1:
-                this.view.Add();
-                String nome = this.scan.nextLine();
-                String eq = this.scan.nextLine();
-                Jogadores j = Parser.getJogadores().get(nome);
-                Equipa e = Parser.getEquipas().get(eq);
+                
+                Jogadores j;
+                Equipa e;
+                do{
+                    this.view.Add();
+                    String nome = this.scan.nextLine();
+                    String eq = this.scan.nextLine();
+                    j = Parser.getJogadores().get(nome);
+                    e = Parser.getEquipas().get(eq);
+                } while(j == null || e == null);
+
                 e.getJogadores().add(j);
                 if (e.getJogadores().size() >= 11){
                     e.makeBestTeam();
                 }
                 break;
             case 2:
-                this.view.Remove();
-                String nome2 = this.scan.nextLine();
-                String eq2 = this.scan.nextLine();
-                Jogadores j2 = Parser.getJogadores().get(nome2);
-                Equipa e2 = Parser.getEquipas().get(eq2);
+                Jogadores j2;
+                Equipa e2;
+                do{
+                    this.view.Remove();
+                    String nome2 = this.scan.nextLine();
+                    String eq2 = this.scan.nextLine();
+                    j2 = Parser.getJogadores().get(nome2);
+                    e2 = Parser.getEquipas().get(eq2);
+                } while(j2 == null || e2 == null);
+
                 e2.getJogadores().remove(j2);
                 if (e2.getJogadores().size() >= 11){
                     e2.makeBestTeam();
@@ -160,42 +183,28 @@ public class Interpretador implements IController{
         this.scan.nextLine();
         switch(instruction){
             case 1:
+            Equipa e1,e2;
+            do{
                 this.view.CriarJogoView();
                 String eq1 = this.scan.nextLine();
-                Equipa e1 = Parser.getEquipas().get(eq1);
+                e1 = Parser.getEquipas().get(eq1);
                 String eq2 = this.scan.nextLine();
-                Equipa e2 = Parser.getEquipas().get(eq2);
+                e2 = Parser.getEquipas().get(eq2);
+            } while(e1 == null || e2 == null);
+
                 Jogo jogo = new Jogo(e1,e2);
 
-/*
-                System.out.println("Quantas substituições vai ter " + eq1 + " ? ");
-                int sub1 = this.scan.nextInt();
-                for (int i=0; i<sub1; i++){
-                    int n1 = this.scan.nextInt();
-
-                    System.out.println(" -> ");
-                    int n2 = this.scan.nextInt();
-                    Jogadores j1 = Parser.getEquipas().get(eq1).getJogadores().get(n1);
-                    Jogadores j2 = Parser.getEquipas().get(eq2).getJogadores().get(n2);
-                    jogo.addSubstitucao(j1,j2,1);
-                }
-
-                System.out.println("Quantas substituições vai ter " + eq2 + " ? ");
-                int sub2 = this.scan.nextInt();
-                for (int i=0; i<sub2; i++){
-                    int n1 = this.scan.nextInt();
-                    Jogadores j1 = Parser.getEquipas().get(eq1).getJogadores().get(n1);
-                    System.out.println(" -> ");
-                    int n2 = this.scan.nextInt();
-                    Jogadores j2 = Parser.getEquipas().get(eq2).getJogadores().get(n2);
-                    jogo.addSubstitucao(j1,j2,2);
-                }
-*/              jogo.Simulate();
+               jogo.Simulate();
                 break;
             case 2:
-                this.view.EquipaVsView();
-                String eq = this.scan.nextLine();
-                Equipa e = Parser.getEquipas().get(eq);
+            Equipa e;
+                do 
+                {
+                    this.view.EquipaVsView();
+                    String eq = this.scan.nextLine();
+                    e = Parser.getEquipas().get(eq);
+                } while (e == null);
+              
 
                 Jogo game1;
                 for (Equipa equipa_file : Parser.getEquipas().values()) {
@@ -217,9 +226,17 @@ public class Interpretador implements IController{
         switch(instruction){
             case 1:
                 // guardar ficheiro
+                Loadable_Parser l = Parser.parser_toLoadable();
+		        SerializeData.serialize_LoadableParser(l);
                 break;
             case 2:
                 // carregar ficheiro
+                String s =  this.scan.nextLine();
+
+		        try{
+                SerializeData.deserialize_LoadableParser(s);}
+                catch (Exception e){System.out.println(e);}
+
                 break;
         }
     }
@@ -247,11 +264,21 @@ public class Interpretador implements IController{
                     menu2();
                     break;
                 case 3:
-                    this.view.CriarJogadorView();
-                    String eq1 = this.scan.nextLine();
-                    Equipa e1 = Parser.getEquipas().get(eq1);
-                    String eq2 = this.scan.nextLine();
-                    Equipa e2 = Parser.getEquipas().get(eq2);
+                    this.view.CriarJogoView();
+                    String eq1,eq2;
+                    Equipa e1,e2;
+                    for (Equipa e_fake : Parser.getEquipas().values()) {
+                        System.out.println(e_fake.getNome_equipa());
+                    }
+                    do {
+                    System.out.print("\nEquipa 1: ");
+                    eq1 = this.scan.nextLine();
+                    e1 = Parser.getEquipas().get(eq1);
+                    System.out.print("\nEquipa 2: ");
+                    eq2 = this.scan.nextLine();
+                    e2 = Parser.getEquipas().get(eq2);
+                    } while ( (e1==null || e2 == null) && 
+                    e1.getNome_equipa().compareTo(e2.getNome_equipa()) != 0);
 
                     Jogo game = new Jogo(e1,e2);
 
@@ -264,6 +291,8 @@ public class Interpretador implements IController{
                     this.view.load();
                     String path = this.scan.nextLine();
                     try {
+                        if (path.compareTo("") == 0) Parser.parse();
+                        else
                         Parser.parse(path); }
                     catch(LinhaIncorretaException e) {
                         System.out.println("Ocorreu um erro lendo do ficheiro.");

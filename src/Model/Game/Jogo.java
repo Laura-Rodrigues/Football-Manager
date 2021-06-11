@@ -40,7 +40,7 @@ public class Jogo implements Serializable{
     private boolean enable_Mensagens = false;
     private final int tentativas_remate = 10;
     private final double minima_chance_golo = 0.2;
-    private final int intervalo_mensagens = 2000;
+    private final int intervalo_mensagens = 3000;
     private final int max_substitucoes = 3;
 
   
@@ -151,8 +151,7 @@ public class Jogo implements Serializable{
     public void addGoalCasa(){
         if (enable_Mensagens)
         {
-            System.out.print("\n"+ equipa_casa.getNome_equipa() + " MARCOU ");
-            System.out.print("Golo");
+            System.out.print("\n"+ equipa_casa.getNome_equipa() + " -> " +  equipa_fora.randomJogador().getNome() +" MARCOU Golo");
             for (int i = 0; i < 15; i++) 
             {
                 System.out.print("o");
@@ -170,8 +169,7 @@ public class Jogo implements Serializable{
     public void addGoalFora(){
         if (enable_Mensagens)
         {
-            System.out.print(equipa_fora.getNome_equipa() + " MARCOU ");
-            System.out.print("Golo");
+            System.out.print("\n" + equipa_fora.getNome_equipa() + " -> " + equipa_fora.randomJogador().getNome() + " MARCOU Golo");
             for (int i = 0; i < 15; i++) 
             {
                 System.out.print("o");
@@ -189,7 +187,7 @@ public class Jogo implements Serializable{
     public String mensagemTriste(Equipa e1,Equipa e2)
     {
         Random r = new Random();
-        int next = r.nextInt(3);
+        int next = r.nextInt(5);
 
         switch (next)
         {
@@ -197,6 +195,10 @@ public class Jogo implements Serializable{
             return " quase que enquadrava o remate,mas foi ao lado...";
             case 1:
             return " atirou com demasiada força";
+            case 2:
+            return " perdeu a bola demasiado rápido...";
+            case 3:
+            return " ficou nervoso e perdeu a posse de bola ";
             default:
                List<Jogadores> aqui = e2.getPlantel_Principal().stream().filter(s -> s.getTipo_jogador() == Jogadores.Class_jog.GRD).collect(Collectors.toList());
                 return " rematou para a baliza mas " + aqui.get(0).getNome() + " defendeu..." ;

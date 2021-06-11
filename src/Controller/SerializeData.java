@@ -12,7 +12,7 @@ import Model.Game.*;
 
 import Parser.*;
 public class SerializeData implements Serializable{
-
+   public static String s1 = "/tmp/loadableparser.ser";
 
    public static void serialize_LoadableParser(Loadable_Parser p) 
     {
@@ -23,34 +23,20 @@ public class SerializeData implements Serializable{
             out.writeObject(p);
             out.close();
             fileOut.close();
-            System.out.printf("Serialized data is saved in tmp/loadableparser.ser");
+            System.out.printf("Serialized data is saved in tmp/loadableparser.ser\n");
          } catch (IOException i) {
             i.printStackTrace();
          }
     }
 
-    public static void deserialize_LoadableParser() throws ClassNotFoundException
-    {
-    
-         Loadable_Parser l;// = Parser.parser_toLoadable();
-         try {
-            FileInputStream fileIn = new FileInputStream("/tmp/loadableparser.ser");
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            l = (Loadable_Parser) in.readObject();
-            in.close();
-            fileIn.close();
-         } catch (IOException i) {
-            i.printStackTrace();
-            return;
-         }
-         Parser.Loadable_to_Parser(l);
-    }
+   
 
     public static void deserialize_LoadableParser(String s) throws ClassNotFoundException
     {
     
          Loadable_Parser l;// = Parser.parser_toLoadable();
          try {
+            if (s.compareTo("") == 0) s = s1;
             FileInputStream fileIn = new FileInputStream(s);
             ObjectInputStream in = new ObjectInputStream(fileIn);
             l = (Loadable_Parser) in.readObject();
@@ -61,6 +47,8 @@ public class SerializeData implements Serializable{
             return;
          }
          Parser.Loadable_to_Parser(l);
+         System.out.println("Ficheiro desserializado com sucesso\n");
+
     }
 
 

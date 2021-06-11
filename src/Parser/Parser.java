@@ -30,6 +30,10 @@ public class Parser implements Serializable {
     private static Jogadores j4 = new Laterais();
     private static Jogadores j5 = new Defesas();
 
+    public static void parse() throws LinhaIncorretaException
+    {
+        parse("output.txt");
+    }
     public static void parse(String path) throws LinhaIncorretaException {
         linhas = lerFicheiro(path);
         //Se o tamanho do ficheiro for 0.   

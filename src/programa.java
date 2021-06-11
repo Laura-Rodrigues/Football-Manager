@@ -100,9 +100,12 @@ public class programa{
 		// }
 			
 		//SerializeData.serialize_Parser(Parser.);
+
 		Loadable_Parser l = Parser.parser_toLoadable();
 		SerializeData.serialize_LoadableParser(l);
 		SerializeData.deserialize_LoadableParser();
+
+
 		System.out.println(Parser.getJogadores());
 
 	}
