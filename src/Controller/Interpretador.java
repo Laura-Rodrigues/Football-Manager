@@ -210,6 +210,20 @@ public class Interpretador implements IController{
         this.view.warningMenus();
     }
 
+    public void menuFicheiros(){
+        this.view.menuFicheiros();
+        int instruction = scan.nextInt();
+        this.scan.nextLine();
+        switch(instruction){
+            case 1:
+                // guardar ficheiro
+                break;
+            case 2:
+                // carregar ficheiro
+                break;
+        }
+    }
+
 
     public void start(){
         while(true){
@@ -244,7 +258,7 @@ public class Interpretador implements IController{
                     game.Simulate(true);
                     break;
                 case 4:
-                    // Guardar logs em ficheiro
+                    menuFicheiros();
                     break;
                 case 5:
                     this.view.load();
