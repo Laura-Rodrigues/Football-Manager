@@ -18,7 +18,7 @@ import java.util.Map;
 public class Parser implements Serializable {
     private static List<String> linhas;
     private static Map<String, Equipa> equipas = new HashMap<>(); //nome, equipa
-    private static Map<String, Jogadores> jogadores = new HashMap<>(); //numero, Jogadores
+    private static Map<String, Jogadores> jogadores = new HashMap<>(); //nome, Jogadores
     private static List<JogoFeito> jogos = new ArrayList<>();
     private static Equipa ultima = null; 
     private static Jogadores j = null;

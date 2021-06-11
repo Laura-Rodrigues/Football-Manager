@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.*;
+import Model.Exceptions.LinhaIncorretaException;
 import Model.Game.Jogo;
 import View.*;
 import Parser.Parser;
@@ -121,7 +122,6 @@ public class Interpretador implements IController{
                 Parser.getJogadores().put(nome5,jog5);
                 break;
         }
-        //this.view.warningMenus();
     }
 
     public void menuGerirEquipa(){
@@ -161,6 +161,50 @@ public class Interpretador implements IController{
         switch(instruction){
             case 1:
                 this.view.CriarJogoView();
+                String eq1 = this.scan.nextLine();
+                Equipa e1 = Parser.getEquipas().get(eq1);
+                String eq2 = this.scan.nextLine();
+                Equipa e2 = Parser.getEquipas().get(eq2);
+                Jogo jogo = new Jogo(e1,e2);
+
+/*
+                System.out.println("Quantas substituições vai ter " + eq1 + " ? ");
+                int sub1 = this.scan.nextInt();
+                for (int i=0; i<sub1; i++){
+                    int n1 = this.scan.nextInt();
+
+                    System.out.println(" -> ");
+                    int n2 = this.scan.nextInt();
+                    Jogadores j1 = Parser.getEquipas().get(eq1).getJogadores().get(n1);
+                    Jogadores j2 = Parser.getEquipas().get(eq2).getJogadores().get(n2);
+                    jogo.addSubstitucao(j1,j2,1);
+                }
+
+                System.out.println("Quantas substituições vai ter " + eq2 + " ? ");
+                int sub2 = this.scan.nextInt();
+                for (int i=0; i<sub2; i++){
+                    int n1 = this.scan.nextInt();
+                    Jogadores j1 = Parser.getEquipas().get(eq1).getJogadores().get(n1);
+                    System.out.println(" -> ");
+                    int n2 = this.scan.nextInt();
+                    Jogadores j2 = Parser.getEquipas().get(eq2).getJogadores().get(n2);
+                    jogo.addSubstitucao(j1,j2,2);
+                }
+*/              jogo.Simulate();
+                break;
+            case 2:
+                this.view.EquipaVsView();
+                String eq = this.scan.nextLine();
+                Equipa e = Parser.getEquipas().get(eq);
+
+                Jogo game1;
+                for (Equipa equipa_file : Parser.getEquipas().values()) {
+                    if (e != equipa_file){
+                        game1 = new Jogo(e,equipa_file);
+                        game1.Simulate();
+                    }
+                }
+
                 break;
         }
         this.view.warningMenus();
@@ -182,15 +226,9 @@ public class Interpretador implements IController{
                 case -1:
                     this.scan.close();
                     return;
-/*
-                case 0:
-                    this.view.menu();
-                    break;
-*/
                 case 1:
                     menu1();
                     break;
-
                 case 2:
                     menu2();
                     break;
@@ -203,10 +241,21 @@ public class Interpretador implements IController{
 
                     Jogo game = new Jogo(e1,e2);
 
-                    game.Simulate();
+                    game.Simulate(true);
+                    break;
+                case 4:
+                    // Guardar logs em ficheiro
+                    break;
+                case 5:
+                    this.view.load();
+                    String path = this.scan.nextLine();
+                    try {
+                        Parser.parse(path); }
+                    catch(LinhaIncorretaException e) {
+                        System.out.println("Ocorreu um erro lendo do ficheiro.");
+                    }
                     break;
             }
-            //if(instruction != 0) this.view.waitingInstruction();
         }
 
     }
