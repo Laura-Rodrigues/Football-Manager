@@ -45,15 +45,14 @@ public class Menu implements IView{
 
     public void menu(){
         StringBuilder sb = new StringBuilder();
-        
-        
+
         sb.append(makemyBox(t));
         sb.append(print_Espacos(t,"Football Manager"));
         sb.append(makemyBox(t));
         sb.append("1) Gerir entidades\n");
         sb.append("2) Resultado de Jogo\n");
         sb.append("3) Simulação de Jogo\n");
-        sb.append("4) Guardar logs\n");
+        sb.append("4) Ficheiros de objetos\n");
         sb.append("5) Carregar ficheiro de logs .txt\n");
         sb.append("-1) Sair\n");
         sb.append(makemyBox(t));
@@ -99,6 +98,19 @@ public class Menu implements IView{
         sb.append("3) Defesa\n");
         sb.append("4) Médio\n");
         sb.append("5) Avançado\n");
+        sb.append(makemyBox(t));
+        sb.append("Escreva o número correspondente à opção pretendida.\n\t> ");
+        System.out.print(sb);
+    }
+
+    public void menuFicheiros(){
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(makemyBox(t));
+        sb.append(print_Espacos(t,"Ficheiros de objetos"));
+        sb.append(makemyBox(t));
+        sb.append("1) Guardar logs em ficheiro\n");
+        sb.append("2) Carregar ficheiro\n");
         sb.append(makemyBox(t));
         sb.append("Escreva o número correspondente à opção pretendida.\n\t> ");
         System.out.print(sb);
@@ -222,11 +234,6 @@ public class Menu implements IView{
     public void EquipaVsView(){
         System.out.println("Introduza o nome da equipa\n");
     }
-    public void SimulateJogo(){
-        System.out.println("Introduza o nome das duas equipas\n");
-    }
-    public void load(){
-        System.out.println("Introduza o path para o ficheiro -> ex.: src/output.txt\n");
-    }
+    public void load() { System.out.println("Introduza o path para o ficheiro -> ex.: logsV2.txt\n"); }
 
 }

@@ -25,6 +25,6 @@ public interface IView {
     public void ListarEquipaView();
     public void CriarJogoView();
     public void EquipaVsView();
-    public void SimulateJogo();
+    public void menuFicheiros();
     public void load();
 }
