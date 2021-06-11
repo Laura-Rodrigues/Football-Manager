@@ -130,5 +130,6 @@ public class Parser implements Serializable {
     public static Map<String, Equipa> getEquipas(){
         return Parser.equipas;
     }
+   
     
 }

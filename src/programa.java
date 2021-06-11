@@ -9,6 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import Parser.Parser;
+import Controller.*;
 
 public class programa{
 	public static void main(String[] args) throws Exception {
@@ -94,31 +95,8 @@ public class programa{
 		// 	game1 = new Jogo(equipa1,equipa_file);
 		// 	game1.Simulate();
 		// }
-		try {
-			FileOutputStream fileOut =
-			new FileOutputStream("/tmp/jogador.ser");
-			ObjectOutputStream out = new ObjectOutputStream(fileOut);
-			out.writeObject(jog3);
-			out.close();
-			fileOut.close();
-			System.out.printf("Serialized data is saved in tmp/jogador.ser");
-		 } catch (IOException i) {
-			i.printStackTrace();
-		 }
-
-		 Jogadores novo_jogador;
-		 try {
-			FileInputStream fileIn = new FileInputStream("/tmp/jogador.ser");
-			ObjectInputStream in = new ObjectInputStream(fileIn);
-			novo_jogador = (Jogadores) in.readObject();
-			in.close();
-			fileIn.close();
-		 } catch (IOException i) {
-			i.printStackTrace();
-			return;
-		 }
-
-		 System.out.println(novo_jogador);
+			
+		SerializeData.serialize_Parser(Parser.);
 		
 		
 

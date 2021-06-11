@@ -21,6 +21,7 @@ CLASSES = \
 		  Model/Laterais.java \
 		  Model/Equipa.java \
 		  Parser/Parser.java \
+		  Controller/SerializeData.java \
 		  Model/Game/JogoFeito.java \
 		  Model/Game/Jogo.java \
 		  programa.java
