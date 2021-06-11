@@ -1,6 +1,7 @@
 package Model.Game;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -9,6 +10,7 @@ import Model.Equipa;
 import Model.Jogadores;
 import Model.Exceptions.InvalidExcepction;
 import Model.Jogadores.Class_jog;
+import Parser.Parser;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -317,6 +319,33 @@ public class Jogo implements Serializable{
         equipa_casa.makeBestTeam();
         equipa_fora.makeBestTeam();
 
+        JogoFeito jogo_feito = convert_JogoFeito();
+        Parser.getJogos().add(jogo_feito);
+
+    }
+
+    public JogoFeito convert_JogoFeito()
+    {
+        String ec = this.equipa_casa.getNome_equipa();
+        String ef = this.equipa_fora.getNome_equipa();
+        int gc = this.golos_casa;
+        int gf = this.golos_fora;
+        LocalDate d =  data.toLocalDate();
+
+        List<Integer> jc = new ArrayList<>(); 
+        for(Jogadores j : this.equipa_casa.getPlantel_Principal())
+        {
+            jc.add(j.getNum_camisola());
+        }
+        Map<Integer,Integer> sc = new HashMap<>(subs_casa);
+        
+        List<Integer> jf = new ArrayList<>();
+        for(Jogadores j : this.equipa_fora.getPlantel_Principal())
+        {
+            jc.add(j.getNum_camisola());
+        }
+        Map<Integer,Integer> sf = new HashMap<>(subs_fora);
+        return new JogoFeito(ec, ef, gc, gf, d, jc, sc, jf, sf);
     }
 
     public StringBuilder printSubs(StringBuilder sb)

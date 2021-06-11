@@ -135,6 +135,11 @@ public class Parser implements Serializable {
         return Parser.equipas;
     }
    
+    public static List<JogoFeito> getJogos()
+    {
+        return jogos;
+    }
+    
     public static Loadable_Parser parser_toLoadable()
     {
         return new Loadable_Parser(equipas, jogadores, jogos);
