@@ -20,8 +20,8 @@ CLASSES = \
 		  Model/Medios.java \
 		  Model/Laterais.java \
 		  Model/Equipa.java \
-		  Parser/Loadable_Parser.java \
-		  Parser/Parser.java \
+		  Controller/Parser/Loadable_Parser.java \
+		  Controller/Parser/Parser.java \
 		  Controller/SerializeData.java \
 		  Model/Game/JogoFeito.java \
 		  Model/Game/Jogo.java \
