@@ -2,8 +2,7 @@ package View;
 
 import Model.Equipa;
 import Model.Jogadores;
-import Parser.Parser;
-import java.util.*;
+import Controller.Parser.Parser;
 
 public class Menu implements IView{
     public int t = 40;//tamanho 

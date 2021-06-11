@@ -1,4 +1,4 @@
-package Parser;
+package Controller.Parser;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import java.util.List;
 import Model.*;
 import Model.Game.*;
-import Parser.*;
 
 public class Loadable_Parser implements Serializable{
     public  Map<String, Equipa> equipas = new HashMap<>(); //nome, equipa

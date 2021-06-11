@@ -10,7 +10,7 @@ import java.io.Serializable;
 import Model.*;
 import Model.Game.*;
 
-import Parser.*;
+import Controller.Parser.*;
 public class SerializeData implements Serializable{
    public static String s1 = "/tmp/loadableparser.ser";
 

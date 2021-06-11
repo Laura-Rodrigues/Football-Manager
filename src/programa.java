@@ -2,15 +2,10 @@ import Model.*;
 import Model.Exceptions.LinhaIncorretaException;
 import Model.Game.Jogo;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-import Parser.Loadable_Parser;
-import Parser.Parser;
+import Controller.Parser.Loadable_Parser;
+import Controller.Parser.Parser;
 import Controller.*;
 
 public class programa{

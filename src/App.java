@@ -1,7 +1,6 @@
 import Controller.IController;
 import Controller.Interpretador;
-import Model.Exceptions.LinhaIncorretaException;
-import Parser.Parser;
+import Controller.Parser.Parser;
 import View.IView;
 import View.Menu;
 

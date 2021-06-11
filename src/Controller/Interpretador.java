@@ -4,8 +4,8 @@ import Model.*;
 import Model.Exceptions.LinhaIncorretaException;
 import Model.Game.Jogo;
 import View.*;
-import Parser.Loadable_Parser;
-import Parser.Parser;
+import Controller.Parser.Loadable_Parser;
+import Controller.Parser.Parser;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;

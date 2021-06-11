@@ -1,4 +1,4 @@
-package Parser;
+package Controller.Parser;
 
 import Model.*;
 import Model.Exceptions.LinhaIncorretaException;
