@@ -233,7 +233,7 @@ public class Interpretador implements IController{
                     menu2();
                     break;
                 case 3:
-                    this.view.SimulateJogo();
+                    this.view.CriarJogadorView();
                     String eq1 = this.scan.nextLine();
                     Equipa e1 = Parser.getEquipas().get(eq1);
                     String eq2 = this.scan.nextLine();

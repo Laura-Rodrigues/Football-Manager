@@ -222,11 +222,6 @@ public class Menu implements IView{
     public void EquipaVsView(){
         System.out.println("Introduza o nome da equipa\n");
     }
-    public void SimulateJogo(){
-        System.out.println("Introduza o nome das duas equipas\n");
-    }
-    public void load(){
-        System.out.println("Introduza o path para o ficheiro -> ex.: src/output.txt\n");
-    }
+    public void load() { System.out.println("Introduza o path para o ficheiro -> ex.: logsV2.txt\n"); }
 
 }

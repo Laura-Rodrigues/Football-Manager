@@ -24,14 +24,13 @@ CLASSES = \
 		  Controller/SerializeData.java \
 		  Model/Game/JogoFeito.java \
 		  Model/Game/Jogo.java \
-		  programa.java
+		  App.java
 
 default: classes
 
 classes: $(CLASSES:.java=.class)
 
 clean:
-	$(RM) View/*.class Model/*.class Controller/*.class *.class
-	
+	find . -name "*.class" -type f -delete
 run:
-	java programa
+	java App

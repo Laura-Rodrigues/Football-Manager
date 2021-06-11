@@ -97,7 +97,7 @@ public class programa{
 		// 	game1.Simulate();
 		// }
 			
-		SerializeData.serialize_Parser(Parser.);
+		//SerializeData.serialize_Parser(Parser.);
 		
 		
 

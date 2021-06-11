@@ -315,14 +315,6 @@ public class Equipa implements Serializable{
         this.plantel_array[3] = med;
         this.plantel_array[4] = ava;
     }
-    public void dumpTeamTotal(){
-        System.out.println(jogadores);
-    }
-
-    public void dumpTeamPrincipal(){
-        System.out.println(plantel_Principal);
-    }
-
 
     public static StringBuilder print_Spaces(int tamanho,String array){
         StringBuilder sb = new StringBuilder();

@@ -1,6 +1,8 @@
+import Controller.IController;
 import Controller.Interpretador;
 import Model.Exceptions.LinhaIncorretaException;
 import Parser.Parser;
+import View.IView;
 import View.Menu;
 
 public class App {
@@ -13,8 +15,8 @@ public class App {
         	System.out.println("Ocorreu um erro lendo do ficheiro.");
         }
 */
-        Menu view = new Menu();
-        Interpretador control = new Interpretador();
+        IView view = new Menu();
+        IController control = new Interpretador();
         control.setView(view);
         control.start();
 
