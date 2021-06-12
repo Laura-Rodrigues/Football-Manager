@@ -2,7 +2,7 @@ package View;
 
 import Model.Equipa;
 import Model.Jogadores;
-import Controller.Parser.Parser;
+import Controller.Parser.*;
 
 public class Menu implements IView{
     public int t = 40;//tamanho 
@@ -233,6 +233,6 @@ public class Menu implements IView{
     public void EquipaVsView(){
         System.out.println("Introduza o nome da equipa\n");
     }
-    public void load() { System.out.println("Introduza o path para o ficheiro -> ex.: logsV2.txt\n"); }
+    public void load() { System.out.println("Introduza o path para o ficheiro -> ex.: output.txt ou ENTER\n"); }
 
 }

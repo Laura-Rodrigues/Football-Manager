@@ -12,24 +12,19 @@ import java.util.Scanner;
 
 public class Interpretador implements IController{
 
-    //private IModel model;
     private IView view;
 
     private Scanner scan;
 
-
     public Interpretador(){
         this.scan = new Scanner(System.in);
     }
-/*
-    public void setModel (IModel model){
-        this.model = model;
-    }
-*/
+
     public void setView(IView view){
         this.view = view;
     }
 
+    /* Função que permite a gestão e interpretação dos conteúdos do menu 1 */
     public void menu1(){
         this.view.menu1();
         int instruction = scan.nextInt();
@@ -75,6 +70,7 @@ public class Interpretador implements IController{
         this.view.warningMenus();
     }
 
+    /* Menu auxiliar ao menu 1 */
     public void menuCriarJogador(){
         this.view.CriarJogadorView();
         int instruction = scan.nextInt();
@@ -135,6 +131,7 @@ public class Interpretador implements IController{
         
     }
 
+    /* Menu auxiliar ao menu 1 */
     public void menuGerirEquipa(){
         this.view.GerirEquipaView();
         int instruction = scan.nextInt();
@@ -176,6 +173,7 @@ public class Interpretador implements IController{
         }
     }
 
+    /* Função que permite a gestão e interpretação dos conteúdos do menu 2 */
     public void menu2(){
         this.view.menu2();
         int instruction = scan.nextInt();
@@ -218,6 +216,7 @@ public class Interpretador implements IController{
         this.view.warningMenus();
     }
 
+    /* Função que permite a gestão e interpretação dos conteúdos do menu dos ficheiros */
     public void menuFicheiros(){
         this.view.menuFicheiros();
         int instruction = scan.nextInt();
@@ -240,7 +239,7 @@ public class Interpretador implements IController{
         }
     }
 
-
+    /* Função que permite a gestão e interpretação dos conteúdos do menu principal */
     public void start(){
         while(true){
             this.view.menu();
@@ -248,7 +247,7 @@ public class Interpretador implements IController{
             try {
                 instruction = this.scan.nextInt();
             }
-            catch (InputMismatchException e) { // Não foi inscrito um int
+            catch (InputMismatchException e) { // Não foi escrito um int
                 instruction = 10;
             }
             this.scan.nextLine();
@@ -267,7 +266,7 @@ public class Interpretador implements IController{
                     String eq1,eq2;
                     Equipa e1,e2;
                     for (Equipa e_fake : Parser.getEquipas().values()) {
-                        System.out.println(e_fake.getNome_equipa());
+                        System.out.println(e_fake.getNome_equipa()); // lista dos jogadores disponíveis
                     }
                     do {
                     System.out.print("\nEquipa 1: ");
@@ -290,7 +289,7 @@ public class Interpretador implements IController{
                     this.view.load();
                     String path = this.scan.nextLine();
                     try {
-                        if (path.compareTo("") == 0) Parser.parse();
+                        if (path.compareTo("") == 0) Parser.parse(); // permite que o utilizador apenas dê enter
                         else
                         Parser.parse(path); }
                     catch(LinhaIncorretaException e) {

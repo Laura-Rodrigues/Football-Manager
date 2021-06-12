@@ -9,17 +9,18 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import Model.*;
 import Model.Game.*;
+import java.lang.String;
 
 import Controller.Parser.*;
 
 public class SerializeData implements Serializable{
    public static String s1 = "/tmp/loadableparser.ser";
 
-   public static void serialize_LoadableParser(Loadable_Parser p) 
-    {
+   /* Cria um ficheiro serializable e escreve os dados */
+   public static void serialize_LoadableParser(Loadable_Parser p) {
+
         try {
-            FileOutputStream fileOut =
-            new FileOutputStream("/tmp/loadableparser.ser");
+            FileOutputStream fileOut = new FileOutputStream("/tmp/loadableparser.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(p);
             out.close();
@@ -30,12 +31,10 @@ public class SerializeData implements Serializable{
          }
     }
 
-   
-
-    public static void deserialize_LoadableParser(String s) throws ClassNotFoundException
-    {
+   /* Lê de um ficheiro serializable */
+    public static void deserialize_LoadableParser(String s) throws ClassNotFoundException {
     
-         Loadable_Parser l;// = Parser.parser_toLoadable();
+         Loadable_Parser l;
          try {
             if (s.compareTo("") == 0) s = s1;
             FileInputStream fileIn = new FileInputStream(s);
@@ -49,16 +48,10 @@ public class SerializeData implements Serializable{
          }
          Parser.Loadable_to_Parser(l);
          System.out.println("Ficheiro desserializado com sucesso\n");
-
     }
 
-
-    /**
-     * 
-     * Nao sao tao importantes
-     */
-    public static void serialize_Jogador(Jogadores j) 
-    {
+    /* Permite guardar o jogador em ficheiro para mais tarde poder ser carregado */
+    public static void serialize_Jogador(Jogadores j) {
         try {
             FileOutputStream fileOut =
             new FileOutputStream("/tmp/jogador.ser");
@@ -72,8 +65,8 @@ public class SerializeData implements Serializable{
          }
     }
 
-    public static void serialize_Jogo(Jogo j) 
-    {
+    /* Permite guardar o jogo em ficheiro para mais tarde poder ser carregado */
+    public static void serialize_Jogo(Jogo j) {
         try {
             FileOutputStream fileOut =
             new FileOutputStream("/tmp/jogo.ser");
@@ -87,8 +80,8 @@ public class SerializeData implements Serializable{
          }
     }
 
-    public static void serialize_Equipa(Equipa e) 
-    {
+    /* Permite guardar a equipa em ficheiro para mais tarde poder ser carregada */
+    public static void serialize_Equipa(Equipa e) {
         try {
             FileOutputStream fileOut =
             new FileOutputStream("/tmp/equipa.ser");
@@ -102,23 +95,8 @@ public class SerializeData implements Serializable{
          }
     }
 
-    public static void serialize_Parser(Parser e) 
-    {
-        try {
-            FileOutputStream fileOut =
-            new FileOutputStream("/tmp/parser.ser");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(e);
-            out.close();
-            fileOut.close();
-            System.out.printf("Serialized data is saved in tmp/parser.ser");
-         } catch (IOException i) {
-            i.printStackTrace();
-         }
-    }
-
-    public static Jogadores deserialize_Jogador() throws ClassNotFoundException
-    {
+    /* Lê de um ficheiro serializable um jogador */
+    public static Jogadores deserialize_Jogador() throws ClassNotFoundException {
     
          Jogadores novo_jogador;
          try {
@@ -134,8 +112,8 @@ public class SerializeData implements Serializable{
          return novo_jogador;
     }
 
-    public static Jogo deserialize_Jogo() throws ClassNotFoundException
-    {
+    /* Lê de um ficheiro serializable um jogo */
+    public static Jogo deserialize_Jogo() throws ClassNotFoundException {
     
          Jogo jogo;
          try {
@@ -151,8 +129,8 @@ public class SerializeData implements Serializable{
          return jogo;
     }
 
-    public static Equipa deserialize_Equipa() throws ClassNotFoundException
-    {
+    /* Lê de um ficheiro serializable uma equipa */
+    public static Equipa deserialize_Equipa() throws ClassNotFoundException {
     
          Equipa e;
          try {
@@ -166,23 +144,6 @@ public class SerializeData implements Serializable{
             return null;
          }
          return e;
-    }
-
-    public static Parser deserialize_Parser() throws ClassNotFoundException
-    {
-    
-         Parser parser;
-         try {
-            FileInputStream fileIn = new FileInputStream("/tmp/parser.ser");
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            parser = (Parser) in.readObject();
-            in.close();
-            fileIn.close();
-         } catch (IOException i) {
-            i.printStackTrace();
-            return null;
-         }
-         return parser;
     }
    
     

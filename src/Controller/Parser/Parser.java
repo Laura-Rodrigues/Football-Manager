@@ -30,10 +30,9 @@ public class Parser implements Serializable {
     private static Jogadores j4 = new Laterais();
     private static Jogadores j5 = new Defesas();
 
-    public static void parse() throws LinhaIncorretaException
-    {
-        parse("output.txt");
-    }
+    public static void parse() throws LinhaIncorretaException { parse("output.txt"); }
+
+    /* Permite ler de um ficheiro de logs a informação necessária e guardá-la na estrutura correta */
     public static void parse(String path) throws LinhaIncorretaException {
         linhas = lerFicheiro(path);
         //Se o tamanho do ficheiro for 0.   
@@ -102,7 +101,7 @@ public class Parser implements Serializable {
             ultima.makeBestTeam();
             equipas.put(ultima.getNome_equipa(),ultima);
         }
-        
+        // mostra o que está a ser guardado
         if (debug)
         {
             for (Equipa e: equipas.values()){

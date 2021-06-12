@@ -19,8 +19,8 @@ import java.io.Serializable;
 import java.lang.Object;
 
 
-//Esta class consegue Simular um jogo entre 2 equipas
-//No final do jogo estar calculado, pode ser convertida para a Class JogoFeito
+/*Esta class consegue Simular um jogo entre 2 equipas
+No final do jogo estar calculado, pode ser convertida para a Class JogoFeito */
 
 public class Jogo implements Serializable{
     enum game_state{
@@ -51,14 +51,15 @@ public class Jogo implements Serializable{
         else
         subs_fora.put(j1.getNum_camisola(),j2.getNum_camisola());
     }
-    //Substituir um jogador aleatorio por um com uma posicao correspondente
+
+    /* Substituir um jogador aleatorio por um com uma posicao correspondente */
     public void Substitute(Equipa e1)
     {
         boolean found = false;
         while(!found)
         {
             Random r = new Random();
-            int num_fora = r.nextInt(11);//vai de 0 a 10 aleatoriamente
+            int num_fora = r.nextInt(11); //vai de 0 a 10 aleatoriamente
             Jogadores j1 =  e1.getPlantel_Principal().get(num_fora);
             Jogadores.Class_jog tipo =  j1.getTipo_jogador();
     
@@ -73,28 +74,28 @@ public class Jogo implements Serializable{
             e1.getPlantel_Principal().remove(j1);
             e1.getPlantel_Principal().add(j_substituiveis.get(num_entra).clone());
            
-            //Adicionar a substituicao à estrutura de dados
+            // Adicionar a substituicao à estrutura de dados
             addSubstitucao(j1,j_substituiveis.get(num_entra), (e1 == equipa_casa) ? 1 : 2);
 
             found = true;
         }
     }
 
-    //Substitui se possivel os jogadores
+    /* Substitui se possivel os jogadores */
     public void Substitute(Equipa e1,int num_fora,int num_entra) throws InvalidExcepction
     {
         Jogadores j1 = null,j2 = null;
         boolean found1 = false,found2 = false;
         for (int i = 0; i < e1.getPlantel_Principal().size() && !found1; i++) {
             j1 = e1.getPlantel_Principal().get(i);
-           //Encontrado o jogador correspondente
+           // Encontrado o jogador correspondente
            if (j1.getNum_camisola() == num_fora)
             {
                 e1.getPlantel_Principal().remove(j1);
                 found1 = true;
             }
         }
-        //Se nao existir o jogador entao não há substituicao
+        // Se não existir o jogador entao não há substituicao
         if (!found1)
         {
             throw new InvalidExcepction(" Substituicao não realizada,Jogador a sair nao existe\n");
@@ -104,15 +105,15 @@ public class Jogo implements Serializable{
         for (int i = 0; i < e1.getJogadores().size() && !found2; i++) {
             j2 = e1.getJogadores().get(i);
             
-            //Encontrado o jogador para entrar e ele não pertence à equipa principal
+            // Encontrado o jogador para entrar e ele não pertence à equipa principal
             if (j2.getNum_camisola() == num_entra && !e1.getPlantel_Principal().contains(j2) )
              {
                 e1.getPlantel_Principal().add(j2);
                 found2 = true;
              }
          }
-         //Caso nao tenha sido encontrado um substituto adequado
-         //É substituido o primeiro jogador disponivel
+         // Caso nao tenha sido encontrado um substituto adequado
+         // É substituido o primeiro jogador disponivel
          if(!found2)
          {
              for (Jogadores j3 : e1.getJogadores()) {
@@ -127,12 +128,9 @@ public class Jogo implements Serializable{
          }
          else
          addSubstitucao(j1,j2, (e1 == equipa_casa) ? 1 : 2);
-
-
-  
-
     }
 
+    /* Verificar se o jogo pode ser simulado */
     public boolean Startgame(){
         if (this.getState() == game_state.Unplayed){
             this.setState(game_state.Playing);
@@ -148,10 +146,15 @@ public class Jogo implements Serializable{
         }
     }
 
+    /*
+    * Funções que ajudam na simulação do jogo imprimindo mensagens necessárias
+    *
+    */
+
     public void addGoalCasa(){
-        if (enable_Mensagens)
-        {
-            System.out.print("\n"+ equipa_casa.getNome_equipa() + " -> " +  equipa_fora.randomJogador().getNome() +" MARCOU Golo");
+        if (enable_Mensagens) {
+
+            System.out.print("\n"+ equipa_casa.getNome_equipa() + " -> " +  equipa_casa.randomJogador().getNome() +" MARCOU Golo");
             for (int i = 0; i < 15; i++) 
             {
                 System.out.print("o");
@@ -162,13 +165,12 @@ public class Jogo implements Serializable{
         equipa_casa.setGolos_marcados(equipa_casa.getGolos_marcados() + 1);
         equipa_fora.setGolos_sofridos(equipa_fora.getGolos_sofridos() + 1);
         this.golos_casa++;
-        //Buscar um avancado;
 
     }
 
     public void addGoalFora(){
-        if (enable_Mensagens)
-        {
+        if (enable_Mensagens) {
+
             System.out.print("\n" + equipa_fora.getNome_equipa() + " -> " + equipa_fora.randomJogador().getNome() + " MARCOU Golo");
             for (int i = 0; i < 15; i++) 
             {
@@ -177,15 +179,13 @@ public class Jogo implements Serializable{
             }
             System.out.print("\n");
         }
-        
-    
+
         equipa_fora.setGolos_marcados(equipa_fora.getGolos_marcados() + 1);
         equipa_casa.setGolos_sofridos(equipa_casa.getGolos_sofridos() + 1);
         this.golos_fora++;
     }
 
-    public String mensagemTriste(Equipa e1,Equipa e2)
-    {
+    public String mensagemTriste(Equipa e1,Equipa e2) {
         Random r = new Random();
         int next = r.nextInt(5);
 
@@ -220,43 +220,40 @@ public class Jogo implements Serializable{
 
     }
 
-    public void postGameResults()
-    {
-        if(golos_casa > golos_fora)
-        {
+    public void postGameResults() {
+        if(golos_casa > golos_fora) {
             //Equipa 1 ganhou
             equipa_casa.setVitorias(equipa_casa.getVitorias() + 1);
             equipa_fora.setDerrotas(equipa_fora.getDerrotas() + 1);
 
         }
-        else if(golos_casa == golos_fora)
-        {
+        else if(golos_casa == golos_fora) {
             //Empataram
             equipa_casa.setEmpates(equipa_casa.getEmpates() + 1);
             equipa_fora.setEmpates(equipa_fora.getEmpates() + 1);
 
         }
-        else
-        {
+        else {
             //Equipa 2 ganhou
             equipa_casa.setDerrotas(equipa_casa.getDerrotas() + 1);
             equipa_fora.setVitorias(equipa_fora.getVitorias() + 1);
         }
-
     }
 
+    /* Escolhe o melhor plantel principal */
     public int bestTeam(){
         int valor_1 = equipa_casa.getHabilidadeEquipa();
        int valor_2 = equipa_fora.getHabilidadeEquipa();
        if (valor_1 > valor_2 ) return 1;
        else return 2;
     }
-    public void Simulate(boolean enable_m)
-    {
+
+    public void Simulate(boolean enable_m) {
         enable_Mensagens = enable_m;
         Simulate();
     }
-    
+
+    /* Se enable_Mensagens for true permite fazer a simulação de um jogo senão cria apenas o jogo  */
     public void Simulate(){
         //Inicializar o jogo
         if ( !Startgame())
@@ -269,12 +266,12 @@ public class Jogo implements Serializable{
         }
         int valor_1 = equipa_casa.getHabilidadeEquipa();
         int valor_2 = equipa_fora.getHabilidadeEquipa();
-        double chance_min;//Entre 0 e 1
+        double chance_min;// Entre 0 e 1
         double chance_max;// Entre 0 e 1
 
         
         
-        //Se a melhor equipa for Fora
+        // Se a melhor equipa for Fora
         double gap = ((bestTeam() == 1) ? (valor_1/ (double) valor_2) : (valor_2/ (double) valor_1) ) *2;
             
         Random r = new Random();
@@ -300,7 +297,7 @@ public class Jogo implements Serializable{
             
         }
 
-        //Criar substituicoes
+        // Criar substituicoes
         for (int i = 0; i < max_substitucoes; i++) {
             Substitute(equipa_casa);
             Substitute(equipa_fora);
@@ -310,20 +307,19 @@ public class Jogo implements Serializable{
 
         this.setState(game_state.Finished);
 
-        //No final do jogo é adicionado as estatistica às equipas
+        // No final do jogo é adicionado as estatistica às equipas
         postGameResults();
 
-        //Para asegurar que quando acabar o jogo no plantel principal vai estar a melhor equipa possivel
+        // Para asegurar que quando acabar o jogo no plantel principal vai estar a melhor equipa possivel
         equipa_casa.makeBestTeam();
         equipa_fora.makeBestTeam();
 
         JogoFeito jogo_feito = convert_JogoFeito();
         Parser.getJogos().add(jogo_feito);
-
     }
 
-    public JogoFeito convert_JogoFeito()
-    {
+    public JogoFeito convert_JogoFeito() {
+
         String ec = this.equipa_casa.getNome_equipa();
         String ef = this.equipa_fora.getNome_equipa();
         int gc = this.golos_casa;

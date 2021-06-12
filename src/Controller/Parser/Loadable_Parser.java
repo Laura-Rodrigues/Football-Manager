@@ -14,7 +14,7 @@ public class Loadable_Parser implements Serializable{
     public  Map<String, Jogadores> jogadores = new HashMap<>(); //nome, Jogadores
     public  List<JogoFeito> jogos = new ArrayList<>();
 
-
+    /* Cria uma cópia do parser */
     public Loadable_Parser( Map<String, Equipa> equipas,Map<String, Jogadores> jogadores,List<JogoFeito> jogos)
     {
         Map<String,Equipa> novo_equipa = equipas.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
@@ -23,7 +23,7 @@ public class Loadable_Parser implements Serializable{
         Map<String,Jogadores> novo_j = jogadores.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         this.jogadores = novo_j;
 
-        List<JogoFeito> novo_jogos = jogos.stream().collect(Collectors.toList());// jogos.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        List<JogoFeito> novo_jogos = jogos.stream().collect(Collectors.toList());
         this.jogos = novo_jogos;
     }
 }
