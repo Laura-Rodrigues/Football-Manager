@@ -15,7 +15,6 @@ public abstract class Jogadores implements Comparable<Jogadores>,Serializable {
 
     protected String nome;
     protected int num_camisola;
-   //                          limitar valores de 0 - 100:
     protected int velocidade;
     protected int resistencia;
     protected int destreza;
@@ -29,10 +28,13 @@ public abstract class Jogadores implements Comparable<Jogadores>,Serializable {
 
    
 
-  
+    //Calcula a sua habilidade
     public abstract int getHabilidade();
+    //Devolve as variaveis extra dos filhos
     public abstract StringBuilder toStringExtra();
+    //Randomizar varaveis extra dos filhos
     public abstract void RandomizarExtra(int max,Random rand);
+    //Constroi a partir de uma string formatada
     public abstract  Jogadores parse(String s);
 
     public Jogadores(){

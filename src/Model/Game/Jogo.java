@@ -184,7 +184,8 @@ public class Jogo implements Serializable{
         equipa_casa.setGolos_sofridos(equipa_casa.getGolos_sofridos() + 1);
         this.golos_fora++;
     }
-
+    //Devolve uma string aleatoria em que a Equipa e1 perde a sua posse de bola
+    //Equipa e2 é necessaria apenas para devolver o guarda redes que defende um remate
     public String mensagemTriste(Equipa e1,Equipa e2) {
         Random r = new Random();
         int next = r.nextInt(5);
@@ -204,7 +205,8 @@ public class Jogo implements Serializable{
                 return " rematou para a baliza mas " + aqui.get(0).getNome() + " defendeu..." ;
         }
     }
-
+    
+    //Devolve para terminal uma jogada falhada aleatoria entre equipa 1 ou 2
     public void print_jogada_Falhada(){
         Random r = new Random();
         Equipa e1 = getEquipa_casa();
@@ -219,6 +221,8 @@ public class Jogo implements Serializable{
         try{Thread.sleep(intervalo_mensagens);}catch(InterruptedException e){System.out.println(e);}
 
     }
+
+    //Trata de atualizar as variaveis das Equipas de jogos ganhos e perdidos
 
     public void postGameResults() {
         if(golos_casa > golos_fora) {
@@ -240,22 +244,25 @@ public class Jogo implements Serializable{
         }
     }
 
-    /* Escolhe o melhor plantel principal */
+    /* Escolhe a melhor equipa dependendo do seu valor de habilidade */
     public int bestTeam(){
         int valor_1 = equipa_casa.getHabilidadeEquipa();
        int valor_2 = equipa_fora.getHabilidadeEquipa();
        if (valor_1 > valor_2 ) return 1;
        else return 2;
     }
-
+    //Permite simular um jogo com ou sem mensagens
     public void Simulate(boolean enable_m) {
         enable_Mensagens = enable_m;
         Simulate();
     }
 
-    /* Se enable_Mensagens for true permite fazer a simulação de um jogo senão cria apenas o jogo  */
+    /* Funcao principal para simular um jogo entre duas equipas
+    *
+    Se enable_Mensagens for true permite fazer a simulação de um jogo senão cria apenas o jogo
+    */
     public void Simulate(){
-        //Inicializar o jogo
+        //Inicializar o jogo; se o jogo ja foi realizado então a funcao retorna
         if ( !Startgame())
         return;
 
@@ -275,17 +282,25 @@ public class Jogo implements Serializable{
         double gap = ((bestTeam() == 1) ? (valor_1/ (double) valor_2) : (valor_2/ (double) valor_1) ) *2;
             
         Random r = new Random();
+        //Chance de marcar golo da equipa mais fraca é um valor aleatorio predefinido;
         chance_min =  (r.nextDouble() * minima_chance_golo) + 0.01;
+
+        //Chance de marcar golo da equipa mais forte é diretamente proporcional
+        //à chance_min e à diferenca de habilidades de equipas 
         chance_max = chance_min * gap;
     
+        //Executa um numero predefinido de tentativas de remate
         for (int i = 0; i < tentativas_remate; i++) {
             double tentativa =  r.nextDouble();// Devolve entre 0 e 1
+
+            //Se o valor estiver entre [0,chance_min[ é marcado golo
             if (tentativa < chance_min) 
             {
                 if (bestTeam() == 1)
                 addGoalFora();
                 else addGoalCasa();
             }
+            //Se o valor estiver entre ]chance_min,chance_max[ é marcado golo
             else if (tentativa > chance_min && tentativa < chance_max)
             {
                 if (bestTeam() == 1)
@@ -297,7 +312,7 @@ public class Jogo implements Serializable{
             
         }
 
-        // Criar substituicoes
+        // Criar substituicoes aleatorias
         for (int i = 0; i < max_substitucoes; i++) {
             Substitute(equipa_casa);
             Substitute(equipa_fora);
@@ -305,6 +320,7 @@ public class Jogo implements Serializable{
 
         printGame();
 
+        //Assegurar que o jogo termina
         this.setState(game_state.Finished);
 
         // No final do jogo é adicionado as estatistica às equipas
@@ -314,10 +330,12 @@ public class Jogo implements Serializable{
         equipa_casa.makeBestTeam();
         equipa_fora.makeBestTeam();
 
+        //Converter para uma classe auxiliar e guardar na estrutura de dados principal
         JogoFeito jogo_feito = convert_JogoFeito();
         Parser.getJogos().add(jogo_feito);
     }
 
+    //Recebe um jogo e converte para um classe auxiliar JogoFeito
     public JogoFeito convert_JogoFeito() {
 
         String ec = this.equipa_casa.getNome_equipa();
