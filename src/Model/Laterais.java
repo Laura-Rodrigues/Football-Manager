@@ -7,12 +7,14 @@ public class Laterais extends Jogadores {
 
     private int cruzamentos;
 
+    /*
+     * CONSTRUTORES
+     */
     public Laterais(){
         super();
         this.cruzamentos = 0;
     }
 
-    //Construtor para funcionar com o codigo dos professores
     public Laterais(String nomeJ, int numeroJ, int vel, int res, int des, int imp, int cab, int rem, int p, int cruz) {
         super(nomeJ, numeroJ, vel, res, des, imp, cab, rem, p,Jogadores.Class_jog.LAT);
        this.cruzamentos = cruz;
@@ -36,12 +38,8 @@ public class Laterais extends Jogadores {
         super.setNome(nome);
     }
 
-
-    /**
-     * 
-     * 
+    /*
      * PARSER
-     * @return
      */
     public  Jogadores parse(String input){
         String[] campos = input.split(",");
@@ -55,15 +53,12 @@ public class Laterais extends Jogadores {
                 Integer.parseInt(campos[8]),
                 Integer.parseInt(campos[9]));
     }
+
+    /* GETTERS E SETTERS */
     public int getCruzamentos() { return this.cruzamentos; }
     public void setCruzamentos(int cruzamentos) { this.cruzamentos = cruzamentos; }
 
-    public StringBuilder toStringExtra(){
-        StringBuilder sb = new StringBuilder();
-        sb.append("Cruzamentos: ").append(this.getCruzamentos()).append("\n");
-        return sb;
-    }
-
+    /* Calcula a habilidade de um lateral priveligiando a capacidade de passe e a velocidade */
     public int getHabilidade(){
         return (int) Math.round(this.getVelocidade() * 0.23 +
                 this.getResistencia()*0.15 +
@@ -75,12 +70,20 @@ public class Laterais extends Jogadores {
                 this.getCruzamentos()*0.11 );
     }
 
+    /* Randomiza parâmetros que não aparecem no ficheiro logs */
     public void RandomizarExtra(int max,Random rand){
         this.cruzamentos = (int) (rand.nextFloat() * max);
 
     }
 
-
+    /*
+     * CLONE, EQUALS E TOSTRING
+     */
+    public StringBuilder toStringExtra(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Cruzamentos: ").append(this.getCruzamentos()).append("\n");
+        return sb;
+    }
     public Laterais clone() { return new Laterais(this); }
 
     public boolean equals(Object o) {
@@ -97,5 +100,4 @@ public class Laterais extends Jogadores {
                 cruzamentos == laterais.cruzamentos &&
                 Objects.equals(nome, laterais.nome);
     }
-
 }

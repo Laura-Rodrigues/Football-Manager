@@ -5,26 +5,21 @@ import Model.Jogadores;
 import Controller.Parser.*;
 
 public class Menu implements IView{
-    public int t = 40;//tamanho 
-
-    public void waitingInstruction(){
-        System.out.print("\t> ");
-    }
+    public int t = 40; // tamanho box do menu
 
     public void warningMenus(){
         System.out.print("\n\nA voltar para o primeiro menu..........\n");
     }
 
+    /* Ajuda a formatar melhor o texto do menu no terminal */
     public StringBuilder print_Espacos(int tamanho,String array){
         StringBuilder sb = new StringBuilder();
         int offset = (tamanho - array.length()) / 2;
-        for (int i = 0; i < offset; i++)
-        {
+        for (int i = 0; i < offset; i++) {
             sb.append(" ");
         }
         sb.append(array);
-        for (int i = 0; i < offset; i++)
-        {
+        for (int i = 0; i < offset; i++) {
             sb.append(" ");
         }
         if (((tamanho -array.length()) % 2) == 1) sb.append(" ");
@@ -33,6 +28,7 @@ public class Menu implements IView{
         return sb;
     }
 
+    /* Imprime linhas de separação de modo a ajudar com a visualização dos menus e seus resultados */
     public StringBuilder makemyBox(int start_size){
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < start_size; i++) {
@@ -41,6 +37,11 @@ public class Menu implements IView{
         sb.append("\n");
         return sb;
     }
+
+
+    /*
+    * Strings para os diferentes menus que permitem imprimir as opções disponíveis
+    */
 
     public void menu(){
         StringBuilder sb = new StringBuilder();

@@ -1,11 +1,6 @@
 package View;
 
-import Model.Jogadores;
-
-import java.util.ArrayList;
-
 public interface IView {
-    public void waitingInstruction();
     public void warningMenus();
     public void menu();
     public void menu1();

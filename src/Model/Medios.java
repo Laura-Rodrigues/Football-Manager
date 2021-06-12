@@ -7,11 +7,13 @@ public class Medios extends Jogadores {
 
     private int visaoDeJogo;
 
+    /*
+     * CONSTRUTORES
+     */
     public Medios (){
         super();
         this.visaoDeJogo = 0;
     }
-
 
     public Medios(String nomeJ, int numeroJ, int vel, int res, int des, int imp, int cab, int rem, int p, int rec) {
         super(nomeJ, numeroJ, vel, res, des, imp, cab, rem, p,Jogadores.Class_jog.MED);
@@ -24,6 +26,7 @@ public class Medios extends Jogadores {
          m.getJogo_cabeca(), m.getRemate(), m.getCapacidade_passe());
          this.visaoDeJogo = m.getVisaoDeJogo();
     }
+
     public Medios(Jogadores a){
         super(a);
         if (a.getClass() == getClass()){
@@ -37,13 +40,9 @@ public class Medios extends Jogadores {
         super.setNome(nome);
     }
 
-    /**
-     * 
-     * 
+    /*
      * PARSER
-     * @return
      */
-
     public  Jogadores parse(String input){
         String[] campos = input.split(",");
         return new Medios(campos[0], Integer.parseInt(campos[1]),
@@ -57,10 +56,11 @@ public class Medios extends Jogadores {
                 Integer.parseInt(campos[9]));
     }
 
-    
+    /* GETTERS E SETTERS */
     public int getVisaoDeJogo() { return this.visaoDeJogo; }
     public void setVisaoDeJogo(int visao_jogo) { this.visaoDeJogo = visao_jogo; }
 
+    /* Calcula a habilidade de um medio priveligiando a visão de jogo */
     public int getHabilidade (){
         return (int) Math.round(this.getVelocidade() * 0.15 +
                 this.getResistencia()*0.15 +
@@ -72,18 +72,20 @@ public class Medios extends Jogadores {
                 this.getVisaoDeJogo()*0.25 );
     }
 
+    /* Randomiza parâmetros que não aparecem no ficheiro logs */
+    public void RandomizarExtra(int max,Random rand){
+        this.visaoDeJogo = (int) (rand.nextFloat() * max);
+
+    }
+
+    /*
+     * CLONE, EQUALS E TOSTRING
+     */
     public StringBuilder toStringExtra(){
         StringBuilder sb = new StringBuilder();
         sb.append("Visao de Jogo: ").append(this.getVisaoDeJogo()).append("\n");
         return sb;
     }
-
-
-    public void RandomizarExtra(int max,Random rand){
-        this.visaoDeJogo = (int) (rand.nextFloat() * max);
-
-    }
-    
 
     public Medios clone() { return new Medios(this); }
 

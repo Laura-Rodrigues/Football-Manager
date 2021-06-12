@@ -6,6 +6,9 @@ public class Avancados extends Jogadores {
 
     private int desmarcacao;
 
+    /*
+    * CONSTRUTORES
+    */
     public Avancados(){
         super();
         this.desmarcacao = 0;
@@ -16,7 +19,6 @@ public class Avancados extends Jogadores {
         this.desmarcacao = desm;
     }
 
-    //Construtor para funcionar com os stores
     public Avancados(String nomeJ, int numeroJ, int vel, int res, int des, int imp, int cab, int rem, int p) {
         super(nomeJ, numeroJ, vel, res, des, imp, cab, rem, p,Jogadores.Class_jog.AVA);
         Random r = new Random();
@@ -40,11 +42,8 @@ public class Avancados extends Jogadores {
         }
     }
 
-
-    /**
-     * 
+    /*
      * PARSER
-     * @return
      */
     public  Jogadores parse(String input){
         String[] campos = input.split(",");
@@ -58,10 +57,11 @@ public class Avancados extends Jogadores {
                 Integer.parseInt(campos[8]));
     }
 
+    /* GETTERS E SETTERS */
     public int getDesmarcacao() { return this.desmarcacao; }
     public void setDesmarcacao(int desmarcacao) { this.desmarcacao = desmarcacao; }
 
-
+    /* Calcula a habilidade de um avançado priveligiando o remate e a velocidade */
     public int getHabilidade(){
         return (int) Math.round(this.getVelocidade() * 0.20 +
                 this.getResistencia()*0.08 +
@@ -73,18 +73,19 @@ public class Avancados extends Jogadores {
                 this.getDesmarcacao()*0.15);
     }
 
+    /* Randomiza parâmetros que não aparecem no ficheiro logs */
+    public void RandomizarExtra(int max,Random rand){
+        this.desmarcacao = (int) (rand.nextFloat() * max);
+    }
 
-
+    /*
+    * CLONE, EQUALS E TOSTRING
+    */
 
     public StringBuilder toStringExtra(){
         StringBuilder sb = new StringBuilder();
         sb.append("Desmarcação: ").append(this.getDesmarcacao()).append("\n");
         return sb;
-    }
-
-    public void RandomizarExtra(int max,Random rand){
-        this.desmarcacao = (int) (rand.nextFloat() * max);
-
     }
 
     public Avancados clone() { return new Avancados(this); }

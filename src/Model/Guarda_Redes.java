@@ -9,13 +9,15 @@ public class Guarda_Redes extends Jogadores {
     private int posicionamento;
     private int reflexos;
 
+    /*
+     * CONSTRUTORES
+     */
     public Guarda_Redes(){
         super();
         this.elasticidade = 0;
         this.posicionamento = 0;
         this.reflexos = 0;
     }
-
 
     public Guarda_Redes(String nome, int num, int velocidade, int resistencia, int destreza, int impulsao, int jogo_cabeca, int remate, int capacidade_passe,
                         int elasticidade, int posicionamento, int reflexos){
@@ -25,9 +27,7 @@ public class Guarda_Redes extends Jogadores {
         this.reflexos = reflexos;
     }
 
-
-
-    //Construtor para ler ficheiros
+    //Construtor para ler ficheiros randomiza valores que não estejam no logs
     public Guarda_Redes(String nome,int num, int velocidade, int resistencia, int destreza, int impulsao, int jogo_cabeca, int remate, int capacidade_passe, 
                         int elasticidade){
         super(nome,num, velocidade, resistencia, destreza, impulsao, jogo_cabeca, remate, capacidade_passe, Jogadores.Class_jog.GRD);
@@ -59,17 +59,9 @@ public class Guarda_Redes extends Jogadores {
         super.setNome(nome);
     }
 
-
-
-    /**
-     * 
-     * 
-     * 
-     * 
+    /*
      * PARSER
-     * 
      */
-
     public Jogadores parse(String input){
         String[] campos = input.split(",");
         return new Guarda_Redes(campos[0], Integer.parseInt(campos[1]),
@@ -83,7 +75,7 @@ public class Guarda_Redes extends Jogadores {
                 Integer.parseInt(campos[9]));
     }
 
-    // GET E SET
+    /* GETTERS E SETTERS */
     public int getElasticidade() { return this.elasticidade; }
     public int getPosicionamento() { return this.posicionamento; }
     public int getReflexos() { return this.reflexos; }
@@ -91,7 +83,7 @@ public class Guarda_Redes extends Jogadores {
     public void setPosicionamento(int posicionamento) { this.posicionamento = posicionamento; }
     public void setReflexos(int reflexos) { this.reflexos = reflexos; }
 
-
+    /* Calcula a habilidade de um guarda redes priveligiando os reflexos e a elasticidade */
     public int getHabilidade(){
         return (int) Math.round(this.getVelocidade() * 0.05 +
                 this.getPosicionamento()*0.12 +
@@ -105,6 +97,17 @@ public class Guarda_Redes extends Jogadores {
                 this.getElasticidade()*0.20);
     }
 
+    /* Randomiza parâmetros extra */
+    public void RandomizarExtra(int max,Random rand){
+        this.elasticidade = (int) (rand.nextFloat() * max);
+        this.posicionamento = (int) (rand.nextFloat() * max);
+        this.reflexos = (int) (rand.nextFloat() * max);
+
+    }
+
+    /*
+     * CLONE, EQUALS E TOSTRING
+     */
     public StringBuilder toStringExtra(){
         StringBuilder sb = new StringBuilder();
         sb.append("Elasticidade: ").append(this.getElasticidade()).append("\n");
@@ -112,19 +115,8 @@ public class Guarda_Redes extends Jogadores {
         sb.append("Reflexos: ").append(this.getReflexos()).append("\n");
         return sb;
     }
-    
-    public void RandomizarExtra(int max,Random rand){
-        this.elasticidade = (int) (rand.nextFloat() * max);
-        this.posicionamento = (int) (rand.nextFloat() * max);
-        this.reflexos = (int) (rand.nextFloat() * max);
-        
-    }
 
-
-    // CLONE
     public Guarda_Redes clone() { return new Guarda_Redes(this); }
-
-    
 
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -142,13 +134,5 @@ public class Guarda_Redes extends Jogadores {
                 reflexos == that.reflexos &&
                 Objects.equals(nome, that.nome);
     }
-
-
-
-
-
-
-
-
 
 }
