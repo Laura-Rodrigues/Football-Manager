@@ -10,7 +10,6 @@ import Model.Jogadores.Class_jog;
 
 public class Equipa implements Serializable{
     
-    // A habilidade global de uma equipa ́e função da habilidadede cada um dos jogadores.
     private ArrayList<Jogadores> jogadores;
     private ArrayList<Jogadores> plantel_Principal;
     private String nome_equipa;
@@ -72,7 +71,7 @@ public class Equipa implements Serializable{
        // j.addEquipa(nome_equipa);
     }
 
-
+    //Devolve um jogador aleatorio
     public Jogadores randomJogador()
     {
        Random r = new Random();
@@ -91,13 +90,15 @@ public class Equipa implements Serializable{
         
     }
 
-    //Função Principal para Preencher o Array List com os melhores Jogadores
+    //Função Principal para Preencher o Array List com os melhores Jogadores possiveis
     public void makeBestTeam(){
     SortTeam();
     int []array = new int[]{0,0,0,0,0};
     int max = jogadores.size();
     int pos =0;
     int tipo_num;
+
+    //Buscar por ordem decrescente os jogadores com maior habilidade
     while(pos < max && plantel_Principal.size() < 11)
     {
         Jogadores.Class_jog tipo = jogadores.get(pos).getTipo_jogador();
@@ -125,7 +126,7 @@ public class Equipa implements Serializable{
             pos++;
             continue;
         }
-    
+        //Adicionar o jogador ao plantel principal
         plantel_Principal.add(jogadores.get(pos).clone());
         pos++;
     }
@@ -136,6 +137,7 @@ public class Equipa implements Serializable{
         int min=1;
         int i;
         Jogadores.Class_jog tipo2;
+        //Buscar o menor valor do array do plantel
         for (i = 2; i < array.length; i++) {
             if(array[min] < array[i])
             min = i;
@@ -151,6 +153,8 @@ public class Equipa implements Serializable{
             default:
             tipo2 = Class_jog.AVA;
         }
+        //Buscar um jogador à lista principal que corresponde
+        //com o tipo que queremos para poder ser adicionado à equipa principal
         for (Jogadores j : jogadores) {
             if (j.getTipo_jogador() == tipo2 && !plantel_Principal.contains(j) )
             {
@@ -165,6 +169,7 @@ public class Equipa implements Serializable{
     //setplantel_array(array[1],array[2],array[3],array[4]);
 }
 
+    // A habilidade global de uma equipa ́e função da habilidadede cada um dos jogadores.
     public int getHabilidadeEquipa(){
     int r=0;
     for (Jogadores jog : plantel_Principal){
@@ -185,7 +190,6 @@ public class Equipa implements Serializable{
 
     //Troca um jogador de equipa,
     //Se existe nesta equipa entao é removido e só depois é que é inserido
-
     public void changeTeam(Jogadores j,Equipa e1){
         boolean remove1 = false;
         boolean remove2 = false;
