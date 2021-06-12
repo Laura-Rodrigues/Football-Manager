@@ -34,7 +34,7 @@ public class JogoFeito implements Serializable{
         substituicoesCasa = new HashMap<>(sc);
         substitucoesFora = new HashMap<>(sf);
     }
-
+    //Constroi um JogoFeito a partir de uma String formatada
     public static JogoFeito parse(String input){
         String[] campos = input.split(",");
         String[] data = campos[4].split("-");
